@@ -16,7 +16,7 @@ function stats(players) {
 }
 
 function statsForAPlayer(playerName) {
-    var resultFilterColumn = 12;
+    var resultFilterColumn = 15;
     var row = getRowSheetResultFilter(playerName);
     var serie = sheetResultFilter.getRange(row, resultFilterColumn + 4, 1, sheetResultFilter.getLastColumn()).getValues()[0].filter(String);
     var maxWin = 0;
@@ -83,7 +83,7 @@ function loadPageStat() {
         if(p[1]){
             stats += "<tr>";
             if (p[23]) {
-                stats += "<td>" + p[0] + "<sup> (" + p[23] + ")</sup></td>";
+                stats += "<td>" + p[0] + "<sup> (" + p[13] + ")</sup></td>";
             } else {
                 stats += "<td>" + p[0] + "</td>";
             }
@@ -96,8 +96,8 @@ function loadPageStat() {
                 + "<td>" + p[7] + "</td>"
                 + "<td>" + p[8] + "</td>"
                 + "<td>" + p[9] + "</td>"
-                + "<td>" + p[12] + "</td>"
-                + "<td>" + p[13] + "</td>"
+                + "<td>" + p[15] + "</td>"
+                + "<td>" + p[16] + "</td>"
                 + "<td>" + getLumieres(p) + "</td>"
                 + "</tr>";
         }
