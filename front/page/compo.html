@@ -95,11 +95,23 @@
     </div>
     <? } else if(mail && key && confirmationPhase && !teamSaved) { ?>
     <div class="row">
-        <div class="input-field col s6 l2 offset-l4">
-            <a id="confirmation" class="buttonGreen" onclick="confirmationJs()">Confirmation</a>
+        <div class="input-field col s3">
+            <a class="buttonGreen" onclick="confirmationJs('alone')">
+                Je viens seul<div class="logoCarAloneWhite"></div>
+            </a>
         </div>
-        <div class="input-field col s6 l2">
-            <a id="deconfirmation" class="buttonRed" onclick="retractationJs()">Désinscription</a>
+        <div class="input-field col s3">
+            <a class="buttonGreen" onclick="confirmationJs('share')">
+                J'ai de la place dans ma voiture<div class="logoCarSharingWhite"></div>
+            </a>
+        </div>
+        <div class="input-field col s3">
+            <a class="buttonGreen" onclick="confirmationJs('need')">
+                Je besoin d'un chauffeur<div class="logoCarNeedWhite"></div>
+            </a>
+        </div>
+        <div class="input-field col s3">
+            <a id="deconfirmation" class="buttonRed valign-wrapper" style="padding: 35px" onclick="retractationJs()">Désinscription</a>
         </div>
     </div>
     <? } ?>

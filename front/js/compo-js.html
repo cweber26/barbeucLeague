@@ -39,12 +39,13 @@
         }
     }
 
-    function confirmationJs() {
+    function confirmationJs(carSharingValue) {
         M.toast({html: "Confirmation en cours"});
         var parameter = {};
         google.script.url.getLocation(function (location) {
             parameter = location.parameter;
             parameter.answer = "Oui";
+            parameter.carSharing = carSharingValue;
             google.script.run.withSuccessHandler(reloadPageCompo).withFailureHandler(redirectToPageError).confirmation(parameter);
         });
 
