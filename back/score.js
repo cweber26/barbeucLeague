@@ -1,5 +1,6 @@
 function saveTeam() {
     if (isParameterBlank("teamSaved")) {
+        saveRank();
         if(!isMatchCancel()){
             var row = sheetResult.getRange("A1:A").getValues().filter(String).length + 2;
             if (sheetResult.getRange(row - 1, 1).getValue().getTime() == parametersMap.get("nextMatchDate").getTime()) {
