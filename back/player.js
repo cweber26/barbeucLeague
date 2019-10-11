@@ -324,6 +324,13 @@ function playersInWaitingListMail() {
     return [];
 }
 
+function playersNotAvailablePlayerListMail() {
+    if(parametersMap.get("notAvailablePlayerMailList")) {
+        return parametersMap.get("notAvailablePlayerMailList").split(',');
+    }
+    return [];
+}
+
 // noinspection JSUnusedGlobalSymbols
 function archiveProfil(mail) {
     var row = getRowSheetTeamWithMail(mail);

@@ -1,9 +1,7 @@
 function loadPageCompo() {
     var players = [];
-    var inscriptionTable = [];
     var confirmations = [];
     var effectif = "";
-    var listeAttente = "";
     if (parametersMap.get("numberPlayerInMatch") > 0) {
         var data = playersInTheMatchForFinalCompo();
         data.forEach(function (p) {
@@ -31,6 +29,7 @@ function loadPageCompo() {
         });
     }
 
+    var listeAttente = "";
     if (parametersMap.get("numberPlayerInWaitingList") > 0) {
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
@@ -40,7 +39,18 @@ function loadPageCompo() {
         });
     }
 
+    var listePasDispo = "";
+    if(param.isAdmin && parametersMap.get("notAvailablePlayerMailList")) {
+        playersNotAvailablePlayerListMail().forEach(function (m) {
+            var player = getPlayerWithMail(m);
+            if(player) {
+                listePasDispo += "<tr><td>" + player.fullName + "</td></tr>";
+            }
+        });
+    }
+
     var tabTitle = "Barbeuc : Composition";
+    var inscriptionTable = [];
     if (param.isAdmin && parametersMap.get("numberPlayerInMatch") > 0) {
         inscriptions().forEach(function (i) {
             if (i[0]) {
@@ -71,6 +81,7 @@ function loadPageCompo() {
         confirmations: confirmations,
         effectif: effectif,
         listeAttente: listeAttente,
+        listePasDispo: listePasDispo,
         admin: param.isAdmin,
         cancelMatch: parametersMap.get("isMatchCancel"),
         testing: isParameterTrue("modeTest"),

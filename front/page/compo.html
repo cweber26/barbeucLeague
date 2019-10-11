@@ -145,6 +145,7 @@
         </table>
     </div>
     <? } ?>
+
     <? if(listeAttente != "") { ?>
     <div class="row">
         <div class="col s3">
@@ -163,6 +164,26 @@
         </div>
     </div>
     <? } ?>
+
+    <? if(listePasDispo != "") { ?>
+    <div class="row">
+        <div class="col s3">
+        </div>
+        <div class="col s6">
+            <table id="pasDispo" class="centered highlight">
+                <thead>
+                <tr>
+                    <th style="cursor:pointer">Joueur pas dispo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?!=listePasDispo?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <? } ?>
+
     <? if (inscriptionTable != "") { ?>
     <div>
         <h4>Inscriptions</h4>
