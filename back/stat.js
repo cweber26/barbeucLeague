@@ -112,6 +112,6 @@ function loadPageStat() {
 }
 
 function saveRank() {
-    var currentRank = sheetResultFilter.getRange(1, 21, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).getValues();
-    sheetResultFilter.getRange(1, 22, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).setValues(currentRank);
+    var currentRank = sheetResultFilter.getRange(1, 12, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).getValues();
+    sheetResultFilter.getRange(1, 13, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).setValues(currentRank);
 }
