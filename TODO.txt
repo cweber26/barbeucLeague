@@ -1,13 +1,12 @@
 STAND BY ajouter une photo du joueur
 STAND BY priorisation via nombre de réponse au lieu de participation (nb de match)
 STAND BY mettre un joueur invité "fantome"
-TODO améliorer l'update des paramètres (trop long)
-TODO créer un visu invité du site
+SATND BY améliorer l'update des paramètres (trop long)
+
 TODO remplacer le nom du menu mon profil par le nom de l'utilisateur
-TODO permettre d'envoyer un message au joueur via le front
 TODO changer le jour du match + envoi mail auto
 TODO visu des joueurs qui refuse sur la compo
+TODO permettre d'envoyer un message au joueur via le front
 TODO envoyer message back
 TODO envoyer message front
-TODO ajouter une flèche sur le classement
-TODO padel league
+TODO accès direct au profil du joueur via la compo pour les admins

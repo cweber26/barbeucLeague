@@ -82,8 +82,8 @@ function loadPageStat() {
     data.forEach(function (p) {
         if(p[1]){
             stats += "<tr>";
-            if (p[23]) {
-                stats += "<td>" + p[0] + "<sup> (" + p[13] + ")</sup></td>";
+            if (p[14]) {
+                stats += "<td>" + p[0] + "<sup> (" + p[14] + ")</sup></td>";
             } else {
                 stats += "<td>" + p[0] + "</td>";
             }
