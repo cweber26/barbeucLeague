@@ -1,6 +1,6 @@
 function sendInscriptionMailForAPrio(prio) {
     if (!isMatchCancel() && parametersMap.get("numberAvailableSlotInMatch") > 0) {
-        sendInscriptionMailForAPrioWithoutControl(prio);
+        sendInscriptionMailForAPrioWithoutControl(prio, false);
     }
     switch (prio) {
         case 1:
@@ -15,15 +15,24 @@ function sendInscriptionMailForAPrio(prio) {
     }
 }
 
-function sendInscriptionMailForAPrioWithoutControl(prio) {
+function sendInscriptionForPriorityPlayerWithPrio(prio) {
+    if (!isMatchCancel() && parametersMap.get("numberAvailableSlotInMatch") > 0) {
+        sendInscriptionMailForAPlayer(prio, true);
+    }
+}
+
+
+function sendInscriptionMailForAPrioWithoutControl(prio, withPriority) {
     var playersList = playersTeamList();
     for (var i in playersList) {
         var player = initPlayer(playersList[i]);
-        if (shouldReceiveInscriptionMail(player, prio)) {
+        if (shouldReceiveInscriptionMail(player, prio, withPriority)) {
             sendInscriptionMailForAPlayer(player);
         }
     }
 }
+
+
 
 function sendInscriptionMailForAPlayer(player) {
     var body = includeWithArgs("front/mail/mailInscription", {
@@ -38,7 +47,6 @@ function sendInscriptionMailForAPlayer(player) {
 
 
 
-
 function loadPageInscription() {
     if (param.answer == "Oui") {
         return render("front/page/inscription", "inscription", {mail: param.mail, key: param.key, admin: param.isAdmin});
@@ -46,8 +54,6 @@ function loadPageInscription() {
         return render("front/page/desinscription", "desinscription",{mail: param.mail, key: param.key, admin: param.isAdmin});
     }
 }
-
-
 
 function inscription(parameter) {
     Logger.log("Inscription for " + parameter.mail + " and answer " + parameter.answer);

@@ -2,14 +2,19 @@ function playersTeamList() {
     return sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues()
 }
 
-function shouldReceiveInscriptionMail(player, prior) {
+function shouldReceiveInscriptionMail(player, prior, withPriority) {
     if (player.mail
         && player.prioValue <= prior
         && player.haveAlreadyAnswer == false
         && player.isUnavailable == false
         && haveSelectedMatchDay(player, nextMatchDay)) {
-        return true;
+        if (withPriority) {
+            return player.isPrioritary;
+        } else {
+            return true;
+        }
     }
+    return false;
 }
 
 

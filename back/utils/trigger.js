@@ -57,9 +57,11 @@ function execStep(step) {
         case 1:
             deleteUnavaibility();
             sendInscriptionMailForAPrio(1);
+            sendInscriptionForPriorityPlayerWithPrio(2);
             break;
         case 2:
             sendInscriptionMailForAPrio(2);
+            sendInscriptionForPriorityPlayerWithPrio(3);
             break;
         case 3:
             sendInscriptionMailForAPrio(3);
@@ -81,6 +83,7 @@ function execStep(step) {
             updatePriority();
             setNextMatchDate();
             cleaning();
+            sendInscriptionForPriorityPlayerWithPrio(1);
             break;
     }
 }
