@@ -2,12 +2,13 @@ function loadPageCompo() {
     var players = [];
     var confirmations = [];
     var effectif = "";
+    var matchCancel = parametersMap.get("isMatchCancel");
     if (parametersMap.get("numberPlayerInMatch") > 0) {
         var data = playersInTheMatchForFinalCompo();
         data.forEach(function (p) {
             players.push(p[1]);
             confirmations.push(p[10]);
-            if (p[0]) {
+            if (p[0] && parametersMap.get("numberPlayerInMatch") == parametersMap.get("numberPlayerMatch")) {
                 effectif += "<tr>"
                     + "<td>" + p[9] + "</td>"
                     + "<td>" + p[0] + "</td>"
@@ -27,31 +28,31 @@ function loadPageCompo() {
                     + "</tr>";
             }
         });
-    }
 
+    }
     var listeAttente = "";
-    if (parametersMap.get("numberPlayerInWaitingList") > 0) {
+    if (parametersMap.get("numberPlayerInWaitingList") > 0 && !matchCancel) {
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
                 listeAttente += "<tr><td>" + player.fullName + "</td></tr>";
             }
         });
-    }
 
+    }
     var listePasDispo = "";
-    if(param.isAdmin && parametersMap.get("notAvailablePlayerMailList")) {
+    if(param.isAdmin && parametersMap.get("notAvailablePlayerMailList") && !matchCancel) {
         playersNotAvailablePlayerListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
                 listePasDispo += "<tr><td>" + player.fullName + "</td></tr>";
             }
         });
-    }
 
+    }
     var tabTitle = "Barbeuc : Composition";
     var inscriptionTable = [];
-    if (param.isAdmin && parametersMap.get("numberPlayerInMatch") > 0) {
+    if (param.isAdmin && parametersMap.get("numberPlayerInMatch") > 0 && !matchCancel) {
         inscriptions().forEach(function (i) {
             if (i[0]) {
                 inscriptionTable += "<tr>"
@@ -68,8 +69,8 @@ function loadPageCompo() {
             }
         });
         tabTitle += " (" + parametersMap.get("numberPlayerInMatch") + ")";
-    }
 
+    }
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
         key: param.key,
@@ -83,7 +84,7 @@ function loadPageCompo() {
         listeAttente: listeAttente,
         listePasDispo: listePasDispo,
         admin: param.isAdmin,
-        cancelMatch: parametersMap.get("isMatchCancel"),
+        cancelMatch: matchCancel,
         testing: isParameterTrue("modeTest"),
         inscriptionTable: inscriptionTable,
         stadium: getStadiumInfo()
