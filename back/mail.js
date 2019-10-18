@@ -11,7 +11,7 @@ function sendMailForAnAdmin(player, subject, contentHtml) {
         html: contentHtml,
         urlMail: getUrlMail(player)
     });
-    sendMail(player.mail, subject, body)
+    sendMail(player.mail, subject, body);
 }
 
 function sendMail(mail, subject, html) {

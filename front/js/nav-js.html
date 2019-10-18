@@ -6,6 +6,8 @@
         M.Modal.init(modal);
         var dropdown = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdown, {alignment: "right", constrainWidth: false});
+        var textarea = document.querySelectorAll('.textarea');
+        M.CharacterCounter.init(textarea)
     });
 
     function cleaningJs() {
@@ -87,6 +89,25 @@
             var parameter = location.parameter;
             window.top.location.href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page="+String(parameter.page)+"&mail="+String(parameter.mail)+"&key="+String(parameter.key);
         });
+    }
+
+    function envoyerMessageJs() {
+
+        if(document.getElementById("message").value) {
+
+            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).envoyerMessage({
+                tousLesJoueurs: document.getElementById("tousLesJoueurs").checked,
+                joueursMatch: document.getElementById("joueursMatch").checked,
+                joueursEnAttente: document.getElementById("joueursEnAttente").checked,
+                joueursSansReponse: document.getElementById("joueursSansReponse").checked,
+                filtrePrio: document.getElementById("filtrePrio").value,
+                message: document.getElementById("message").value
+            });
+
+            M.toast({html: "Message en cours d'envoi"});
+
+        }
+
     }
 
     function successStats() {

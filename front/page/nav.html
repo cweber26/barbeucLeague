@@ -1,49 +1,56 @@
 <nav>
     <div class="nav-wrapper <?if(!admin || !testing){?>green<?} else {?>red<?}?> lighten-2">
-        <a class="brand-logo center"><div class="logoBlancSansFond"></div></a>
+        <a class="brand-logo center">
+            <div class="logoBlancSansFond"></div>
+        </a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
         <ul id="nav-mobile" class="right hide-on-med-and-down navbar">
             <? if(mail && key) {?>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=<?=mail?>&key=<?=key?>">Prochain Match</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=<?=mail?>&key=<?=key?>">Résultats</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat&mail=<?=mail?>&key=<?=key?>">Classement</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record&mail=<?=mail?>&key=<?=key?>">Records</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team&mail=<?=mail?>&key=<?=key?>">Equipe</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=<?=mail?>&key=<?=key?>">Profil</a></li>
-                <?if(admin){?>
-                    <li><a class="dropdown-trigger" data-target="dropdownBO">BackOffice<i class="material-icons right">arrow_drop_down</i></a></li>
-                <?}?>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=<?=mail?>&key=<?=key?>">Prochain Match</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=<?=mail?>&key=<?=key?>">Résultats</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat&mail=<?=mail?>&key=<?=key?>">Classement</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record&mail=<?=mail?>&key=<?=key?>">Records</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team&mail=<?=mail?>&key=<?=key?>">Equipe</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=<?=mail?>&key=<?=key?>">Profil</a></li>
+            <?if(admin){?>
+            <li><a class="dropdown-trigger" data-target="dropdownBO">BackOffice<i class="material-icons right">arrow_drop_down</i></a></li>
+            <?}?>
             <?} else {?>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo">Prochain Match</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat">Résultats</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat">Classement</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record">Records</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team">Equipe</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=connection">Me connecter</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo">Prochain Match</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat">Résultats</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat">Classement</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record">Records</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team">Equipe</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=connection">Me connecter</a></li>
             <?}?>
         </ul>
+
         <ul class="sidenav" id="mobile-demo">
             <? if(mail && key) {?>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=<?=mail?>&key=<?=key?>">Prochain Match</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=<?=mail?>&key=<?=key?>">Résultats</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat&mail=<?=mail?>&key=<?=key?>">Classement</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record&mail=<?=mail?>&key=<?=key?>">Records</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team&mail=<?=mail?>&key=<?=key?>">Equipe</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=<?=mail?>&key=<?=key?>">Profil</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=<?=mail?>&key=<?=key?>">Prochain Match</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=<?=mail?>&key=<?=key?>">Résultats</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat&mail=<?=mail?>&key=<?=key?>">Classement</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record&mail=<?=mail?>&key=<?=key?>">Records</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team&mail=<?=mail?>&key=<?=key?>">Equipe</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=<?=mail?>&key=<?=key?>">Profil</a></li>
             <?} else {?>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo">Prochain Match</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat">Résultats</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat">Classement</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record">Records</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team">Equipe</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=connection">Me connecter</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo">Prochain Match</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat">Résultats</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat">Classement</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record">Records</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team">Equipe</a></li>
+            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=connection">Me connecter</a></li>
             <?}?>
         </ul>
+
     </div>
 </nav>
+
 <ul id="dropdownBO" class="dropdown-content" width="400px">
     <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=backoffice&mail=<?=mail?>&key=<?=key?>">Parameters</a></li>
     <li class="divider"></li>
+    <li><a data-target="helperMessage" class="modal-trigger">Envoyer un message</a></li>
     <li><a onclick="sendPrio1Js()">Envoyer mail prio 1</a></li>
     <li><a onclick="sendPrio2Js()">Envoyer mail prio 2</a></li>
     <li><a onclick="sendPrio3Js()">Envoyer mail prio 3</a></li>
@@ -57,3 +64,77 @@
     <li class="divider"></li>
     <li><a onclick="switchModeJs()"><?if(testing){?>Prod mode<?} else {?><span style="color: #e57373">Test mode<?}?></span></a></li>
 </ul>
+
+<div id="helperMessage" class="modal">
+    <div class="modal-content">
+        <h5>Envoyer un message</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col s6">
+                    <p>
+                        <label>
+                            Type :
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" id="tousLesJoueurs"/>
+                            <span>Tous les joueurs</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" id="joueursMatch" checked/>
+                            <span>Joueurs du match</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" id="joueursEnAttente"/>
+                            <span>Joueurs en liste d'attente</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" id="joueursSansReponse"/>
+                            <span>Joueurs n'ayant pas répondu</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="col s6">
+                    <p>
+                        <label>
+                            Priorité :
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input value="4" id="filtrePrio" name="filtrePrio" type="radio" checked required/>
+                            <span>Toutes prio</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input value="1" id="filtrePrio" name="filtrePrio" type="radio"/>
+                            <span>Prio 1</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input value="2" id="filtrePrio" name="filtrePrio" type="radio"/>
+                            <span>Prio 2</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input value="3" id="filtrePrio" name="filtrePrio" type="radio"/>
+                            <span>Prio 3</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <label for="message">message :</label><textarea id="message" class="materialize-textarea"></textarea>
+            <a class="buttonGreen modal-close" onclick="envoyerMessageJs()">Envoyer</a>
+        </div>
+    </div>
+</div>
