@@ -20,6 +20,7 @@ function doGet(e) {
     Route.path("team", loadPageTeam);
     Route.path("backoffice", loadPageBackoffice);
     Route.path("connection", loadPageConnection);
+    Route.path("error", loadPageError);
 
     var statusUser = getStatusUser(param);
 
