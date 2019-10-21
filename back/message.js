@@ -1,35 +1,38 @@
 // noinspection JSUnusedGlobalSymbols
 function envoyerMessage(messageContent) {
 
-    Logger.log(messageContent.tousLesJoueurs);
-    var playersList = [];
+    var playerMailList = "";
 
-    if (messageContent.tousLesJoueurs) {
-        playersList = getPlayerListWithMail(parametersMap.get("playerMailList").split(','));
-    } else {
-        if (messageContent.joueursMatch) {
-            if (parametersMap.get("matchPlayerMailList") != "") {
-                playersList = getPlayerListWithMail(parametersMap.get("matchPlayerMailList").split(','));
-            }
-        }
-        if (messageContent.joueursEnAttente) {
-            if (parametersMap.get("waitingListPlayerMailList") != "") {
-                playersList = playersList.concat(getPlayerListWithMail(parametersMap.get("waitingListPlayerMailList").split(',')));
-            }
-        }
-        if (messageContent.joueursSansReponse) {
-            if (parametersMap.get("notRespondedPlayerMailList") != "") {
-                playersList = playersList.concat(getPlayerListWithMail(parametersMap.get("notRespondedPlayerMailList").split(',')));
-            }
-        }
+    switch (messageContent.filtreEtatJoueur) {
+        case "all":
+            playerMailList = parametersMap.get("playerMailList").split(',');
+            break;
+        case "match":
+            playerMailList = parametersMap.get("matchPlayerMailList").split(',');
+            break;
+        case "waiting":
+            playerMailList = parametersMap.get("waitingListPlayerMailList").split(',');
+            break;
+        case "noAnswer":
+            playerMailList = parametersMap.get("notRespondedPlayerMailList").split(',');
+            break;
 
     }
 
-    for (var i in playersList) {
-        if (playersList[i].prioValue <= messageContent.filtrePrio) {
-            sendMessageForAPlayer(playersList[i], messageContent.message)
+    if (playerMailList != "") {
+        sendMessageForAPlayerList(playerMailList, messageContent);
+    }
+
+}
+
+function sendMessageForAPlayerList(playerMailList, messageContent) {
+    var playerList = getPlayerListWithMail(playerMailList)
+    for (var i in playerList) {
+        if (playerList[i].prioValue <= messageContent.filtrePrio) {
+            sendMessageForAPlayer(playerList[i], messageContent.message)
         }
     }
+
 }
 
 function getPlayerListWithMail(playerMailList) {

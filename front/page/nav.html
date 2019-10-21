@@ -78,25 +78,25 @@
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" id="tousLesJoueurs"/>
+                            <input type="radio" id="filtreEtatJoueur" name = "filtreEtatJoueur" value ="all" checked/>
                             <span>Tous les joueurs</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" id="joueursMatch" checked/>
+                            <input type="radio" id="filtreEtatJoueur" name = "filtreEtatJoueur" value ="match"/>
                             <span>Joueurs du match</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" id="joueursEnAttente"/>
+                            <input type="radio" id="filtreEtatJoueur" name = "filtreEtatJoueur" value ="waiting"/>
                             <span>Joueurs en liste d'attente</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" id="joueursSansReponse"/>
+                            <input type="radio" id="filtreEtatJoueur" name = "filtreEtatJoueur" value ="noAnswer"/>
                             <span>Joueurs n'ayant pas répondu</span>
                         </label>
                     </p>
@@ -109,7 +109,7 @@
                     </p>
                     <p>
                         <label>
-                            <input value="4" id="filtrePrio" name="filtrePrio" type="radio" checked required/>
+                            <input value="4" id="filtrePrio" name="filtrePrio" type="radio" checked/>
                             <span>Toutes prio</span>
                         </label>
                     </p>
@@ -122,13 +122,13 @@
                     <p>
                         <label>
                             <input value="2" id="filtrePrio" name="filtrePrio" type="radio"/>
-                            <span>Prio 2</span>
+                            <span>Prio 1 & 2</span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input value="3" id="filtrePrio" name="filtrePrio" type="radio"/>
-                            <span>Prio 3</span>
+                            <span>Prio 1 & 2 & 3</span>
                         </label>
                     </p>
                 </div>
