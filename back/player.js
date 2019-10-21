@@ -2,16 +2,23 @@ function playersTeamList() {
     return sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues()
 }
 
-function shouldReceiveInscriptionMail(player, prior, withPriority) {
+function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
     if (player.mail
-        && player.prioValue <= prior
         && player.haveAlreadyAnswer == false
         && player.isUnavailable == false
         && haveSelectedMatchDay(player, nextMatchDay)) {
-        if (withPriority) {
-            return player.isPrioritary;
+        if(relaunch) {
+            if(player.prioValue <= prior) {
+                return true;
+            }
         } else {
-            return true;
+            if(player.prioValue == prior) {
+                if (withPriority) {
+                    return player.isPrioritary;
+                } else {
+                    return !player.isPrioritary;
+                }
+            }
         }
     }
     return false;

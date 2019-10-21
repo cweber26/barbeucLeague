@@ -5,28 +5,28 @@ function execBatch() {
     if(isTimeForStep(nextStep)){
         execStep(nextStep);
     }
-    if(nextStep>2) {
-        createEventIfMatchIsFull();
-    }
+    createEventIfMatchIsFull();
 }
 
 function getNextStep() {
-    if(isParameterBlank("mailSendingPrio1")){
+    if(isParameterBlank("mailSendingPrio1WithPriority")){
         return 1;
-    } else if(isParameterBlank("mailSendingPrio2")){
+    } else if(isParameterBlank("mailSendingPrio1")){
         return 2;
-    } else if(isParameterBlank("mailSendingPrio3")){
+    } else if(isParameterBlank("mailSendingPrio2")){
         return 3;
-    } else if(isParameterBlank("controlDone")){
+    } else if(isParameterBlank("mailSendingPrio3")){
         return 4;
-    } else if(isParameterBlank("mailSendingReminder")){
+    } else if(isParameterBlank("controlDone")){
         return 5;
-    } else if(isParameterBlank("mailSendingConfirmation")){
+    } else if(isParameterBlank("mailSendingReminder")){
         return 6;
-    } else if(isParameterBlank("teamSaved")){
+    } else if(isParameterBlank("mailSendingConfirmation")){
         return 7;
+    } else if(isParameterBlank("teamSaved")){
+        return 8;
     } else {
-      return 8;
+      return 9;
     }
 }
 
@@ -56,34 +56,37 @@ function execStep(step) {
     switch (step) {
         case 1:
             deleteUnavaibility();
-            sendInscriptionMailForAPrio(1);
-            sendInscriptionForPriorityPlayerWithPrio(2);
+            sendInscriptionMailForAPrio(1, true, false);
             break;
         case 2:
-            sendInscriptionMailForAPrio(2);
-            sendInscriptionForPriorityPlayerWithPrio(3);
+            sendInscriptionMailForAPrio(2, true, false);
+            sendInscriptionMailForAPrio(1, false, false);
             break;
         case 3:
-            sendInscriptionMailForAPrio(3);
+            sendInscriptionMailForAPrio(3, true, false);
+            sendInscriptionMailForAPrio(2, false, false);
+            sendInscriptionMailForAPrio(1, false, true);
             break;
         case 4:
-            controlAndCancelOrRelaunch();
+            sendInscriptionMailForAPrio(3, false, false);
             break;
         case 5:
-            sendReminderMail();
+            controlAndCancelOrRelaunch();
             break;
         case 6:
-            sendConfirmMail();
+            sendReminderMail();
             break;
         case 7:
-            saveTeam();
+            sendConfirmMail();
             break;
         case 8:
+            saveTeam();
+            break;
+        case 9:
             sendScoreMail();
             updatePriority();
             setNextMatchDate();
             cleaning();
-            sendInscriptionForPriorityPlayerWithPrio(1);
             break;
     }
 }

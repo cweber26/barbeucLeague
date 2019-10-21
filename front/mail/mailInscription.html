@@ -22,6 +22,11 @@
         </div>
         <div class="row"></div>
         <?!= includeWithArgs("front/utils/stadiumInfo", {stadium: stadium, withDetail: false}) ?>
+        <? if(withPriority) { ?>
+        <div class="row">
+            <h4 class="title">Ton inscription a été envoyée en avance car tu es prioritaire</h4>
+        </div>
+        <? } ?>
         <? if(nbAvailableSlots<=5 && nbAvailableSlots>0) { ?>
         <div class="row">
             <h4 class="title">Il reste <?=nbAvailableSlots?> place(s)</h4>

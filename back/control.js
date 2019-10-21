@@ -6,7 +6,7 @@ function controlAndCancelOrRelaunch() {
                 sendMailSimple("Pense à annuler la réservation du match " + matchDayGapInFrench(true), "<h2>Pense à annuler la réservation " + parametersMap.get("nextMatchStadiumName") + "</h2>");
 
             } else if (parametersMap.get("numberPlayerInMatch") >= parametersMap.get("minPlayerForAutoCancelation") && parametersMap.get("numberPlayerInMatch") < parametersMap.get("numberPlayerMatch")) {
-                sendInscriptionMailForAPrio(3);
+                sendInscriptionMailForAPrio(2, false, true);
             }
         }
         updateParameterValue("controlDone", now());

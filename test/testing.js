@@ -35,7 +35,8 @@ function testConfirmation() {
 // noinspection JSUnusedGlobalSymbols
 function testMails() {
     var player = getPlayerWithMail("cedric.weber@decathlon.com");
-    sendInscriptionMailForAPlayer(player);
+    sendInscriptionMailForAPlayer(player, false);
+    sendInscriptionMailForAPlayer(player, true);
     sendRemindMailForAPlayer(player, true);
     sendRemindMailForAPlayer(player, false);
     sendConfirmMailForAPlayer(player, true);
