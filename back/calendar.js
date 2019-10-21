@@ -21,7 +21,11 @@ function createCalendarEvent() {
         if (parametersMap.get("modeTest")) {
             mails = parametersMap.get("mailTester");
         }
-        calendar.createEvent(parametersMap.get("applicationName"), begin, end, {location: parametersMap.get("nextMatchStadiumAddress"), guests: mails, sendInvites: false});
+        var event = calendar.createEvent(parametersMap.get("applicationName"), begin, end, {location: parametersMap.get("nextMatchStadiumAddress"), guests: mails, sendInvites: false});
+
+        if(mails.indexOf(parametersMap.get("cedric.weber@decathlon.com")) > -1){
+            event.setMyStatus(CalendarApp.GuestStatus.YES);
+        }
         updateParameterValue("creationGoogleEvent", now());
     }
 }
