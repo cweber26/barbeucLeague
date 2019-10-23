@@ -23,7 +23,7 @@ function createCalendarEvent() {
         }
         var event = calendar.createEvent(parametersMap.get("applicationName"), begin, end, {location: parametersMap.get("nextMatchStadiumAddress"), guests: mails, sendInvites: false});
 
-        if(mails.indexOf(parametersMap.get("cedric.weber@decathlon.com")) > -1){
+        if(mails.includes("cedric.weber@decathlon.com")){
             event.setMyStatus(CalendarApp.GuestStatus.YES);
         }
         updateParameterValue("creationGoogleEvent", now());
