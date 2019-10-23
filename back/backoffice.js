@@ -20,6 +20,7 @@ function loadPageBackoffice() {
     parameterApplication.applicationName = applicationName;
 
     var log = {};
+    log.send1withPrio = getDateTimeFormat(mailSendingPrio1WithPriority);
     log.send1 = getDateTimeFormat(mailSendingPrio1);
     log.send2 = getDateTimeFormat(mailSendingPrio2);
     log.send3 = getDateTimeFormat(mailSendingPrio3);

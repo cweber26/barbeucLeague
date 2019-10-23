@@ -3,6 +3,8 @@ function cleaning() {
         sheetInscription.deleteRows(2, sheetInscription.getLastRow() - 1);
     }
 
+    mailSendingPrio1WithPriority="";
+    sheetParameters.getRange(getRowParameter("mailSendingPrio1"), 2).clearContent();
     mailSendingPrio1="";
     sheetParameters.getRange(getRowParameter("mailSendingPrio1"), 2).clearContent();
     mailSendingPrio2="";

@@ -25,7 +25,7 @@ function sendConfirmMailForAPlayer(player, isNewPlayer) {
         isNewPlayer: isNewPlayer,
         compo: getCompoPlayersListForMail(),
         playersInTheMatchMails: matchPlayerMailList,
-        subjectMailContact: encodeURIComponent(applicationName + " Conversation du match du " + nextMatchDateFrench)
+        subjectMailContact: encodeURIComponent(applicationName + " Conversation du match du " + nextMatchDateInFrench)
     });
     sendMail(player.mail, "Confirmation de présence au match de Footsal " + matchDayGapInFrench(true) + " ✅", body);
 }
