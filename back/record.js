@@ -18,6 +18,6 @@ function loadPageRecord() {
         participation: participation,
         victoryLastMonth: victoryLastMonth,
         loseLastMonth: loseLastMonth,
-        testing: isParameterTrue("modeTest")
+        testing: modeTest==true
     });
 }

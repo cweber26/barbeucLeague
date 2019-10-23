@@ -1,5 +1,5 @@
 function sendLastMonthResultMail() {
-    var mails = parametersMap.get("lastMonthPlayerMailList").split(',');
+    var mails = lastMonthPlayerMailList.split(',');
     for (var i in mails) {
         var player = getPlayerWithMail(mails[i]);
         sendLastMonthResultMailForAPlayer(player);

@@ -5,29 +5,29 @@ function loadPageBackoffice() {
     }
 
     var parameterApplication = {};
-    parameterApplication.victory = parametersMap.get("victoryPoint");
-    parameterApplication.draw = parametersMap.get("drawPoint");
-    parameterApplication.defeat = parametersMap.get("defeatPoint");
-    parameterApplication.offensiveBonus = parametersMap.get("offensiveBonusPoint");
-    parameterApplication.minGoalGap = parametersMap.get("minGoalOffensiveBonus");
-    parameterApplication.deffensiveBonus = parametersMap.get("defensiveBonusPoint");
-    parameterApplication.maxGoalGap = parametersMap.get("maxGoalDefensiveBonus");
-    parameterApplication.minMatch = parametersMap.get("minMatchForStat");
-    parameterApplication.nbPlayersMatch = parametersMap.get("numberPlayerMatch");
-    parameterApplication.nbLimitPlayers = parametersMap.get("minPlayerForAutoCancelation");
-    parameterApplication.modeTest = isParameterTrue("modeTest");
-    parameterApplication.mailTester = parametersMap.get("mailTester");
-    parameterApplication.applicationName = parametersMap.get("applicationName");
+    parameterApplication.victory = victoryPoint;
+    parameterApplication.draw = drawPoint;
+    parameterApplication.defeat = defeatPoint;
+    parameterApplication.offensiveBonus = offensiveBonusPoint;
+    parameterApplication.minGoalGap = minGoalOffensiveBonus;
+    parameterApplication.deffensiveBonus = defensiveBonusPoint;
+    parameterApplication.maxGoalGap = maxGoalDefensiveBonus;
+    parameterApplication.minMatch = minMatchForStat;
+    parameterApplication.nbPlayersMatch = numberPlayerMatch;
+    parameterApplication.nbLimitPlayers = minPlayerForAutoCancelation;
+    parameterApplication.modeTest = modeTest==true;
+    parameterApplication.mailTester = mailTester;
+    parameterApplication.applicationName = applicationName;
 
     var log = {};
-    log.send1 = getDateTimeFormat(parametersMap.get("mailSendingPrio1"));
-    log.send2 = getDateTimeFormat(parametersMap.get("mailSendingPrio2"));
-    log.send3 = getDateTimeFormat(parametersMap.get("mailSendingPrio3"));
-    log.control = getDateTimeFormat(parametersMap.get("controlDone"));
-    log.reminder = getDateTimeFormat(parametersMap.get("mailSendingReminder"));
-    log.googleEvent = getDateTimeFormat(parametersMap.get("creationGoogleEvent"));
-    log.confirmation = getDateTimeFormat(parametersMap.get("mailSendingConfirmation"));
-    log.team = getDateTimeFormat(parametersMap.get("teamSaved"));
+    log.send1 = getDateTimeFormat(mailSendingPrio1);
+    log.send2 = getDateTimeFormat(mailSendingPrio2);
+    log.send3 = getDateTimeFormat(mailSendingPrio3);
+    log.control = getDateTimeFormat(controlDone);
+    log.reminder = getDateTimeFormat(mailSendingReminder);
+    log.googleEvent = getDateTimeFormat(creationGoogleEvent);
+    log.confirmation = getDateTimeFormat(mailSendingConfirmation);
+    log.team = getDateTimeFormat(teamSaved);
 
     var schedule = "";
     sheetSchedule.getRange(2, 1, 1, 8).getValues().forEach(function (s) {
@@ -63,36 +63,52 @@ function loadPageBackoffice() {
         param: parameterApplication,
         log: log,
         schedule: schedule,
-        testing: isParameterTrue("modeTest")
+        testing: modeTest==true
     });
 }
 
 // noinspection JSUnusedGlobalSymbols
 function updateParameter(parameterApplication) {
-    updateParameterValue("victoryPoint", parameterApplication.victory);
-    updateParameterValue("drawPoint",parameterApplication.draw);
-    updateParameterValue("defeatPoint",parameterApplication.defeat);
-    updateParameterValue("offensiveBonusPoint",parameterApplication.offensiveBonus);
-    updateParameterValue("minGoalOffensiveBonus",parameterApplication.offensiveBonusGap);
-    updateParameterValue("defensiveBonusPoint",parameterApplication.defensiveBonus);
-    updateParameterValue("maxGoalDefensiveBonus",parameterApplication.defensiveBonusGap);
-    updateParameterValue("minMatchForStat",parameterApplication.minMatch);
-    updateParameterValue("numberPlayerMatch",parameterApplication.nbPlayersMatch);
-    updateParameterValue("minPlayerForAutoCancelation",parameterApplication.nbLimitPlayers);
+    victoryPoint=parameterApplication.victory;
+    sheetParameters.getRange(getRowParameter("victoryPoint"), 2).setValue(parameterApplication.victory);
+    drawPoint=parameterApplication.draw;
+    sheetParameters.getRange(getRowParameter("drawPoint"), 2).setValue(parameterApplication.draw);
+    defeatPoint=parameterApplication.defeat;
+    sheetParameters.getRange(getRowParameter("defeatPoint"), 2).setValue(parameterApplication.defeat);
+    offensiveBonusPoint=parameterApplication.offensiveBonus;
+    sheetParameters.getRange(getRowParameter("offensiveBonusPoint"), 2).setValue(parameterApplication.offensiveBonus);
+    minGoalOffensiveBonus=parameterApplication.offensiveBonusGap;
+    sheetParameters.getRange(getRowParameter("minGoalOffensiveBonus"), 2).setValue(parameterApplication.offensiveBonusGap);
+    defensiveBonusPoint=parameterApplication.defensiveBonus;
+    sheetParameters.getRange(getRowParameter("defensiveBonusPoint"), 2).setValue(parameterApplication.defensiveBonus);
+    maxGoalDefensiveBonus=parameterApplication.defensiveBonusGap;
+    sheetParameters.getRange(getRowParameter("maxGoalDefensiveBonus"), 2).setValue(parameterApplication.defensiveBonusGap);
+    minMatchForStat=parameterApplication.minMatch;
+    sheetParameters.getRange(getRowParameter("minMatchForStat"), 2).setValue(parameterApplication.minMatch);
+    numberPlayerMatch=parameterApplication.nbPlayersMatch;
+    sheetParameters.getRange(getRowParameter("numberPlayerMatch"), 2).setValue(parameterApplication.nbPlayersMatch);
+    minPlayerForAutoCancelation=parameterApplication.nbLimitPlayers;
+    sheetParameters.getRange(getRowParameter("minPlayerForAutoCancelation"), 2).setValue(parameterApplication.nbLimitPlayers);
     if (parameterApplication.modeTest) {
-        updateParameterValue("modeTest",true);
+        modeTest=true;
+        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(true);
     } else {
-        updateParameterValue("modeTest",false);
+        modeTest=false;
+        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(false);
     }
-    updateParameterValue("mailTester",parameterApplication.mailTester);
-    updateParameterValue("applicationName",parameterApplication.applicationName);
+    mailTester=parameterApplication.mailTester;
+    sheetParameters.getRange(getRowParameter("mailTester"), 2).setValue(parameterApplication.mailTester);
+    applicationName=parameterApplication.applicationName;
+    sheetParameters.getRange(getRowParameter("applicationName"), 2).setValue(parameterApplication.applicationName);
 }
 
 // noinspection JSUnusedGlobalSymbols
 function switchMode() {
-    if(isParameterTrue("modeTest")) {
-        updateParameterValue("modeTest",false);
+    if(modeTest==true) {
+        modeTest=false;
+        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(false);
     } else {
-        updateParameterValue("modeTest",true);
+        modeTest=true;
+        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(true);
     }
 }

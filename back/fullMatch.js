@@ -1,6 +1,6 @@
 function sendMatchCompletMail() {
-    if (!isMatchCancel()) {
-        var mails = parametersMap.get("adminMailList").split(',');
+    if (!isTheMatchCancel()) {
+        var mails = adminMailList.split(',');
         for (var i in mails) {
             var player = getPlayerWithMail(mails[i]);
             sendMatchCompletMailForAPlayer(player);

@@ -1,12 +1,12 @@
 function saveTeam() {
-    if (isParameterBlank("teamSaved")) {
+    if (teamSaved=="") {
         saveRank();
-        if(!isMatchCancel()){
+        if(!isTheMatchCancel()){
             var row = sheetResult.getRange("A1:A").getValues().filter(String).length + 2;
-            if (sheetResult.getRange(row - 1, 1).getValue().getTime() == parametersMap.get("nextMatchDate").getTime()) {
+            if (sheetResult.getRange(row - 1, 1).getValue().getTime() == nextMatchDate.getTime()) {
                 row = row - 1;
             } else {
-                sheetResult.getRange(row, 1).setValue(parametersMap.get("nextMatchDate"));
+                sheetResult.getRange(row, 1).setValue(nextMatchDate);
             }
             var players = playersInTheMatchForFinalCompo();
             sheetResult.getRange(row, 2).setValue(players[0][0]);
@@ -20,7 +20,8 @@ function saveTeam() {
             sheetResult.getRange(row, 10).setValue(players[8][0]);
             sheetResult.getRange(row, 11).setValue(players[9][0]);
         }
-        updateParameterValue("teamSaved", now());
+        teamSaved=now();
+        sheetParameters.getRange(getRowParameter("teamSaved"), 2).setValue(now());
     }
 }
 
@@ -50,8 +51,8 @@ function saveScore(scoreValue) {
 }
 
 function sendScoreMail() {
-    if (!isMatchCancel()) {
-        var mails = parametersMap.get("adminMailList").split(',');
+    if (!isTheMatchCancel()) {
+        var mails = adminMailList.split(',');
         for (var i in mails) {
             var player = getPlayerWithMail(mails[i]);
             sendScoreMailForAPlayer(player);

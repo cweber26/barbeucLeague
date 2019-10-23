@@ -1,24 +1,28 @@
 function sendInscriptionMailForAPrio(prio, withPriority, relaunch) {
-    if (!isMatchCancel() && parametersMap.get("numberAvailableSlotInMatch") > 0) {
+    if (!isTheMatchCancel() && numberAvailableSlotInMatch > 0) {
         sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch);
     }
     if(!relaunch) {
         switch (prio) {
             case 1:
                 if (withPriority) {
-                    updateParameterValue("mailSendingPrio1WithPriority", now());
+                    mailSendingPrio1WithPriority=now();
+                    sheetParameters.getRange(getRowParameter("mailSendingPrio1WithPriority"), 2).setValue(now());
                 } else {
-                    updateParameterValue("mailSendingPrio1", now());
+                    mailSendingPrio1=now();
+                    sheetParameters.getRange(getRowParameter("mailSendingPrio1"), 2).setValue(now());
                 }
                 break;
             case 2:
                 if (!withPriority) {
-                    updateParameterValue("mailSendingPrio2", now());
+                    mailSendingPrio2=now();
+                    sheetParameters.getRange(getRowParameter("mailSendingPrio2"), 2).setValue(now());
                 }
                 break;
             case 3:
                 if (!withPriority) {
-                    updateParameterValue("mailSendingPrio3", now());
+                    mailSendingPrio3=now();
+                    sheetParameters.getRange(getRowParameter("mailSendingPrio3"), 2).setValue(now());
                 }
                 break;
         }
@@ -26,7 +30,7 @@ function sendInscriptionMailForAPrio(prio, withPriority, relaunch) {
 }
 
 function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch) {
-    var playersList = playersTeamList();
+    var playersList = playersTeamList;
     for (var i in playersList) {
         var player = initPlayer(playersList[i]);
         if (shouldReceiveInscriptionMail(player, prio, withPriority, relaunch)) {
@@ -40,7 +44,7 @@ function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch)
 function sendInscriptionMailForAPlayer(player, withPriority) {
     var body = includeWithArgs("front/mail/mailInscription", {
         date: matchDayGapInFrench(true),
-        nbAvailableSlots: parametersMap.get("numberAvailableSlotInMatch"),
+        nbAvailableSlots: numberAvailableSlotInMatch,
         urlMail: getUrlMail(player),
         stadium: getStadiumInfo(),
         evalToDo: !player.haveDoneAutoEvaluation,

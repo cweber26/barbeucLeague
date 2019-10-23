@@ -5,16 +5,16 @@ function envoyerMessage(messageContent) {
 
     switch (messageContent.filtreEtatJoueur) {
         case "all":
-            playerMailList = parametersMap.get("playerMailList").split(',');
+            playerMailList = playerMailList.split(',');
             break;
         case "match":
-            playerMailList = parametersMap.get("matchPlayerMailList").split(',');
+            playerMailList = matchPlayerMailList.split(',');
             break;
         case "waiting":
-            playerMailList = parametersMap.get("waitingListPlayerMailList").split(',');
+            playerMailList = waitingListPlayerMailList.split(',');
             break;
         case "noAnswer":
-            playerMailList = parametersMap.get("notRespondedPlayerMailList").split(',');
+            playerMailList = notRespondedPlayerMailList.split(',');
             break;
 
     }

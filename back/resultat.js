@@ -39,7 +39,7 @@ function loadPageResultat() {
         date: date,
         compo: players,
         admin: param.isAdmin,
-        testing: isParameterTrue("modeTest"),
+        testing: modeTest==true,
         scoreRed: scoreRed,
         scoreBlue: scoreBlue
     });

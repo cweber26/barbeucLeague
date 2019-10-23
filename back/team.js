@@ -1,6 +1,6 @@
 function loadPageTeam() {
     var tableTeam = "";
-    var data = playersTeamList();
+    var data = playersTeamList;
     data.forEach(function (p) {
         tableTeam += "<tr>"
             + "<td id='mail'>" + p[0] + "</td>"
@@ -38,7 +38,7 @@ function loadPageTeam() {
         mail: param.mail,
         key: param.key,
         admin: param.isAdmin,
-        testing: isParameterTrue("modeTest"),
+        testing: modeTest==true,
         tableTeam: tableTeam
     })
 

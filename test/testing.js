@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 function testInscription15() {
-    var playersList = playersTeamList();
+    var playersList = playersTeamList;
     for (var i = 0; i < 15; i++) {
         var player = initPlayer(playersList[i]);
         inscription({mail: player.mail, key: player.keyWithSecurity, answer: "Oui"});
@@ -9,7 +9,7 @@ function testInscription15() {
 
 // noinspection JSUnusedGlobalSymbols
 function testInscription5() {
-    var playersList = playersTeamList();
+    var playersList = playersTeamList;
     for (var i = 0; i < 5; i++) {
         var player = initPlayer(playersList[i]);
         inscription({mail: player.mail, key: player.keyWithSecurity, answer: "Oui"});
@@ -25,7 +25,7 @@ function testDesinscription() {
 
 // noinspection JSUnusedGlobalSymbols
 function testConfirmation() {
-    var playersList = playersTeamList();
+    var playersList = playersTeamList;
     for (var i = 0; i < 15; i++) {
         var player = initPlayer(playersList[i]);
         confirmation({mail: player.mail, key: player.keyWithSecurity, answer: "Oui", carSharing: "sharing"});

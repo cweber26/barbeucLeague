@@ -1,14 +1,15 @@
 function controlAndCancelOrRelaunch() {
-    if (isParameterBlank("controlDone")) {
-        if(!isMatchCancel()){
-            if ((parametersMap.get("numberPlayerInMatch") > 0 && parametersMap.get("numberPlayerInMatch") < parametersMap.get("minPlayerForAutoCancelation"))) {
+    if (controlDone=="") {
+        if(!isTheMatchCancel()){
+            if ((numberPlayerInMatch > 0 && numberPlayerInMatch < minPlayerForAutoCancelation)) {
                 cancelMatchAndSendMail(true);
-                sendMailSimple("Pense à annuler la réservation du match " + matchDayGapInFrench(true), "<h2>Pense à annuler la réservation " + parametersMap.get("nextMatchStadiumName") + "</h2>");
+                sendMailSimple("Pense à annuler la réservation du match " + matchDayGapInFrench(true), "<h2>Pense à annuler la réservation " + nextMatchStadiumName + "</h2>");
 
-            } else if (parametersMap.get("numberPlayerInMatch") >= parametersMap.get("minPlayerForAutoCancelation") && parametersMap.get("numberPlayerInMatch") < parametersMap.get("numberPlayerMatch")) {
+            } else if (numberPlayerInMatch >= minPlayerForAutoCancelation && numberPlayerInMatch < numberPlayerMatch) {
                 sendInscriptionMailForAPrio(2, false, true);
             }
         }
-        updateParameterValue("controlDone", now());
+        controlDone=now();
+        sheetParameters.getRange(getRowParameter("controlDone"), 2).setValue(now());
     }
 }

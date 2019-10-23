@@ -1,7 +1,3 @@
-function playersTeamList() {
-    return sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues()
-}
-
 function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
     if (player.mail
         && player.haveAlreadyAnswer == false
@@ -26,22 +22,20 @@ function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
 
 
 function getPlayerWithMail(mail) {
-    var teamList = playersTeamList();
+    var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
         if (teamList[i][0] == mail) {
-            var playerLine = sheetTeam.getRange(i + 3, 1, 1, sheetTeam.getLastColumn()).getValues()[0];
-            return initPlayer(playerLine);
+            return initPlayer(teamList[i]);
         }
     }
     throw "mail " + mail + " inconnu";
 }
 
 function getPlayerWithFullName(fullName) {
-    var teamList = playersTeamList();
+    var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
         if (teamList[i][4] == fullName) {
-            var playerLine = sheetTeam.getRange(i + 3, 1, 1, sheetTeam.getLastColumn()).getValues()[0];
-            return initPlayer(playerLine);
+            return initPlayer(teamList[i]);
         }
     }
     throw "fullName " + fullName + " inconnu";
@@ -110,7 +104,7 @@ function isKeyValid(keyToCheck, key) {
 
 
 function deleteUnavaibility() {
-    var playersList = playersTeamList();
+    var playersList = playersTeamList;
     for (var i in playersList) {
         var player = playersList[i];
         if (player[8] && player[8].valueOf() < nextMatchDate.valueOf()) {
@@ -140,7 +134,7 @@ function loadPageProfil() {
         player: player,
         admin: param.isAdmin,
         modif: true,
-        testing: isParameterTrue("modeTest")
+        testing: modeTest==true
     });
 }
 
@@ -151,7 +145,7 @@ function loadPageNewProfil() {
         key: param.key,
         admin: param.isAdmin,
         modif: false,
-        testing: isParameterTrue("modeTest")
+        testing: modeTest==true
     });
 }
 
@@ -274,7 +268,7 @@ function updateProfil(user) {
 }
 
 function getRowSheetTeamWithMail(mail) {
-    var teamList = playersTeamList();
+    var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
         if (teamList[i][0] == mail) {
             return i + 3;
@@ -323,22 +317,22 @@ function replaceInSheet(values, to_replace, replace_with) {
 }
 
 function playersInTheMatchMail() {
-    if(parametersMap.get("numberPlayerInMatch")>0) {
-        return parametersMap.get("matchPlayerMailList").split(',');
+    if(numberPlayerInMatch>0) {
+        return matchPlayerMailList.split(',');
     }
     return [];
 }
 
 function playersInWaitingListMail() {
-    if(parametersMap.get("numberPlayerInWaitingList")>0) {
-        return parametersMap.get("waitingListPlayerMailList").split(',');
+    if(numberPlayerInWaitingList>0) {
+        return waitingListPlayerMailList.split(',');
     }
     return [];
 }
 
 function playersNotAvailablePlayerListMail() {
-    if(parametersMap.get("notAvailablePlayerMailList")) {
-        return parametersMap.get("notAvailablePlayerMailList").split(',');
+    if(notAvailablePlayerMailList) {
+        return notAvailablePlayerMailList.split(',');
     }
     return [];
 }
@@ -431,7 +425,7 @@ function sendMailToNewUser(mail) {
 }
 
 function sendMailToAdminAboutNewPlayer(mailNewPlayer, creatorMail) {
-    var mailsAdmin = parametersMap.get("adminMailList").split(',');
+    var mailsAdmin = adminMailList.split(',');
     for (var i in mailsAdmin) {
         var playerAdmin = getPlayerWithMail(mailsAdmin[i]);
         sendMailToAdminAboutNewPlayerForAnAdmin(playerAdmin, mailNewPlayer, creatorMail);

@@ -107,7 +107,7 @@ function loadPageStat() {
         key: param.key,
         table: stats,
         admin: param.isAdmin,
-        testing: isParameterTrue("modeTest")
+        testing: modeTest==true
     });
 }
 

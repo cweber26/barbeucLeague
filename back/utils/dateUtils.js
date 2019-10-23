@@ -1,5 +1,4 @@
 var currentWeekDay = parseInt(Utilities.formatDate(new Date(), "Europe/Paris", "u"));
-var nextMatchDate = parametersMap.get("nextMatchDate");
 var nextMatchDateInFrench = LanguageApp.translate(Utilities.formatDate(nextMatchDate,  "Europe/Paris", "EEEE dd MMMM"),"en","fr");
 var nextMatchDay = nextMatchDate.getDay();
 var scheduleValues = sheetSchedule.getRange(1, 1).getDataRegion().getValues();
@@ -9,7 +8,8 @@ function setNextMatchDate() {
     for (var i = 1; i <= 7; i++) {
         var dayToTest = (currentWeekDay+i);
         if(isADayWithMatch(dayToTest)){
-            updateParameterValue("nextMatchDate", nextDay(dayToTest));
+            nextMatchDate=nextDay(dayToTest);
+            sheetParameters.getRange(getRowParameter("nextMatchDate"), 2).setValue(nextDay(dayToTest));
             return;
         }
     }

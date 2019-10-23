@@ -1,5 +1,5 @@
 function sendMailSimple(subject, contentHtml) {
-    var mails = parametersMap.get("adminMailList").split(',');
+    var mails = adminMailList.split(',');
     for (var i in mails) {
         var player = getPlayerWithMail(mails[i]);
         sendMailForAnAdmin(player, subject, contentHtml);
@@ -15,10 +15,10 @@ function sendMailForAnAdmin(player, subject, contentHtml) {
 }
 
 function sendMail(mail, subject, html) {
-    if (isParameterFalse("modeTest")) {
+    if (modeTest==false) {
         MailApp.sendEmail({
             to: mail,
-            subject: parametersMap.get("applicationName") + " " + subject,
+            subject: applicationName + " " + subject,
             htmlBody: getFinalBody(mail, html)
         });
     } else {
@@ -31,10 +31,10 @@ function getFinalBody(mail, html) {
 }
 
 function sendTestMail(mail, subject, html) {
-    if (mail.indexOf(parametersMap.get("mailTester")) > -1) {
+    if (mail.indexOf(mailTester) > -1) {
         MailApp.sendEmail({
-            to: parametersMap.get("mailTester"),
-            subject: "⚠️Test⚠️ " + parametersMap.get("applicationName") + " " + subject,
+            to: mailTester,
+            subject: "⚠️Test⚠️ " + applicationName + " " + subject,
             htmlBody: getFinalBody(mail, html)
         });
     }
@@ -64,12 +64,12 @@ function getUrlMail(player) {
 
 function getStadiumInfo() {
     return {
-        name: parametersMap.get("nextMatchStadiumName"),
-        address: parametersMap.get("nextMatchStadiumAddress"),
-        urlAddress: parametersMap.get("nextMatchStadiumUrlMaps"),
-        cost: parametersMap.get("nextMatchStadiumCost"),
-        reservationName: parametersMap.get("nextMatchReservationName"),
-        beginGameHour: parametersMap.get("nextMatchBeginGameHour"),
-        infoGame: parametersMap.get("nextMatchComment")
+        name: nextMatchStadiumName,
+        address: nextMatchStadiumAddress,
+        urlAddress: nextMatchStadiumUrlMaps,
+        cost: nextMatchStadiumCost,
+        reservationName: nextMatchReservationName,
+        beginGameHour: nextMatchBeginGameHour,
+        infoGame: nextMatchComment
     };
 }

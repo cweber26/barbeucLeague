@@ -9,21 +9,21 @@ function execBatch() {
 }
 
 function getNextStep() {
-    if(isParameterBlank("mailSendingPrio1WithPriority")){
+    if(mailSendingPrio1WithPriority==""){
         return 1;
-    } else if(isParameterBlank("mailSendingPrio1")){
+    } else if(mailSendingPrio1==""){
         return 2;
-    } else if(isParameterBlank("mailSendingPrio2")){
+    } else if(mailSendingPrio2==""){
         return 3;
-    } else if(isParameterBlank("mailSendingPrio3")){
+    } else if(mailSendingPrio3==""){
         return 4;
-    } else if(isParameterBlank("controlDone")){
+    } else if(controlDone==""){
         return 5;
-    } else if(isParameterBlank("mailSendingReminder")){
+    } else if(mailSendingReminder==""){
         return 6;
-    } else if(isParameterBlank("mailSendingConfirmation")){
+    } else if(mailSendingConfirmation==""){
         return 7;
-    } else if(isParameterBlank("teamSaved")){
+    } else if(teamSaved==""){
         return 8;
     } else {
       return 9;
@@ -31,7 +31,7 @@ function getNextStep() {
 }
 
 function isTimeForStep(step) {
-    var nextMatchDay = parametersMap.get("nextMatchDate").getDay();
+    var nextMatchDay = nextMatchDate.getDay();
     var column = nextMatchDay + 1;
     var row = step + 4;
     var nextStepDate = sheetSchedule.getRange(row, column).getValue();
