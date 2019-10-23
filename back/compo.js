@@ -50,26 +50,6 @@ function loadPageCompo() {
 
     }
     var tabTitle = "Barbeuc : Composition";
-    var inscriptionTable = [];
-    if (param.isAdmin && numberPlayerInMatch > 0 && !isTheMatchCancel()) {
-        inscriptions().forEach(function (i) {
-            if (i[0]) {
-                inscriptionTable += "<tr>"
-                    + "<td>" + i[0] + "</td>"
-                    + "<td>" + i[1] + "</td>"
-                    + "<td>" + checkbox(i[2]) + "</td>"
-                    + "<td>" + i[3] + "</td>"
-                    + "<td>" + Utilities.formatDate(i[4], "Europe/Paris", "MM/dd/yy HH:mm") + "</td>";
-                if (i[5]) {
-                    inscriptionTable += "<td>" + i[5] + "</td></tr>"
-                } else {
-                    inscriptionTable += "<td></td></tr>";
-                }
-            }
-        });
-        tabTitle += " (" + numberPlayerInMatch + ")";
-
-    }
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
         key: param.key,
@@ -85,7 +65,6 @@ function loadPageCompo() {
         admin: param.isAdmin,
         cancelMatch: isTheMatchCancel(),
         testing: modeTest==true,
-        inscriptionTable: inscriptionTable,
         stadium: getStadiumInfo()
     });
 }
@@ -94,12 +73,6 @@ function loadPageCompo() {
 function playersInTheMatchForFinalCompo() {
     if (numberPlayerInMatch > 0) {
         return sheetComposition.getRange(13, 2, numberPlayerMatch, 13).getValues();
-    }
-}
-
-function inscriptions() {
-    if (numberPlayerInMatch > 0) {
-        return sheetInscriptionFilter.getRange(1, 7).getDataRegion().getValues();
     }
 }
 
