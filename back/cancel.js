@@ -23,3 +23,7 @@ function sendCancelMatchMailForAPlayer(player, isAutoCancel) {
 function isTheMatchCancel() {
     return isMatchCancel==true;
 }
+
+function isTheMatchInProgress() {
+    return isMatchCancel==false;
+}

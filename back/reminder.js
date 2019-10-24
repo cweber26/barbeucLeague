@@ -1,6 +1,6 @@
 function sendReminderMail() {
     if (mailSendingReminder=="") {
-        if(!isTheMatchCancel()){
+        if(isTheMatchInProgress()){
             sendReminderMailWithoutControl();
         }
         updateParameter("mailSendingReminder", now());

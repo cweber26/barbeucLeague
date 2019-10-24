@@ -9,7 +9,7 @@ function checkIfDesistement(parameter, playersInTheMatchMailBefore) {
 }
 
 function actionsToDoIfDesistement(desisteurMail) {
-    if (!isTheMatchCancel()) {
+    if (isTheMatchInProgress()) {
         var oldPlayer = getPlayerWithMail(desisteurMail);
         if (numberPlayerInMatch == numberPlayerMatch && numberPlayerInWaitingList > 0) {
             //the match was full and a least a player was in waiting list

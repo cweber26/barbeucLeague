@@ -1,12 +1,12 @@
 function createEventIfMatchIsFull() {
-    if (!isTheMatchCancel() && creationGoogleEvent=="" && numberPlayerInMatch == numberPlayerMatch) {
+    if (isTheMatchInProgress() && creationGoogleEvent=="" && numberPlayerInMatch == numberPlayerMatch) {
         sendMatchCompletMail();
         createCalendarEvent();
     }
 }
 
 function updateCalendarEvent() {
-    if(!isTheMatchCancel() && creationGoogleEvent!=""){
+    if(isTheMatchInProgress() && creationGoogleEvent!=""){
         deleteCalendarEvent();
         createCalendarEvent();
     }

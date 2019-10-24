@@ -4,7 +4,7 @@ function updatePriority() {
 }
 
 function deleteOldPriority() {
-    if (!isTheMatchCancel()) {
+    if (isTheMatchInProgress()) {
         playersInTheMatchMail().forEach(function (m) {
                 deletePriorityWithMail(m);
             }
@@ -13,7 +13,7 @@ function deleteOldPriority() {
 }
 
 function saveNewPriority() {
-    if (!isTheMatchCancel()) {
+    if (isTheMatchInProgress()) {
         playersInWaitingListMail().forEach(function (m) {
                 addPriorityWithMail(m);
             }

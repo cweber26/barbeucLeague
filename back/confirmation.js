@@ -1,6 +1,6 @@
 function sendConfirmMail() {
     if (mailSendingConfirmation=="") {
-        if(!isTheMatchCancel()){
+        if(isTheMatchInProgress()){
             sendConfirmMailWithoutControl();
         }
         updateParameter("mailSendingConfirmation", now());

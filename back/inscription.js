@@ -1,5 +1,5 @@
 function sendInscriptionMailForAPrio(prio, withPriority, relaunch) {
-    if (!isTheMatchCancel() && numberAvailableSlotInMatch > 0) {
+    if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
         sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch);
     }
     if(!relaunch) {

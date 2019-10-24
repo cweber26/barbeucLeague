@@ -1,6 +1,6 @@
 function saveTeam() {
     if (teamSaved=="") {
-        if(!isTheMatchCancel()){
+        if(isTheMatchInProgress()){
             var row = sheetResult.getRange("A1:A").getValues().filter(String).length + 2;
             if (sheetResult.getRange(row - 1, 1).getValue().getTime() == nextMatchDate.getTime()) {
                 row = row - 1;
@@ -50,7 +50,7 @@ function saveScore(scoreValue) {
 }
 
 function sendScoreMail() {
-    if (!isTheMatchCancel()) {
+    if (isTheMatchInProgress()) {
         var mails = adminMailList.split(',');
         for (var i in mails) {
             var player = getPlayerWithMail(mails[i]);

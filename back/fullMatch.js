@@ -1,5 +1,5 @@
 function sendMatchCompletMail() {
-    if (!isTheMatchCancel()) {
+    if (isTheMatchInProgress()) {
         var mails = adminMailList.split(',');
         for (var i in mails) {
             var player = getPlayerWithMail(mails[i]);

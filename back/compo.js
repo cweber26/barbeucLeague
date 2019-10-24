@@ -30,7 +30,7 @@ function loadPageCompo() {
 
     }
     var listeAttente = "";
-    if (numberPlayerInWaitingList > 0 && !isTheMatchCancel()) {
+    if (numberPlayerInWaitingList > 0 && isTheMatchInProgress()) {
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
@@ -40,7 +40,7 @@ function loadPageCompo() {
 
     }
     var listePasDispo = "";
-    if(param.isAdmin && notAvailablePlayerMailList && !isTheMatchCancel()) {
+    if(param.isAdmin && notAvailablePlayerMailList && isTheMatchInProgress()) {
         playersNotAvailablePlayerListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
