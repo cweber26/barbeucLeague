@@ -140,7 +140,7 @@ function loadPageProfil() {
 
 
 function loadPageNewProfil() {
-    return render("front/page/profil", "Barbeuc : Profil", {
+    return render("front/page/profil", "Barbeuc : New profil", {
         mail: param.mail,
         key: param.key,
         admin: param.isAdmin,
