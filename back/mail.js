@@ -31,7 +31,7 @@ function getFinalBody(mail, html) {
 }
 
 function sendTestMail(mail, subject, html) {
-    if (mail.indexOf(mailTester) > -1) {
+    if (mail.includes(mailTester)) {
         MailApp.sendEmail({
             to: mailTester,
             subject: "⚠️Test⚠️ " + applicationName + " " + subject,
