@@ -15,7 +15,7 @@ function sendMailForAnAdmin(player, subject, contentHtml) {
 }
 
 function sendMail(mail, subject, html) {
-    if (modeTest==false) {
+    if (isProd()) {
         MailApp.sendEmail({
             to: mail,
             subject: applicationName + " " + subject,

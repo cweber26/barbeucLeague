@@ -64,7 +64,7 @@ function loadPageCompo() {
         listePasDispo: listePasDispo,
         admin: param.isAdmin,
         cancelMatch: isTheMatchCancel(),
-        testing: modeTest==true,
+        testing: isTest(),
         stadium: getStadiumInfo()
     });
 }

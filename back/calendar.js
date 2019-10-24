@@ -18,7 +18,7 @@ function createCalendarEvent() {
         var begin = new Date(Utilities.formatDate(nextMatchDate, "Europe/Paris", "MM/dd/yyyy") + " 12:00:00");
         var end = new Date(Utilities.formatDate(nextMatchDate, "Europe/Paris", "MM/dd/yyyy") + " 14:00:00");
         var mails = matchPlayerMailList;
-        if (modeTest) {
+        if (isTest()) {
             mails = mailTester;
         }
         var event = calendar.createEvent(applicationName, begin, end, {location: nextMatchStadiumAddress, guests: mails, sendInvites: false});

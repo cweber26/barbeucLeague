@@ -134,7 +134,7 @@ function loadPageProfil() {
         player: player,
         admin: param.isAdmin,
         modif: true,
-        testing: modeTest==true
+        testing: isTest()
     });
 }
 
@@ -145,7 +145,7 @@ function loadPageNewProfil() {
         key: param.key,
         admin: param.isAdmin,
         modif: false,
-        testing: modeTest==true
+        testing: isTest()
     });
 }
 

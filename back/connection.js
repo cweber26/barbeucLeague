@@ -4,6 +4,6 @@ function loadPageConnection() {
         mail: null,
         key: null,
         admin: false,
-        testing: modeTest==true
+        testing: isTest()
     });
 }

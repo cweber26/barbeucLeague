@@ -15,7 +15,7 @@ function loadPageBackoffice() {
     parameterApplication.minMatch = minMatchForStat;
     parameterApplication.nbPlayersMatch = numberPlayerMatch;
     parameterApplication.nbLimitPlayers = minPlayerForAutoCancelation;
-    parameterApplication.modeTest = modeTest==true;
+    parameterApplication.modeTest = isTest();
     parameterApplication.mailTester = mailTester;
     parameterApplication.applicationName = applicationName;
 
@@ -64,7 +64,7 @@ function loadPageBackoffice() {
         param: parameterApplication,
         log: log,
         schedule: schedule,
-        testing: modeTest==true
+        testing: isTest()
     });
 }
 
@@ -91,11 +91,19 @@ function updateParameters(parameterApplication) {
 
 // noinspection JSUnusedGlobalSymbols
 function switchMode() {
-    if(modeTest==true) {
+    if(isTest()) {
         modeTest=false;
         updateParameter("modeTest", false);
     } else {
         modeTest=true;
         updateParameter("modeTest", true);
     }
+}
+
+function isTest() {
+    return modeTest==true;
+}
+
+function isProd() {
+    return modeTest==false;
 }

@@ -38,7 +38,7 @@ function loadPageTeam() {
         mail: param.mail,
         key: param.key,
         admin: param.isAdmin,
-        testing: modeTest==true,
+        testing: isTest(),
         tableTeam: tableTeam
     })
 
