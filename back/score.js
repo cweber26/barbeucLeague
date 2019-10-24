@@ -1,6 +1,5 @@
 function saveTeam() {
     if (teamSaved=="") {
-        saveRank();
         if(!isTheMatchCancel()){
             var row = sheetResult.getRange("A1:A").getValues().filter(String).length + 2;
             if (sheetResult.getRange(row - 1, 1).getValue().getTime() == nextMatchDate.getTime()) {
@@ -26,6 +25,7 @@ function saveTeam() {
 
 // noinspection JSUnusedGlobalSymbols
 function saveScore(scoreValue) {
+    saveRank();
     var matchDates = sheetResult.getRange("A1:A").getValues();
     var lastRowDate = sheetResult.getRange("A1:A").getValues().filter(String).length + 1;
     var date = scoreValue.date;
