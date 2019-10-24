@@ -9,7 +9,7 @@ function setNextMatchDate() {
         var dayToTest = (currentWeekDay+i);
         if(isADayWithMatch(dayToTest)){
             nextMatchDate=nextDay(dayToTest);
-            sheetParameters.getRange(getRowParameter("nextMatchDate"), 2).setValue(nextDay(dayToTest));
+            updateParameter("nextMatchDate", nextDay(dayToTest));
             return;
         }
     }

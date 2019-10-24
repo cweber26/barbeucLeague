@@ -6,23 +6,19 @@ function sendInscriptionMailForAPrio(prio, withPriority, relaunch) {
         switch (prio) {
             case 1:
                 if (withPriority) {
-                    mailSendingPrio1WithPriority=now();
-                    sheetParameters.getRange(getRowParameter("mailSendingPrio1WithPriority"), 2).setValue(now());
+                    updateParameter("mailSendingPrio1WithPriority", now());
                 } else {
-                    mailSendingPrio1=now();
-                    sheetParameters.getRange(getRowParameter("mailSendingPrio1"), 2).setValue(now());
+                    updateParameter("mailSendingPrio1", now());
                 }
                 break;
             case 2:
                 if (!withPriority) {
-                    mailSendingPrio2=now();
-                    sheetParameters.getRange(getRowParameter("mailSendingPrio2"), 2).setValue(now());
+                    updateParameter("mailSendingPrio2", now());
                 }
                 break;
             case 3:
                 if (!withPriority) {
-                    mailSendingPrio3=now();
-                    sheetParameters.getRange(getRowParameter("mailSendingPrio3"), 2).setValue(now());
+                    updateParameter("mailSendingPrio3", now());
                 }
                 break;
         }

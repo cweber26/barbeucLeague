@@ -3,8 +3,7 @@ function sendReminderMail() {
         if(!isTheMatchCancel()){
             sendReminderMailWithoutControl();
         }
-        mailSendingReminder=now();
-        sheetParameters.getRange(getRowParameter("mailSendingReminder"), 2).setValue(now());
+        updateParameter("mailSendingReminder", now());
     }
 }
 

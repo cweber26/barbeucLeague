@@ -26,8 +26,7 @@ function createCalendarEvent() {
         if(mails.includes("cedric.weber@decathlon.com")){
             event.setMyStatus(CalendarApp.GuestStatus.YES);
         }
-        creationGoogleEvent=now();
-        sheetParameters.getRange(getRowParameter("creationGoogleEvent"), 2).setValue(now());
+        updateParameter("creationGoogleEvent", now());
     }
 }
 
@@ -41,6 +40,5 @@ function deleteCalendarEvent() {
             events[i].deleteEvent();
         }
     }
-    creationGoogleEvent="";
-    sheetParameters.getRange(getRowParameter("creationGoogleEvent"), 2).clearContent();
+    clearParameter("creationGoogleEvent");
 }

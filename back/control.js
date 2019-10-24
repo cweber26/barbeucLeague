@@ -9,7 +9,6 @@ function controlAndCancelOrRelaunch() {
                 sendInscriptionMailForAPrio(2, false, true);
             }
         }
-        controlDone=now();
-        sheetParameters.getRange(getRowParameter("controlDone"), 2).setValue(now());
+        updateParameter("controlDone", now());
     }
 }

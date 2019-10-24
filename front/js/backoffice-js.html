@@ -62,7 +62,7 @@
         console.log(parameterApplication);
 
         M.toast({html: "En cours de modification"});
-        google.script.run.withSuccessHandler(successUpdateParam).withFailureHandler(failureUpdateParam).updateParameter(parameterApplication);
+        google.script.run.withSuccessHandler(successUpdateParam).withFailureHandler(failureUpdateParam).updateParameters(parameterApplication);
 
 
         function successUpdateParam() {

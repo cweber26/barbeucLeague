@@ -5,8 +5,7 @@ function cancelMatchAndSendMail(isAutoCancel) {
         sendCancelMatchMailForAPlayer(player, isAutoCancel);
     }
     deleteCalendarEvent();
-    isMatchCancel=true;
-    sheetParameters.getRange(getRowParameter("isMatchCancel"), 2).setValue(true);
+    updateParameter("isMatchCancel", true);
 }
 
 

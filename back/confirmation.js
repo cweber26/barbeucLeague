@@ -3,8 +3,7 @@ function sendConfirmMail() {
         if(!isTheMatchCancel()){
             sendConfirmMailWithoutControl();
         }
-        mailSendingConfirmation=now();
-        sheetParameters.getRange(getRowParameter("mailSendingConfirmation"), 2).setValue(now());
+        updateParameter("mailSendingConfirmation", now());
     }
 }
 

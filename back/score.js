@@ -20,8 +20,7 @@ function saveTeam() {
             sheetResult.getRange(row, 10).setValue(players[8][0]);
             sheetResult.getRange(row, 11).setValue(players[9][0]);
         }
-        teamSaved=now();
-        sheetParameters.getRange(getRowParameter("teamSaved"), 2).setValue(now());
+        updateParameter("teamSaved", now());
     }
 }
 

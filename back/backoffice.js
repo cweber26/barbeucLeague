@@ -69,47 +69,33 @@ function loadPageBackoffice() {
 }
 
 // noinspection JSUnusedGlobalSymbols
-function updateParameter(parameterApplication) {
-    victoryPoint=parameterApplication.victory;
-    sheetParameters.getRange(getRowParameter("victoryPoint"), 2).setValue(parameterApplication.victory);
-    drawPoint=parameterApplication.draw;
-    sheetParameters.getRange(getRowParameter("drawPoint"), 2).setValue(parameterApplication.draw);
-    defeatPoint=parameterApplication.defeat;
-    sheetParameters.getRange(getRowParameter("defeatPoint"), 2).setValue(parameterApplication.defeat);
-    offensiveBonusPoint=parameterApplication.offensiveBonus;
-    sheetParameters.getRange(getRowParameter("offensiveBonusPoint"), 2).setValue(parameterApplication.offensiveBonus);
-    minGoalOffensiveBonus=parameterApplication.offensiveBonusGap;
-    sheetParameters.getRange(getRowParameter("minGoalOffensiveBonus"), 2).setValue(parameterApplication.offensiveBonusGap);
-    defensiveBonusPoint=parameterApplication.defensiveBonus;
-    sheetParameters.getRange(getRowParameter("defensiveBonusPoint"), 2).setValue(parameterApplication.defensiveBonus);
-    maxGoalDefensiveBonus=parameterApplication.defensiveBonusGap;
-    sheetParameters.getRange(getRowParameter("maxGoalDefensiveBonus"), 2).setValue(parameterApplication.defensiveBonusGap);
-    minMatchForStat=parameterApplication.minMatch;
-    sheetParameters.getRange(getRowParameter("minMatchForStat"), 2).setValue(parameterApplication.minMatch);
-    numberPlayerMatch=parameterApplication.nbPlayersMatch;
-    sheetParameters.getRange(getRowParameter("numberPlayerMatch"), 2).setValue(parameterApplication.nbPlayersMatch);
-    minPlayerForAutoCancelation=parameterApplication.nbLimitPlayers;
-    sheetParameters.getRange(getRowParameter("minPlayerForAutoCancelation"), 2).setValue(parameterApplication.nbLimitPlayers);
+function updateParameters(parameterApplication) {
+    updateParameter("victoryPoint", parameterApplication.victory);
+    updateParameter("drawPoint", parameterApplication.draw);
+    updateParameter("defeatPoint", parameterApplication.defeat);
+    updateParameter("offensiveBonusPoint", parameterApplication.offensiveBonus);
+    updateParameter("minGoalOffensiveBonus", parameterApplication.offensiveBonusGap);
+    updateParameter("defensiveBonusPoint", parameterApplication.defensiveBonus);
+    updateParameter("maxGoalDefensiveBonus", parameterApplication.defensiveBonusGap);
+    updateParameter("minMatchForStat", parameterApplication.minMatch);
+    updateParameter("numberPlayerMatch", parameterApplication.nbPlayersMatch);
+    updateParameter("minPlayerForAutoCancelation", parameterApplication.nbLimitPlayers);
     if (parameterApplication.modeTest) {
-        modeTest=true;
-        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(true);
+        updateParameter("modeTest", true);
     } else {
-        modeTest=false;
-        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(false);
+        updateParameter("modeTest", false);
     }
-    mailTester=parameterApplication.mailTester;
-    sheetParameters.getRange(getRowParameter("mailTester"), 2).setValue(parameterApplication.mailTester);
-    applicationName=parameterApplication.applicationName;
-    sheetParameters.getRange(getRowParameter("applicationName"), 2).setValue(parameterApplication.applicationName);
+    updateParameter("mailTester", parameterApplication.mailTester);
+    updateParameter("applicationName", parameterApplication.applicationName);
 }
 
 // noinspection JSUnusedGlobalSymbols
 function switchMode() {
     if(modeTest==true) {
         modeTest=false;
-        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(false);
+        updateParameter("modeTest", false);
     } else {
         modeTest=true;
-        sheetParameters.getRange(getRowParameter("modeTest"), 2).setValue(true);
+        updateParameter("modeTest", true);
     }
 }

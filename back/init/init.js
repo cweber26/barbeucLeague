@@ -14,20 +14,6 @@ var playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getVal
 
 ////////////PARAMETERS INIT////////////
 var parametersList = sheetParameters.getRange(1,1).getDataRegion().getValues();
-function getRowParameter(name) {
-    if(name) {
-        for (var i=0; i <parametersList.length; i++) {
-            if(parametersList[i][0]==name) {
-                return i+1;
-            }
-        }
-    }
-}
-
-function getParameterFromList(name) {
-    return parametersList[getRowParameter(name)-1][1];
-}
-
 var victoryPoint = getParameterFromList("victoryPoint");
 var drawPoint = getParameterFromList("drawPoint");
 var defeatPoint = getParameterFromList("defeatPoint");
@@ -68,3 +54,25 @@ var nextMatchStadiumCost = getParameterFromList("nextMatchStadiumCost");
 var nextMatchReservationName = getParameterFromList("nextMatchReservationName");
 var nextMatchBeginGameHour = getParameterFromList("nextMatchBeginGameHour");
 var nextMatchComment = getParameterFromList("nextMatchComment");
+
+function getRowParameter(name) {
+    if(name) {
+        for (var i=0; i <parametersList.length; i++) {
+            if(parametersList[i][0]==name) {
+                return i+1;
+            }
+        }
+    }
+}
+
+function getParameterFromList(name) {
+    return parametersList[getRowParameter(name)-1][1];
+}
+
+function clearParameter(name) {
+    sheetParameters.getRange(getRowParameter(name), 2).clearContent();
+}
+
+function updateParameter(name, value) {
+    sheetParameters.getRange(getRowParameter(name), 2).setValue(value);
+}
