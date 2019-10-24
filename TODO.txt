@@ -1,5 +1,4 @@
 STAND BY ajouter une photo du joueur
-STAND BY priorisation via nombre de réponse au lieu de participation (nb de match)
 STAND BY mettre un joueur invité "fantome"
 SATND BY améliorer l'update des paramètres (trop long)
 
