@@ -1,11 +1,7 @@
 STAND BY ajouter une photo du joueur
 STAND BY mettre un joueur invité "fantome"
-SATND BY améliorer l'update des paramètres (trop long)
 
 TODO remplacer le nom du menu mon profil par le nom de l'utilisateur
 TODO changer le jour du match + envoi mail auto
-TODO visu des joueurs qui refuse sur la compo
-TODO permettre d'envoyer un message au joueur via le front
-TODO envoyer message back
-TODO envoyer message front
 TODO accès direct au profil du joueur via la compo pour les admins
+TODO ajouter les totaux de niveaux par équipe sur la compo pour les admins
