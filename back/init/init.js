@@ -76,3 +76,14 @@ function clearParameter(name) {
 function updateParameter(name, value) {
     sheetParameters.getRange(getRowParameter(name), 2).setValue(value);
 }
+
+function reloadParameter() {
+    parametersList = sheetParameters.getRange(1,1).getDataRegion().getValues();
+    numberPlayerInMatch = getParameterFromList("numberPlayerInMatch");
+    numberAvailableSlotInMatch = getParameterFromList("numberAvailableSlotInMatch");
+    numberPlayerInWaitingList = getParameterFromList("numberPlayerInWaitingList");
+    matchPlayerMailList = getParameterFromList("matchPlayerMailList");
+    waitingListPlayerMailList = getParameterFromList("waitingListPlayerMailList");
+    notAvailablePlayerMailList = getParameterFromList("notAvailablePlayerMailList");
+    notRespondedPlayerMailList = getParameterFromList("notRespondedPlayerMailList");
+}
