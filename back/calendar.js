@@ -5,10 +5,14 @@ function createEventIfMatchIsFull() {
     }
 }
 
-function updateCalendarEvent() {
+function updateCalendarEvent(newMail, oldMail) {
     if(isTheMatchInProgress() && creationGoogleEvent!=""){
-        deleteCalendarEvent();
-        createCalendarEvent();
+        var event = getCalendarEvent();
+        if(event) {
+            event.removeGuest(oldMail);
+            event.addGuest(newMail);
+        }
+        updateParameter("creationGoogleEvent", now());
     }
 }
 
@@ -41,4 +45,16 @@ function deleteCalendarEvent() {
         }
     }
     clearParameter("creationGoogleEvent");
+}
+
+function getCalendarEvent() {
+    var calendar = CalendarApp.getDefaultCalendar();
+    var begin = new Date(Utilities.formatDate(nextMatchDate, "Europe/Paris", "MM/dd/yyyy") + " 12:00:00");
+    var end = new Date(Utilities.formatDate(nextMatchDate, "Europe/Paris", "MM/dd/yyyy") + " 14:00:00");
+    var events = calendar.getEvents(begin, end);
+    for (var i in events) {
+        if (events[i].getTitle() == applicationName) {
+            return events[i];
+        }
+    }
 }
