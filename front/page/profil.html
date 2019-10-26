@@ -48,9 +48,8 @@
                 var datePicker = document.getElementById('indispoDate');
                 M.Datepicker.init(datePicker, {
                     autoClose: true,
-                    minDate: now(),
                     format: 'dd/mm/yyyy',
-                    defaultDate: new Date(<?= Utilities.formatDate(player.endDateOfUnavailibility, "Europe/Paris", "MM/dd/yy") ?>), setDefaultDate:true});});
+                    defaultDate: new Date(<?= Utilities.formatDate(player.endDateOfUnavailibility, "Europe/Paris", "MM/dd/yyyy") ?>), setDefaultDate:true});});
             </script>
             <? } ?>
             <input id="indispoDate" type="text" class="datepicker col s6">
