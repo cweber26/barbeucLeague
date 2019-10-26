@@ -42,7 +42,7 @@ function getPlayerWithFullName(fullName) {
 }
 
 function initPlayer(playerLine) {
-    Logger.log("initPlayer : " + playerLine);
+    //Logger.log("initPlayer : " + playerLine);
     var player = {};
     player.mail = playerLine[0];
     player.key = playerLine[1];

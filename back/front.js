@@ -32,6 +32,8 @@ function doGet(e) {
         }
     }
 
+    Logger.log("Page to load : " + param.page + " for mail " + param.mail)
+
     if (Route[param.page]) {
         return Route[param.page]();
     } else {
