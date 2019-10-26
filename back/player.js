@@ -22,20 +22,18 @@ function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
 
 
 function getPlayerWithMail(mail) {
-    var teamList = playersTeamList;
-    for (var i = 0; i < teamList.length; i++) {
-        if (teamList[i][0] == mail) {
-            return initPlayer(teamList[i]);
+    for (var i in playersTeamList) {
+        if (playersTeamList[i][0] == mail) {
+            return initPlayer(playersTeamList[i]);
         }
     }
     throw "mail " + mail + " inconnu";
 }
 
 function getPlayerWithFullName(fullName) {
-    var teamList = playersTeamList;
-    for (var i = 0; i < teamList.length; i++) {
-        if (teamList[i][4] == fullName) {
-            return initPlayer(teamList[i]);
+    for (var i in playersTeamList) {
+        if (playersTeamList[i][4] == fullName) {
+            return initPlayer(playersTeamList[i]);
         }
     }
     throw "fullName " + fullName + " inconnu";
