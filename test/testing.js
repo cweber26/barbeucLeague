@@ -35,8 +35,9 @@ function testConfirmation() {
 // noinspection JSUnusedGlobalSymbols
 function testMails() {
     var player = getPlayerWithMail("cedric.weber@decathlon.com");
-    sendInscriptionMailForAPlayer(player, false);
-    sendInscriptionMailForAPlayer(player, true);
+    sendInscriptionMailForAPlayer(player, false, false);
+    sendInscriptionMailForAPlayer(player, false, true);
+    sendInscriptionMailForAPlayer(player, true, false);
     sendRemindMailForAPlayer(player, true);
     sendRemindMailForAPlayer(player, false);
     sendConfirmMailForAPlayer(player, true);
@@ -47,6 +48,8 @@ function testMails() {
     sendMatchCompletMailForAPlayer(player);
     sendLastMonthResultMailForAPlayer(player);
     sendMailForAnAdmin(player, "subject test", "<h2>html test</h2>");
+    sendMailToNewUser(player);
+    sendMailToAdminAboutNewPlayerForAnAdmin(player, "new.player@gmail.com", "creator.player@gmail.com");
 }
 
 // noinspection JSUnusedGlobalSymbols
