@@ -12,7 +12,9 @@
     <?!= includeWithArgs("front/mail/mailHeader", {urlMail: urlMail}); ?>
     <div class="row">
         <h2 class="title">Bienvenue</h2>
-        <h4 class="title">Utilise les icones si dessous pour te connecter au site</h4>
+        <h3>
+            <a class="buttonGreen" style="color:white; width: 198px" href="<?=urlMail.compo?>">Voir le prochain match</a>
+        </h3>
     </div>
     <?!= includeWithArgs("front/mail/mailFooter", {urlMail: urlMail}); ?>
 </div>

@@ -1,49 +1,47 @@
-function sendInscriptionMailForAPrio(prio, withPriority, relaunch) {
+function sendInscriptionMailForAPrio(prio, withPriority, relaunch, displayAvailableSlot) {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
-        sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch);
+        sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch, displayAvailableSlot);
     }
-    if(!relaunch) {
-        switch (prio) {
-            case 1:
-                if (withPriority) {
-                    updateParameter("mailSendingPrio1WithPriority", now());
-                } else {
-                    updateParameter("mailSendingPrio1", now());
-                }
-                break;
-            case 2:
-                if (!withPriority) {
-                    updateParameter("mailSendingPrio2", now());
-                }
-                break;
-            case 3:
-                if (!withPriority) {
-                    updateParameter("mailSendingPrio3", now());
-                }
-                break;
-        }
+
+    if(prio==1 && withPriority) {
+        updateParameter("mailSendingPrio1WithPriority", now());
+    }
+    if(prio==1 && !withPriority) {
+        updateParameter("mailSendingPrio1", now());
+    }
+    if(prio==2 && withPriority) {
+        updateParameter("mailSendingPrio2WithPriority", now());
+    }
+    if(prio==2 && !withPriority) {
+        updateParameter("mailSendingPrio2", now());
+    }
+    if(prio==3 && withPriority) {
+        updateParameter("mailSendingPrio3WithPriority", now());
+    }
+    if(prio==3 && !withPriority) {
+        updateParameter("mailSendingPrio3", now());
     }
 }
 
-function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch) {
+function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch, displayAvailableSlot) {
     var playersList = playersTeamList;
     for (var i in playersList) {
         var player = initPlayer(playersList[i]);
         if (shouldReceiveInscriptionMail(player, prio, withPriority, relaunch)) {
-            sendInscriptionMailForAPlayer(player, withPriority);
+            sendInscriptionMailForAPlayer(player, withPriority, displayAvailableSlot);
         }
     }
 }
 
 
 
-function sendInscriptionMailForAPlayer(player, withPriority) {
+function sendInscriptionMailForAPlayer(player, withPriority, displayAvailableSlot) {
     var body = includeWithArgs("front/mail/mailInscription", {
         date: matchDayGapInFrench(true),
+        displayAvailableSlot: displayAvailableSlot,
         nbAvailableSlots: numberAvailableSlotInMatch,
         urlMail: getUrlMail(player),
         stadium: getStadiumInfo(),
-        evalToDo: !player.haveDoneAutoEvaluation,
         withPriority: withPriority
     });
     sendMail(player.mail, "Inscription au match de Footsal du " + nextMatchDateInFrench + " ✅", body);

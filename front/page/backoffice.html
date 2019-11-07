@@ -28,39 +28,45 @@
         <h4>Paramétrage classement</h4>
     </div>
     <div class="row">
-        <div class="input-field col s3">
+        <div class="input-field col s4">
             <label for="victory">Points par victoire</label><input id="victory" type="number" class="validate" value="<?=param.victory?>" required>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col s4">
             <label for="draw">Points par match nul</label><input id="draw" type="number" class="validate" value="<?=param.draw?>" required>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col s4">
             <label for="defeat">Points par défaite</label><input id="defeat" type="number" class="validate" value="<?=param.defeat?>" required>
-        </div>
-        <div class="input-field col s3">
-            <label for="minMatch">Nombre minimum de match pour classement</label><input id="minMatch" type="number" class="validate" value="<?=param.minMatch?>" required>
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s3">
+        <div class="input-field col s4 offset-s2">
             <label for="offensiveBonus">Points de bonus offensif</label><input id="offensiveBonus" type="number" class="validate" value="<?=param.offensiveBonus?>" required>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col s4">
             <label for="offensiveBonusGap">Ecart minimum pour bonus offensif</label><input id="offensiveBonusGap" type="number" class="validate" value="<?=param.minGoalGap?>" required>
         </div>
-        <div class="input-field col s3">
+    </div>
+    <div class="row">
+        <div class="input-field col s4 offset-s2">
             <label for="defensiveBonus">Points de bonus défensif</label><input id="defensiveBonus" type="number" class="validate" value="<?=param.deffensiveBonus?>" required>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col s4">
             <label for="defensiveBonusGap">Ecart maximum pour bonus défensif</label><input id="defensiveBonusGap" type="number" class="validate" value="<?=param.maxGoalGap?>" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4 offset-s2">
+            <label for="minMatch">Nombre minimum de match pour classement</label><input id="minMatch" type="number" class="validate" value="<?=param.minMatch?>" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="participationBonus">Coefficient de participation</label><input id="participationBonus" type="number" class="validate" value="<?=param.participationBonus?>" required>
         </div>
     </div>
     <div class="row">
         <h4>Paramétrage testing</h4>
     </div>
     <div class="row">
-        <div class="col s3"></div>
-        <div class="switch input-field col s3">
+        <div class="switch input-field col s3 offset-s3">
             <label>
                 <input id="modeTest" type="checkbox"  class="filled-in" <?if(param.modeTest) {?> checked="checked" <? } ?> />
                 <span>ModeTest</span>
@@ -78,51 +84,61 @@
         <h4>Logging</h4>
     </div>
     <div class="row">
-        <div class="col s4">
-            <label>Envoi prio 1 With Prio</label>
+        <div class="col s3">
+            <label>Envoi 1 prio</label>
             <br>
             <time><?=log.send1withPrio?></time>
         </div>
-        <div class="col s4">
-            <label>Envoi prio 1</label>
+        <div class="col s3">
+            <label>Envoi 1</label>
             <br>
             <time><?=log.send1?></time>
         </div>
-        <div class="col s4">
-            <label>Envoi prio 2</label>
+        <div class="col s3">
+            <label>Envoi 2 prio</label>
+            <br>
+            <time><?=log.send2withPrio?></time>
+        </div>
+        <div class="col s3">
+            <label>Envoi 2</label>
             <br>
             <time><?=log.send2?></time>
         </div>
     </div>
     <div class="row">
-        <div class="col s4">
-            <label>Envoi prio 3</label>
+        <div class="col s3">
+            <label>Envoi 3 prio</label>
+            <br>
+            <time><?=log.send3withPrio?></time>
+        </div>
+        <div class="col s3">
+            <label>Envoi 3</label>
             <br>
             <time><?=log.send3?></time>
         </div>
-        <div class="col s4">
+        <div class="col s3">
             <label>Contrôle</label>
             <br>
             <time><?=log.control?></time>
         </div>
-        <div class="col s4">
+        <div class="col s3">
             <label>Rappel</label>
             <br>
             <time><?=log.reminder?></time>
         </div>
     </div>
     <div class="row">
-        <div class="col s4">
+        <div class="col s3">
             <label>Confirmation</label>
             <br>
             <time><?=log.confirmation?></time>
         </div>
-        <div class="col s4">
+        <div class="col s3">
             <label>Création rdv</label>
             <br>
             <time><?=log.googleEvent?></time>
         </div>
-        <div class="col s4">
+        <div class="col s3">
             <label>Compo sauvegardée</label>
             <br>
             <time><?=log.team?></time>

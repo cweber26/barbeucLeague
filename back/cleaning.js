@@ -4,6 +4,8 @@ function cleaning() {
     }
 
     clearParameter("mailSendingPrio1WithPriority");
+    clearParameter("mailSendingPrio2WithPriority");
+    clearParameter("mailSendingPrio3WithPriority");
     clearParameter("mailSendingPrio1");
     clearParameter("mailSendingPrio2");
     clearParameter("mailSendingPrio3");

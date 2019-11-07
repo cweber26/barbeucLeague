@@ -13,6 +13,7 @@
         <div class="row">
             <h2 class="title">N'oublie pas de prendre tes affaires pour le match <?= date ?></h2>
         </div>
+        <? if(evalToDo) { ?> <?!= includeWithArgs("front/mail/mailEvaluation", {urlMail: urlMail}); ?> <? } ?>
         <? if(isNewPlayer) { ?>
         <h3 class="alert">Suite à un désistement tu as été sélectionné</h3>
         <h3>

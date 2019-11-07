@@ -56,19 +56,18 @@ function execStep(step) {
     switch (step) {
         case 1:
             deleteUnavaibility();
-            sendInscriptionMailForAPrio(1, true, false);
+            sendInscriptionMailForAPrio(1, true, false, false);
             break;
         case 2:
-            sendInscriptionMailForAPrio(2, true, false);
-            sendInscriptionMailForAPrio(1, false, false);
+            sendInscriptionMailForAPrio(1, false, false, false);
+            sendInscriptionMailForAPrio(2, true, false, false);
             break;
         case 3:
-            sendInscriptionMailForAPrio(3, true, false);
-            sendInscriptionMailForAPrio(2, false, false);
-            sendInscriptionMailForAPrio(1, false, true);
+            sendInscriptionMailForAPrio(2, false, false, true);
+            sendInscriptionMailForAPrio(3, true, false, true);
             break;
         case 4:
-            sendInscriptionMailForAPrio(3, false, false);
+            sendInscriptionMailForAPrio(3, false, true, true);
             break;
         case 5:
             controlAndCancelOrRelaunch();

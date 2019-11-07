@@ -411,12 +411,13 @@ function createProfil(user, creatorMail) {
         sheetTeam.getRange(row, 24).setValue(false);
     }
 
-    sendMailToNewUser(user.mail);
+    playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
+    var player = getPlayerWithMail(mail);
+    sendMailToNewUser(player);
     sendMailToAdminAboutNewPlayer(user.mail, creatorMail);
 }
 
-function sendMailToNewUser(mail) {
-    var player = getPlayerWithMail(mail);
+function sendMailToNewUser(player) {
     sendMail(player.mail, "Bienvenue " , includeWithArgs("front/mail/mailNewProfil", {
         urlMail: getUrlMail(player)
     }));
@@ -431,8 +432,12 @@ function sendMailToAdminAboutNewPlayer(mailNewPlayer, creatorMail) {
 }
 
 function sendMailToAdminAboutNewPlayerForAnAdmin(playerAdmin, mailNewPlayer, creatorMail) {
+    var html= "<h3>Le joueur " + mailNewPlayer + " vient d'être créé";
+    if(creatorMail) {
+        html += " par " + creatorMail;
+    }
     sendMail(playerAdmin.mail, "Nouveau Joueur" , includeWithArgs("front/mail/mailSimple", {
-        html: "<h3>Le joueur " + mailNewPlayer + " vient d'être créé par " + creatorMail + "</h3>",
+        html: html,
         urlMail: getUrlMail(playerAdmin)
     }));
 }

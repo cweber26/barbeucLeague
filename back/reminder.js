@@ -40,7 +40,8 @@ function getBodyMailReminder(player, isNewPlayer) {
         compo: getCompoPlayersListForMail(),
         isNewPlayer: isNewPlayer,
         urlMail: getUrlMail(player),
-        stadium: getStadiumInfo()
+        stadium: getStadiumInfo(),
+        evalToDo: !player.haveDoneAutoEvaluation
     });
 }
 

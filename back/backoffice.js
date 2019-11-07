@@ -13,6 +13,7 @@ function loadPageBackoffice() {
     parameterApplication.deffensiveBonus = defensiveBonusPoint;
     parameterApplication.maxGoalGap = maxGoalDefensiveBonus;
     parameterApplication.minMatch = minMatchForStat;
+    parameterApplication.participationBonus = participationBonus;
     parameterApplication.nbPlayersMatch = numberPlayerMatch;
     parameterApplication.nbLimitPlayers = minPlayerForAutoCancelation;
     parameterApplication.modeTest = isTest();
@@ -21,6 +22,8 @@ function loadPageBackoffice() {
 
     var log = {};
     log.send1withPrio = getDateTimeFormat(mailSendingPrio1WithPriority);
+    log.send2withPrio = getDateTimeFormat(mailSendingPrio2WithPriority);
+    log.send3withPrio = getDateTimeFormat(mailSendingPrio3WithPriority);
     log.send1 = getDateTimeFormat(mailSendingPrio1);
     log.send2 = getDateTimeFormat(mailSendingPrio2);
     log.send3 = getDateTimeFormat(mailSendingPrio3);
@@ -78,6 +81,7 @@ function updateParameters(parameterApplication) {
     updateParameter("defensiveBonusPoint", parameterApplication.defensiveBonus);
     updateParameter("maxGoalDefensiveBonus", parameterApplication.defensiveBonusGap);
     updateParameter("minMatchForStat", parameterApplication.minMatch);
+    updateParameter("participationBonus", parameterApplication.participationBonus);
     updateParameter("numberPlayerMatch", parameterApplication.nbPlayersMatch);
     updateParameter("minPlayerForAutoCancelation", parameterApplication.nbLimitPlayers);
     if (parameterApplication.modeTest) {
