@@ -116,73 +116,69 @@
     </div>
     <? } ?>
 
-    <? if (effectif != "") { ?>
+
+
     <div class="row">
-        <table id="equipes" class="centered highlight">
-            <thead>
-            <tr>
-                <th onclick="sortTableCompo(0)" style="cursor:pointer">Equipe</th>
-                <th onclick="sortTableCompo(1)" style="cursor:pointer">Joueur</th>
-                <th onclick="sortTableCompo(2)" style="cursor:pointer">Surnom</th>
-                <th onclick="sortTableCompo(3)" style="cursor:pointer">Classement</th>
-                <? if(admin) { ?>
-                <th onclick="sortTableCompo(4)" style="cursor:pointer">Poste</th>
-                <th onclick="sortTableCompo(5)" style="cursor:pointer">Niv : Dri/Fra/Def</th>
-                <th onclick="sortTableCompo(6)" style="cursor:pointer">Série en cours</th>
-                <th onclick="sortTableCompo(7)" style="cursor:pointer">Site</th>
-                <th onclick="sortTableCompo(8)" style="cursor:pointer">Covoiturage</th>
-                <? } else { ?>
-                <th onclick="sortTableCompo(4)" style="cursor:pointer">Série en cours</th>
-                <th onclick="sortTableCompo(5)" style="cursor:pointer">Site</th>
-                <th onclick="sortTableCompo(6)" style="cursor:pointer">Covoiturage</th>
+        <div class="col s12">
+            <ul class="collapsible">
+                <? if (effectif != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">Composition</span></div>
+                    <div class="collapsible-body text-align-center">
+                        <div class="row">
+                            <table id="equipes" class="centered highlight">
+                                <thead>
+                                <tr>
+                                    <th onclick="sortTableCompo(0)" style="cursor:pointer">Equipe</th>
+                                    <th onclick="sortTableCompo(1)" style="cursor:pointer">Joueur</th>
+                                    <th onclick="sortTableCompo(2)" style="cursor:pointer">Surnom</th>
+                                    <th onclick="sortTableCompo(3)" style="cursor:pointer">Classement</th>
+                                    <? if(admin) { ?>
+                                    <th onclick="sortTableCompo(4)" style="cursor:pointer">Poste</th>
+                                    <th onclick="sortTableCompo(5)" style="cursor:pointer">Niv : Dri/Fra/Def</th>
+                                    <th onclick="sortTableCompo(6)" style="cursor:pointer">Série en cours</th>
+                                    <th onclick="sortTableCompo(7)" style="cursor:pointer">Site</th>
+                                    <th onclick="sortTableCompo(8)" style="cursor:pointer">Covoiturage</th>
+                                    <? } else { ?>
+                                    <th onclick="sortTableCompo(4)" style="cursor:pointer">Série en cours</th>
+                                    <th onclick="sortTableCompo(5)" style="cursor:pointer">Site</th>
+                                    <th onclick="sortTableCompo(6)" style="cursor:pointer">Covoiturage</th>
+                                    <? } ?>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <?!=effectif?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </li>
                 <? } ?>
-            </tr>
-            </thead>
 
-            <tbody>
-            <?!=effectif?>
-            </tbody>
-        </table>
-    </div>
-    <? } ?>
+                <? if(listeAttente != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur en attente</span></div>
+                    <div class="collapsible-body text-align-center"><?!=listeAttente?></div>
+                </li>
+                <? } ?>
 
-    <? if(listeAttente != "") { ?>
-    <div class="row">
-        <div class="col s3">
-        </div>
-        <div class="col s6">
-            <table id="enattente" class="centered highlight">
-                <thead>
-                <tr>
-                    <th style="cursor:pointer">Joueur en attente</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?!=listeAttente?>
-                </tbody>
-            </table>
+                <? if(listePasDispo != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur pas dispo</span></div>
+                    <div class="collapsible-body text-align-center"><?!=listePasDispo?></div>
+                </li>
+                <? } ?>
+
+                <? if(listePasRepondu != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur sans réponse</span></div>
+                    <div class="collapsible-body text-align-center"><?!=listePasRepondu?></div>
+                </li>
+                <? } ?>
+            </ul>
         </div>
     </div>
-    <? } ?>
-
-    <? if(listePasDispo != "") { ?>
-    <div class="row">
-        <div class="col s3">
-        </div>
-        <div class="col s6">
-            <table id="pasDispo" class="centered highlight">
-                <thead>
-                <tr>
-                    <th style="cursor:pointer">Joueur pas dispo</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?!=listePasDispo?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <? } ?>
 </div>
 
 <div class="fixed-action-btn direction-top active" style="bottom: 25px; right: 25px;">

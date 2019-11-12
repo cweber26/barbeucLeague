@@ -335,6 +335,13 @@ function playersNotAvailablePlayerListMail() {
     return [];
 }
 
+function playersNotRespondedPlayerMailList() {
+    if(notRespondedPlayerMailList) {
+        return notRespondedPlayerMailList.split(',');
+    }
+    return [];
+}
+
 // noinspection JSUnusedGlobalSymbols
 function archiveProfil(mail) {
     var row = getRowSheetTeamWithMail(mail);

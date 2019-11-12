@@ -34,7 +34,7 @@ function loadPageCompo() {
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listeAttente += "<tr><td>" + player.fullName + "</td></tr>";
+                listeAttente += player.fullName + "<br>";
             }
         });
 
@@ -44,10 +44,18 @@ function loadPageCompo() {
         playersNotAvailablePlayerListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasDispo += "<tr><td>" + player.fullName + "</td></tr>";
+                listePasDispo += player.fullName + "<br>";
             }
         });
-
+    }
+    var listePasRepondu = "";
+    if(param.isAdmin && notRespondedPlayerMailList && isTheMatchInProgress()) {
+        playersNotRespondedPlayerMailList().forEach(function (m) {
+            var player = getPlayerWithMail(m);
+            if(player) {
+                listePasRepondu += player.fullName + "<br>";
+            }
+        });
     }
     var tabTitle = "Barbeuc : Composition";
     return render("front/page/compo", tabTitle, {
@@ -62,6 +70,7 @@ function loadPageCompo() {
         effectif: effectif,
         listeAttente: listeAttente,
         listePasDispo: listePasDispo,
+        listePasRepondu: listePasRepondu,
         admin: param.isAdmin,
         cancelMatch: isTheMatchCancel(),
         testing: isTest(),

@@ -1,4 +1,9 @@
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var collapsible = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(collapsible);
+    });
+
     function inscriptionJs() {
         M.toast({html: "Inscription en cours"});
         var parameter = {};
