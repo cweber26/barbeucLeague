@@ -23,5 +23,5 @@ function getLumiere(value) {
 
 
 function getLumieres(p) {
-    return "<div class='lumieres'>" + getLumiere(p[19]) + getLumiere(p[20]) + getLumiere(p[21]) + getLumiere(p[22]) + getLumiere(p[23]) + "</div>";
+    return "<div class='lumieres'>" + getLumiere(p[23]) + getLumiere(p[22]) + getLumiere(p[21]) + getLumiere(p[20]) + getLumiere(p[19]) + "</div>";
 }
