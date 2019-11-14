@@ -29,7 +29,7 @@ function sendMessageForAPlayerList(playerMailList, messageContent) {
     var playerList = getPlayerListWithMail(playerMailList)
     for (var i in playerList) {
         if (playerList[i].prioValue <= messageContent.filtrePrio) {
-            sendMessageForAPlayer(playerList[i], messageContent.message)
+            sendMessageForAPlayer(playerList[i], messageContent.message, messageContent.isAnAlert)
         }
     }
 
@@ -43,9 +43,15 @@ function getPlayerListWithMail(playerMailList) {
     return playerList;
 }
 
-function sendMessageForAPlayer(player, message) {
+function sendMessageForAPlayer(player, message, isAnAlert) {
+    var html;
+    if(isAnAlert) {
+        html = "<div style='width: 400px; margin: auto; color: #ef5350; font-size: 16px; font-weight: bold;'>" + message + "</div>"
+    } else {
+        html = "<div style='width: 400px; margin: auto; font-size: 14px;'>" + message + "</div>"
+    }
     var body = includeWithArgs("front/mail/mailSimple", {
-        html: '<h3>' + message + '</h3>',
+        html: html,
         urlMail: getUrlMail(player)
     });
     sendMail(player.mail, "Message", body);

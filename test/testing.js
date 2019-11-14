@@ -50,10 +50,13 @@ function testMails() {
     sendMailForAnAdmin(player, "subject test", "<h2>html test</h2>");
     sendMailToNewUser(player);
     sendMailToAdminAboutNewPlayerForAnAdmin(player, "new.player@gmail.com", "creator.player@gmail.com");
+    sendMessageForAPlayer(player, "Message a envoyer<br>blablabla<br>Cédric", false);
+    sendMessageForAPlayer(player, "Message important a envoyer<br>blablabla<br>Cédric", true);
 }
 
 // noinspection JSUnusedGlobalSymbols
 function testMail() {
     var player = getPlayerWithMail("cedric.weber@decathlon.com");
-    sendConfirmMailForAPlayer(player, false);
+    sendMessageForAPlayer(player, "Message a envoyer<br>blablabla<br>Cédric", false);
+    sendMessageForAPlayer(player, "Message important a envoyer<br>blablabla<br>Cédric", true);
 }

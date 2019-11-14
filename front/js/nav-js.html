@@ -98,7 +98,8 @@
             google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).envoyerMessage({
                 filtreEtatJoueur: document.querySelector('input[name="filtreEtatJoueur"]:checked').value,
                 filtrePrio: document.querySelector('input[name="filtrePrio"]:checked').value,
-                message: document.getElementById("message").value.replace(/\n\r?/g, '<br />')
+                message: document.getElementById("message").value.replace(/\n\r?/g, '<br />'),
+                isAnAlert: document.getElementById("isAnAlert").checked
             });
 
             M.toast({html: "Message en cours d'envoi"});
