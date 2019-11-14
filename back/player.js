@@ -426,7 +426,7 @@ function createProfil(user, creatorMail) {
     }
 
     playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
-    var player = getPlayerWithMail(mail);
+    var player = getPlayerWithMail(user.mail);
     sendMailToNewUser(player);
     sendMailToAdminAboutNewPlayer(user.mail, creatorMail);
 }
