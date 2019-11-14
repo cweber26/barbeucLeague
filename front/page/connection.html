@@ -23,11 +23,21 @@
         </div>
     </div>
     <div class="row">
-        <a id="connection" class="buttonGreen" onclick="connectionWithCheckJs()">Se connecter</a>
+        <div class="col s6 offset-s3">
+            <a id="connection" class="buttonGreen" onclick="connectionWithCheckJs()">Se connecter</a>
+        </div>
     </div>
-    <div>
-        <a id="forgotKey" style="cursor:pointer" onclick="sendKeyByMailAndCheckJs()">Clef oubliée</a>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <a id="newAccount" class="buttonGreen" onclick="creationAccountWithCheckJs()">Créer un compte</a>
+        </div>
     </div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <a id="forgotKey" class="buttonRed" onclick="sendKeyByMailAndCheckJs()">Clef oubliée</a>
+        </div>
+    </div>
+
 </div>
 <div class="fixed-action-btn direction-top active" style="bottom: 25px; right: 25px;">
     <a data-target="helper" class="btn-floating btn-large waves-effect waves-light modal-trigger green lighten-2 pulse"><i class="material-icons">help_outline</i></a>
