@@ -54,7 +54,7 @@ function loadPageCompo() {
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasRepondu += "<tr><td>"+ player.fullName + "</td><td> " + buttonInscriptionTeam() + "</td><td> " + buttonDesinscriptionTeam() + "</td></tr>";
+                listePasRepondu += "<tr><td>"+ player.fullName + "</td><td> " + buttonModificationProfil() + "</td><td> " + buttonInscriptionTeam() + "</td><td> " + buttonDesinscriptionTeam() + "</td></tr>";
             }
         });
         listePasRepondu += "</tbody></table>";
@@ -117,4 +117,8 @@ function buttonInscriptionTeam() {
 
 function buttonDesinscriptionTeam() {
     return "<a id=desinscriptionTeam class=smallButtonRed onclick=desinscriptionTeam(this)>Désinscription</a>";
+}
+
+function buttonModificationProfil() {
+    return "<a id=redirectProfilPage class=smallButtonGreen onclick=redirectProfilPage(this)>Profil</a>";
 }

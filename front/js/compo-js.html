@@ -114,6 +114,20 @@
         google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
     }
 
+    function redirectProfilPage(element) {
+        M.toast({ html: "En cours" });
+        var fullName = element.parentNode.parentNode.firstChild.textContent;
+        google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+    }
+
+    function redirectProfilPageWithPlayer(player) {
+        var parameter = {};
+        google.script.url.getLocation(function (location) {
+            parameter = location.parameter;
+            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key)+"&profilMail="+String(player.mail);
+        });
+    }
+
     function displaySuccessActionTeam() {
         M.toast({ html: "Success !!!" });
         refreshCompoPage();
