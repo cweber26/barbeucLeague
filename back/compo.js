@@ -50,10 +50,21 @@ function loadPageCompo() {
     }
     var listePasRepondu = "";
     if(param.isAdmin && notRespondedPlayerMailList && isTheMatchInProgress()) {
+        listePasRepondu += "<div class='row s6'><table class='centered highlight striped'><tbody>";
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasRepondu += player.fullName + "<br>";
+                listePasRepondu += "<tr><td>"+ player.fullName + "</td><td> " + buttonInscriptionTeam() + "</td><td> " + buttonDesinscriptionTeam() + "</td></tr>";
+            }
+        });
+        listePasRepondu += "</tbody></table>";
+    }
+    var listeBlesse = "";
+    if(param.isAdmin && injuredPlayerMailList && isTheMatchInProgress()) {
+        playersInjuredPlayerMailList().forEach(function (m) {
+            var player = getPlayerWithMail(m);
+            if(player) {
+                listeBlesse += player.fullName + "<br>";
             }
         });
     }
@@ -71,6 +82,7 @@ function loadPageCompo() {
         listeAttente: listeAttente,
         listePasDispo: listePasDispo,
         listePasRepondu: listePasRepondu,
+        listeBlesse: listeBlesse,
         admin: param.isAdmin,
         cancelMatch: isTheMatchCancel(),
         testing: isTest(),
@@ -96,4 +108,13 @@ function getLogoCar(type) {
         default :
             return "";
     }
+}
+
+
+function buttonInscriptionTeam() {
+    return "<a id=inscriptionTeam class=smallButtonGreen onclick=inscriptionTeam(this)>Inscription</a>";
+}
+
+function buttonDesinscriptionTeam() {
+    return "<a id=desinscriptionTeam class=smallButtonRed onclick=desinscriptionTeam(this)>Désinscription</a>";
 }

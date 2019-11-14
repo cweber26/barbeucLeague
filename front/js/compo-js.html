@@ -84,6 +84,45 @@
         });
     }
 
+    function inscriptionTeam(element) {
+        M.toast({ html: "En cours" });
+        var fullName = element.parentNode.parentNode.firstChild.textContent;
+        google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+    }
+
+    function inscriptionPlayer(player) {
+        var parameter = {
+            mail: player.mail,
+            key: player.keyWithSecurity,
+            answer: "Oui"
+        };
+        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
+    }
+
+    function desinscriptionTeam(element) {
+        M.toast({ html: "En cours" });
+        var fullName = element.parentNode.parentNode.firstChild.textContent;
+        google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+    }
+
+    function desinscriptionPlayer(player) {
+        var parameter = {
+            mail: player.mail,
+            key: player.keyWithSecurity,
+            answer: "Non"
+        };
+        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
+    }
+
+    function displaySuccessActionTeam() {
+        M.toast({ html: "Success !!!" });
+        refreshCompoPage();
+    }
+
+    function displayErrorActionTeam() {
+        M.toast({ html: "Erreur !!!" });
+    }
+
     function sortTableCompo(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("equipes");

@@ -342,6 +342,13 @@ function playersNotRespondedPlayerMailList() {
     return [];
 }
 
+function playersInjuredPlayerMailList() {
+    if(injuredPlayerMailList) {
+        return injuredPlayerMailList.split(',');
+    }
+    return [];
+}
+
 // noinspection JSUnusedGlobalSymbols
 function archiveProfil(mail) {
     var row = getRowSheetTeamWithMail(mail);
