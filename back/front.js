@@ -32,7 +32,15 @@ function doGet(e) {
         }
     }
 
-    Logger.log("Page to load : " + param.page + " for mail " + param.mail)
+    if(!param.page) {
+        param.page="compo";
+    }
+
+    if(param.page && param.mail) {
+        Logger.log("Page to load : " + param.page + " for mail " + param.mail)
+    } else if (param.page) {
+        Logger.log("Page to load : " + param.page + " for guest")
+    }
 
     if (Route[param.page]) {
         return Route[param.page]();
