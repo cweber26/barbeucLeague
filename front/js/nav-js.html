@@ -20,21 +20,21 @@
     function sendPrio1Js() {
         if (window.confirm("Es tu sûr de vouloir envoyer les inscriptions aux joueurs de la prio 1 ?")) {
             M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(1);
+            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(1, false, true, true);
         }
     }
 
     function sendPrio2Js() {
         if (window.confirm("Es tu sûr de vouloir envoyer les inscriptions aux joueurs de la prio 2 ?")) {
             M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(2);
+            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(2, false, true, true);
         }
     }
 
     function sendPrio3Js() {
         if (window.confirm("Es tu sûr de vouloir envoyer les inscriptions aux joueurs de la prio 3 ?")) {
             M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(3);
+            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(3, false, true, true);
         }
     }
 
