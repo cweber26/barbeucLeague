@@ -111,12 +111,10 @@
             </a>
         </div>
         <div class="input-field col s3">
-            <a id="deconfirmation" class="buttonRed valign-wrapper" style="padding: 35px" onclick="retractationJs()">Désinscription</a>
+            <a id="deconfirmation" class="buttonRed valign-wrapper" onclick="retractationJs()">Désinscription<br><i class='material-icons' style='font-size: 34px'>cancel</i></a>
         </div>
     </div>
     <? } ?>
-
-
 
     <? if (effectif != "" || listeAttente != "" ||listePasDispo != "" || listePasRepondu != "" || listeBlesse != "" ) { ?>
     <div class="row">
@@ -140,6 +138,7 @@
                                     <th onclick="sortTableCompo(6)" style="cursor:pointer">Série en cours</th>
                                     <th onclick="sortTableCompo(7)" style="cursor:pointer">Site</th>
                                     <th onclick="sortTableCompo(8)" style="cursor:pointer">Covoiturage</th>
+                                    <th>Confirmation</th>
                                     <? } else { ?>
                                     <th onclick="sortTableCompo(4)" style="cursor:pointer">Série en cours</th>
                                     <th onclick="sortTableCompo(5)" style="cursor:pointer">Site</th>
@@ -147,7 +146,6 @@
                                     <? } ?>
                                 </tr>
                                 </thead>
-
                                 <tbody>
                                 <?!=effectif?>
                                 </tbody>

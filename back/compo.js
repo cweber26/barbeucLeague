@@ -23,8 +23,11 @@ function loadPageCompo() {
                 }
                 effectif += "<td>" + getSerieLumieres(p[8]) + "</td>"
                     + "<td>" + p[6] + "</td>"
-                    + "<td>" + getLogoCar(p[11]) + "</td>"
-                    + "</tr>";
+                    + "<td>" + getLogoCar(p[11]) + "</td>";
+                if(param.isAdmin) {
+                    effectif += "<td>" + buttonConfirmationCompo() + "</td>"
+                }
+                effectif += "</tr>";
             }
         });
 
@@ -54,7 +57,7 @@ function loadPageCompo() {
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasRepondu += "<tr><td>"+ player.fullName + "</td><td> " + buttonModificationProfil() + "</td><td> " + buttonInscriptionTeam() + "</td><td> " + buttonDesinscriptionTeam() + "</td></tr>";
+                listePasRepondu += "<tr><td>"+ player.fullName + "</td><td> " + buttonModificationProfilCompo() + "</td><td> " + buttonInscriptionCompo() + "</td><td> " + buttonDesinscriptionCompo() + "</td></tr>";
             }
         });
         listePasRepondu += "</tbody></table>";
@@ -111,14 +114,18 @@ function getLogoCar(type) {
 }
 
 
-function buttonInscriptionTeam() {
-    return "<a id=inscriptionTeam class=smallButtonGreen onclick=inscriptionTeam(this)>Inscription</a>";
+function buttonInscriptionCompo() {
+    return "<a id=inscriptionCompo class=smallButtonGreen onclick=inscriptionCompo(this)>Inscription</a>";
 }
 
-function buttonDesinscriptionTeam() {
-    return "<a id=desinscriptionTeam class=smallButtonRed onclick=desinscriptionTeam(this)>Désinscription</a>";
+function buttonDesinscriptionCompo() {
+    return "<a id=desinscriptionCompo class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
 }
 
-function buttonModificationProfil() {
-    return "<a id=redirectProfilPage class=smallButtonGreen onclick=redirectProfilPage(this)>Profil</a>";
+function buttonModificationProfilCompo() {
+    return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>Profil</a>";
+}
+
+function buttonConfirmationCompo() {
+    return "<a id=confirmationCompo class=smallButtonGreen onclick=confirmationCompo(this)><i class='tiny material-icons'>check</i></a>";
 }

@@ -84,7 +84,7 @@
         });
     }
 
-    function inscriptionTeam(element) {
+    function inscriptionCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
         google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
@@ -99,7 +99,22 @@
         google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
     }
 
-    function desinscriptionTeam(element) {
+    function confirmationCompo(element) {
+        M.toast({ html: "En cours" });
+        var fullName = element.parentNode.parentNode.firstChild.nextSibling.textContent;
+        google.script.run.withSuccessHandler(confirmationPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+    }
+
+    function confirmationPlayer(player) {
+        var parameter = {
+            mail: player.mail,
+            key: player.keyWithSecurity,
+            answer: "Oui"
+        };
+        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).confirmation(parameter);
+    }
+
+    function desinscriptionCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
         google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
@@ -114,7 +129,7 @@
         google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
     }
 
-    function redirectProfilPage(element) {
+    function redirectProfilPageCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
         google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
