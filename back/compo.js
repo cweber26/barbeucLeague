@@ -8,10 +8,20 @@ function loadPageCompo() {
             players.push(p[1]);
             confirmations.push(p[10]);
             if (p[0] && numberPlayerInMatch == numberPlayerMatch) {
-                effectif += "<tr>"
-                    + "<td>" + p[9] + "</td>"
-                    + "<td>" + p[0] + "</td>"
-                    + "<td>" + p[1] + "</td>";
+                if(p[9]=='Rouge') {
+                    effectif += "<tr style='background-color:#ffcdd2'>";
+                } else {
+                    effectif += "<tr style='background-color:#bbdefb'>";
+                }
+
+                if(param.isAdmin) {
+                    effectif += "<td>" + buttonModificationProfilCompo(p[0]) + "</td>";
+                } else {
+                    effectif += "<td>" + p[0] + "</td>";
+                }
+
+                effectif += "<td>" + p[1] + "</td>";
+
                 if(p[7]>0){
                     effectif += "<td>" + Utilities.formatString("%02d",Number(p[7])) + "</td>";
                 } else {
@@ -53,7 +63,7 @@ function loadPageCompo() {
     }
     var listePasRepondu = "";
     if(param.isAdmin && notRespondedPlayerMailList && isTheMatchInProgress()) {
-        listePasRepondu += "<div class='row s6'><table class='centered highlight striped'><tbody>";
+        listePasRepondu += "<div class='row s6'><table class='centered striped'><tbody>";
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
@@ -122,8 +132,12 @@ function buttonDesinscriptionCompo() {
     return "<a id=desinscriptionCompo class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
 }
 
-function buttonModificationProfilCompo() {
-    return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>Profil</a>";
+function buttonModificationProfilCompo(name) {
+    if(name) {
+        return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>" + name + "</a>";
+    } else {
+        return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>Profil</a>";
+    }
 }
 
 function buttonConfirmationCompo() {

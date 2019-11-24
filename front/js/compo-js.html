@@ -101,7 +101,7 @@
 
     function confirmationCompo(element) {
         M.toast({ html: "En cours" });
-        var fullName = element.parentNode.parentNode.firstChild.nextSibling.textContent;
+        var fullName = element.parentNode.parentNode.firstChild.textContent;
         google.script.run.withSuccessHandler(confirmationPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
     }
 
