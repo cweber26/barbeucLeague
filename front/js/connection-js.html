@@ -6,7 +6,6 @@
                 key: "La clef doit être rempli"
             }
         )) {
-            Logger.log("connectionJs");
             connectionJs();
         }
     }
@@ -16,7 +15,6 @@
                 mail: "Le mail doit être rempli"
         }
         )) {
-            Logger.log("sendKeyByMailJs");
             sendKeyByMailJs();
         }
     }
@@ -47,8 +45,16 @@
     }
 
     function sendKeyByMailJs() {
-        google.script.run.sendKeyByMail(document.getElementById("mail").value);
+        google.script.run.withSuccessHandler(mailSent).withFailureHandler(errorMail).sendKeyByMail(document.getElementById("mail").value);
         M.toast({html: "Envoi en cours"});
+    }
+
+    function mailSent() {
+        M.toast({html: "Un mail avec ta clef t'a été envoyé"});
+    }
+
+    function errorMail() {
+        M.toast({html: "Erreur"});
     }
 
     function creationAccountWithCheckJs() {

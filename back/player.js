@@ -471,7 +471,7 @@ function loadPageDeletion() {
 function sendKeyByMail(mail) {
     var player = getPlayerWithMail(mail);
     sendMail(player.mail, "Clef oubliée" , includeWithArgs("front/mail/mailSimple", {
-        html: "<h3>Clef : " + player.keyWithSecurity + "</h3><h4>Les liens ci desssous fonctionnent aussi</h4>",
+        html: "<h3>Voici ta clef : " + player.keyWithSecurity + "</h3><h4>Tu peux aussi utiliser les liens directs en cliquant sur les icones</h4>",
         urlMail: getUrlMail(player)
     }));
 }
