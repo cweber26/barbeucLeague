@@ -37,6 +37,7 @@ function loadPageTeam() {
     return render("front/page/team", "Barbeuc : Team", {
         mail: param.mail,
         key: param.key,
+        fullName: getPlayerWithMail(param.mail).fullName,
         admin: param.isAdmin,
         testing: isTest(),
         tableTeam: tableTeam

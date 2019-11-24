@@ -1,7 +1,6 @@
 STAND BY ajouter une photo du joueur
 STAND BY mettre un joueur invité "fantome"
 
-TODO remplacer le nom du menu mon profil par le nom de l'utilisateur
 TODO changer le jour du match + envoi mail auto
 TODO accès direct au profil du joueur via la compo pour les admins
 TODO ajouter les totaux de niveaux par équipe sur la compo pour les admins

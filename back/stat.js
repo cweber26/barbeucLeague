@@ -105,6 +105,7 @@ function loadPageStat() {
     return render("front/page/stat", "Barbeuc : Stats", {
         mail: param.mail,
         key: param.key,
+        fullName: getPlayerWithMail(param.mail).fullName,
         table: stats,
         admin: param.isAdmin,
         testing: isTest()

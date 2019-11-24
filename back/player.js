@@ -129,6 +129,7 @@ function loadPageProfil() {
     return render("front/page/profil", "Barbeuc : Profil", {
         mail: param.mail,
         key: param.key,
+        fullName: getPlayerWithMail(param.mail).fullName,
         player: player,
         admin: param.isAdmin,
         modif: true,
@@ -140,6 +141,7 @@ function loadPageProfil() {
 function loadPageNewProfil() {
     return render("front/page/profil", "Barbeuc : New profil", {
         mail: param.mail,
+        fullName: getPlayerWithMail(param.mail).fullName,
         key: param.key,
         admin: param.isAdmin,
         modif: false,
