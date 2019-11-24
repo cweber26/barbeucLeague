@@ -129,7 +129,7 @@ function loadPageProfil() {
     return render("front/page/profil", "Barbeuc : Profil", {
         mail: param.mail,
         key: param.key,
-        fullName: getPlayerWithMail(param.mail).fullName,
+        fullName: getFullName(param.mail),
         player: player,
         admin: param.isAdmin,
         modif: true,
@@ -141,7 +141,7 @@ function loadPageProfil() {
 function loadPageNewProfil() {
     return render("front/page/profil", "Barbeuc : New profil", {
         mail: param.mail,
-        fullName: getPlayerWithMail(param.mail).fullName,
+        fullName: getFullName(param.mail),
         key: param.key,
         admin: param.isAdmin,
         modif: false,
@@ -474,4 +474,11 @@ function sendKeyByMail(mail) {
         html: "<h3>Clef : " + player.keyWithSecurity + "</h3><h4>Les liens ci desssous fonctionnent aussi</h4>",
         urlMail: getUrlMail(player)
     }));
+}
+
+function getFullName(mail) {
+    if(mail) {
+        return getPlayerWithMail(param.mail).fullName;
+    }
+    return "";
 }

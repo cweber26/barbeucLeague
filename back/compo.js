@@ -99,7 +99,7 @@ function loadPageCompo() {
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
         key: param.key,
-        fullName: getPlayerWithMail(param.mail).fullName,
+        fullName: getFullName(param.mail),
         date: matchDayGapInFrench(true),
         compo: players,
         inscriptionPhase: mailSendingPrio1!="",

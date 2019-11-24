@@ -62,7 +62,7 @@ function loadPageBackoffice() {
     return render("front/page/backoffice", "Barbeuc : BackOffice", {
         mail: param.mail,
         key: param.key,
-        fullName: getPlayerWithMail(param.mail).fullName,
+        fullName: getFullName(param.mail),
         admin: param.isAdmin,
         player: player,
         param: parameterApplication,

@@ -35,7 +35,7 @@ function loadPageResultat() {
     return render("front/page/resultat", "Barbeuc : Resultat", {
         mail: param.mail,
         key: param.key,
-        fullName: getPlayerWithMail(param.mail).fullName,
+        fullName: getFullName(param.mail),
         matchDateSelect: matchDateSelect,
         date: date,
         compo: players,

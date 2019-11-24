@@ -10,7 +10,7 @@ function loadPageRecord() {
     return render("front/page/record", "Barbeuc : Records", {
         mail: param.mail,
         key: param.key,
-        fullName: getPlayerWithMail(param.mail).fullName,
+        fullName: getFullName(param.mail),
         admin: param.isAdmin,
         victoryPercentage: victoryPercentage,
         losePercentage: losePercentage,
