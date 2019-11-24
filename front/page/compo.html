@@ -154,6 +154,26 @@
                 </li>
                 <? } ?>
 
+                <? if(niveauEquipe != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">Niveau équipe</span></div>
+                    <div class="collapsible-body text-align-center">
+                        <table id="level" class="centered striped">
+                            <thead>
+                            <tr>
+                                <th>Niveau</th>
+                                <th>Rouge</th>
+                                <th>Bleu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?!=niveauEquipe?>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+                <? } ?>
+
                 <? if(listeAttente != "") { ?>
                 <li>
                     <div class="collapsible-header"><span class="text-align-center">Joueur en attente</span></div>

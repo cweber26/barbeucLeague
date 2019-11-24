@@ -42,6 +42,15 @@ function loadPageCompo() {
         });
 
     }
+
+    var niveauEquipe = "";
+    if (param.isAdmin && effectif != "") {
+        niveauEquipe = "<tr><td>Dribble</td><td>" + levelDribbleRed + "</td><td>" + levelDribbleBlue + "</td></tr>"
+            + "<tr><td>Frappe</td><td>" + levelShotRed + "</td><td>" + levelShotBlue + "</td></tr>"
+            + "<tr><td>Défence</td><td>" + levelDefenceRed + "</td><td>" + levelDefenceBlue + "</td></tr>"
+            + "<tr><td>Total</td><td>" + levelRed + "</td><td>" + levelBlue + "</td></tr>"
+    }
+
     var listeAttente = "";
     if (numberPlayerInWaitingList > 0 && isTheMatchInProgress()) {
         playersInWaitingListMail().forEach(function (m) {
@@ -67,7 +76,12 @@ function loadPageCompo() {
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasRepondu += "<tr><td>"+ player.fullName + "</td><td> " + buttonModificationProfilCompo() + "</td><td> " + buttonInscriptionCompo() + "</td><td> " + buttonDesinscriptionCompo() + "</td></tr>";
+                listePasRepondu += "<tr>" +
+                    "<td>"+ player.fullName + "</td>" +
+                    "<td>" + buttonModificationProfilCompo() + "</td>" +
+                    "<td>" + buttonInscriptionCompo() + "</td>" +
+                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
+                    "</tr>";
             }
         });
         listePasRepondu += "</tbody></table>";
@@ -93,6 +107,7 @@ function loadPageCompo() {
         teamSaved: teamSaved!="",
         confirmations: confirmations,
         effectif: effectif,
+        niveauEquipe: niveauEquipe,
         listeAttente: listeAttente,
         listePasDispo: listePasDispo,
         listePasRepondu: listePasRepondu,

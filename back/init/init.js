@@ -58,6 +58,14 @@ var nextMatchStadiumCost = getParameterFromList("nextMatchStadiumCost");
 var nextMatchReservationName = getParameterFromList("nextMatchReservationName");
 var nextMatchBeginGameHour = getParameterFromList("nextMatchBeginGameHour");
 var nextMatchComment = getParameterFromList("nextMatchComment");
+var levelDribbleRed = getParameterFromList("levelDribbleRed");
+var levelShotRed = getParameterFromList("levelShotRed");
+var levelDefenceRed = getParameterFromList("levelDefenceRed");
+var levelRed = getParameterFromList("levelRed");
+var levelDribbleBlue = getParameterFromList("levelDribbleBlue");
+var levelShotBlue = getParameterFromList("levelShotBlue");
+var levelDefenceBlue = getParameterFromList("levelDefenceBlue");
+var levelBlue = getParameterFromList("levelBlue");
 
 function getRowParameter(name) {
     if(name) {
