@@ -1,26 +1,32 @@
 // noinspection JSUnusedGlobalSymbols
 function envoyerMessage(messageContent) {
 
-    var playerMailList = "";
+    Logger.log("envoyerMessage (filtreEtatJoueur: " + messageContent.filtreEtatJoueur +
+                " / filtrePrio: " + messageContent.filtrePrio +
+                " / message: " + messageContent.message +
+                " / isAnAlert: " + messageContent.isAnAlert);
+
+    var playerMailListForMessage = "";
 
     switch (messageContent.filtreEtatJoueur) {
         case "all":
-            playerMailList = playerMailList.split(',');
+            playerMailListForMessage = playerMailList.split(',');
             break;
         case "match":
-            playerMailList = matchPlayerMailList.split(',');
+            playerMailListForMessage = matchPlayerMailList.split(',');
             break;
         case "waiting":
-            playerMailList = waitingListPlayerMailList.split(',');
+            playerMailListForMessage = waitingListPlayerMailList.split(',');
             break;
         case "noAnswer":
-            playerMailList = notRespondedPlayerMailList.split(',');
+            playerMailListForMessage = notRespondedPlayerMailList.split(',');
             break;
 
     }
 
-    if (playerMailList != "") {
-        sendMessageForAPlayerList(playerMailList, messageContent);
+    if (playerMailListForMessage != "") {
+        Logger.log("playerMailList : " + playerMailListForMessage);
+        sendMessageForAPlayerList(playerMailListForMessage, messageContent);
     }
 
 }

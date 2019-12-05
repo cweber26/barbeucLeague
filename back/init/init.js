@@ -45,6 +45,7 @@ var numberAvailableSlotInMatch = getParameterFromList("numberAvailableSlotInMatc
 var numberPlayerInWaitingList = getParameterFromList("numberPlayerInWaitingList");
 var nextMatchDate = getParameterFromList("nextMatchDate");
 var adminMailList = getParameterFromList("adminMailList");
+var playerMailList = getParameterFromList("playerMailList");
 var matchPlayerMailList = getParameterFromList("matchPlayerMailList");
 var waitingListPlayerMailList = getParameterFromList("waitingListPlayerMailList");
 var notAvailablePlayerMailList = getParameterFromList("notAvailablePlayerMailList");
