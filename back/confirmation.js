@@ -40,7 +40,6 @@ function loadPageConfirmation() {
 
 
 function confirmation(parameter) {
-    Logger.log(parameter);
     Logger.log("Confirmation for " + parameter.mail + " and answer " + parameter.answer);
     var inscriptions = sheetInscription.getRange(2, 1, sheetInscription.getLastRow(), sheetInscription.getLastColumn()).getValues();
     for (var i in inscriptions) {

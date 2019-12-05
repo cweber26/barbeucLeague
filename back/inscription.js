@@ -93,19 +93,15 @@ function isValidAnswer(parameter) {
     }
     var player = getPlayerWithMail(parameter.mail);
     switch (getNextStep()) {
+        case 1:
+            throw "Trop tot pour s inscrire";
         case 2:
             return player.isPrioritary && player.prioValue == 1;
         case 3:
             return player.prioValue == 1 || (player.isPrioritary && player.prioValue == 2);
         case 4:
             return player.prioValue <= 2 || (player.isPrioritary && player.prioValue == 3);
-        case 5:
-            return true;
-        case 6:
-             return true;
-        case 7:
-            return true;
         default:
-            throw "Trop tard pour répondre";
+            return true;
     }
 }

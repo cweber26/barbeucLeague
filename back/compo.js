@@ -29,11 +29,11 @@ function loadPageCompo() {
                 }
                 if(param.isAdmin) {
                     effectif += "<td>" + p[3] + "</td>"
-                        + "<td>" + Utilities.formatString("%02d",Number(p[4]+p[5]+p[6])) + " : " + p[4] + "/" + p[5]+ "/" + p[6] + "</td>";
+                        + "<td>" + getLevels(p) + "</td>";
                 }
                 effectif += "<td>" + getSerieLumieres(p[9]) + "</td>"
                     + "<td>" + p[7] + "</td>"
-                    + "<td>" + getLogoCar(p[12]) + "</td>";
+                    + "<td>" + getLogoCar(p) + "</td>";
                 if(param.isAdmin) {
                     effectif += "<td>" + buttonConfirmationCompo() + "</td>"
                     effectif += "<td>" + buttonSwitchTeam(p) + "</td>"
@@ -120,28 +120,37 @@ function loadPageCompo() {
     });
 }
 
-
-function getLogoCar(type) {
-    switch (type) {
-        case "sharing":
-            return "<div class=logoCarSharingBlack></div>";
-        case "alone":
-            return "<div class=logoCarAloneBlack></div>";
-        case "need":
-            return "<div class=logoCarNeedBlack></div>";
-        default :
-            return "";
+function getLogoCar(p) {
+    if(p[11]){
+        switch (p[12]) {
+            case "sharing":
+                return "<div class=logoCarSharingBlack></div>";
+            case "alone":
+                return "<div class=logoCarAloneBlack></div>";
+            case "need":
+                return "<div class=logoCarNeedBlack></div>";
+            default :
+                return "<div><i class='material-icons'>help</i></div>";
+        }
     }
+    return "";
 }
+
+
+function getLevels(p) {
+    return Utilities.formatString("%02d", Number(p[4] + p[5] + p[6])) + " : " + p[4] + "/" + p[5] + "/" + p[6];
+}
+
+
 
 function buttonInscriptionCompo() {
     return "<a id=inscriptionCompo class=smallButtonGreen onclick=inscriptionCompo(this)>Inscription</a>";
 }
 
-
 function buttonDesinscriptionCompo() {
     return "<a id=desinscriptionCompo class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
 }
+
 
 function buttonModificationProfilCompo(name) {
     if(name) {
@@ -202,7 +211,6 @@ function buttonSwitchTeam(p) {
         +"</ul>"
 }
 
-
 // noinspection JSUnusedGlobalSymbols
 function changePlayerTeamWithMail(playerMail1, playerMail2) {
     Logger.log("playerMail1 " + playerMail1);
@@ -218,6 +226,7 @@ function changePlayerTeamWithMail(playerMail1, playerMail2) {
         }
     }
 }
+
 
 function playersInTheMatchForFinalCompo() {
     if (numberPlayerInMatch > 0) {
