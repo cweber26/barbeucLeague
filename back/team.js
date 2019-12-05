@@ -2,36 +2,38 @@ function loadPageTeam() {
     var tableTeam = "";
     var data = playersTeamList;
     data.forEach(function (p) {
-        tableTeam += "<tr>"
-            + "<td id='mail'>" + p[0] + "</td>"
-            + "<td>" + p[2] + "</td>"
-            + "<td>" + p[3] + "</td>"
-            + "<td>" + p[6] + "</td>"
-            + "<td>" + checkbox(p[7]) + "</td>"
-            + "<td>" + getDateFormat(p[8]) + "</td>"
-            + "<td>" + checkbox(p[9]) + "</td>"
-            + "<td>" + checkbox(p[10]) + "</td>"
-            + "<td>" + checkbox(p[11]) + "</td>"
-            + "<td>" + checkbox(p[12]) + "</td>"
-            + "<td>" + checkbox(p[13]) + "</td>"
-            + "<td>" + p[14] + "</td>"
-            + "<td>" + p[15] + "</td>"
-            + "<td>" + p[16] + "</td>"
-            + "<td>" + p[17] + "</td>"
-            + "<td>" + p[18] + "</td>"
-            + "<td>" + checkbox(p[19]) + "</td>"
-            + "<td>" + checkbox(p[20]) + "</td>"
-            + "<td>" + p[21] + "</td>"
-            + "<td>" + checkbox(p[22]) + "</td>"
-            + "<td>" + checkbox(p[23]) + "</td>";
-        if (param.isAdmin) {
-            tableTeam += "<td>" + buttonModificationProfil() + "</td>"
-                + "<td>" + buttonInscriptionTeam() + "</td>"
-                + "<td>" + buttonDesinscriptionTeam() + "</td>"
-                + "<td>" + buttonConfirmationTeam() + "</td>"
-                + "<td>" + buttonRetractationTeam() + "</td>";
+        if(p[21] < 9) {
+            tableTeam += "<tr>"
+                + "<td id='mail'>" + p[0] + "</td>"
+                + "<td>" + p[2] + "</td>"
+                + "<td>" + p[3] + "</td>"
+                + "<td>" + p[6] + "</td>"
+                + "<td>" + checkbox(p[7]) + "</td>"
+                + "<td>" + getDateFormat(p[8]) + "</td>"
+                + "<td>" + checkbox(p[9]) + "</td>"
+                + "<td>" + checkbox(p[10]) + "</td>"
+                + "<td>" + checkbox(p[11]) + "</td>"
+                + "<td>" + checkbox(p[12]) + "</td>"
+                + "<td>" + checkbox(p[13]) + "</td>"
+                + "<td>" + p[14] + "</td>"
+                + "<td>" + p[15] + "</td>"
+                + "<td>" + p[16] + "</td>"
+                + "<td>" + p[17] + "</td>"
+                + "<td>" + p[18] + "</td>"
+                + "<td>" + checkbox(p[19]) + "</td>"
+                + "<td>" + checkbox(p[20]) + "</td>"
+                + "<td>" + p[21] + "</td>"
+                + "<td>" + checkbox(p[22]) + "</td>"
+                + "<td>" + checkbox(p[23]) + "</td>";
+            if (param.isAdmin) {
+                tableTeam += "<td>" + buttonModificationProfil() + "</td>"
+                    + "<td>" + buttonInscriptionTeam() + "</td>"
+                    + "<td>" + buttonDesinscriptionTeam() + "</td>"
+                    + "<td>" + buttonConfirmationTeam() + "</td>"
+                    + "<td>" + buttonRetractationTeam() + "</td>";
+            }
+            tableTeam += "</tr>";
         }
-        tableTeam += "</tr>";
     });
 
     return render("front/page/team", "Barbeuc : Team", {

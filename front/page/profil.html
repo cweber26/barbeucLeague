@@ -90,7 +90,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s4">
+            <select id="priorityLevel">
+                <option <? if(modif && player.prioValue=="1") { ?> selected <? } ?> value="1">Convoqué pour chaque match</option>
+                <option <? if(modif && player.prioValue=="2") { ?> selected <? } ?> value="2">Convoqué si besoin à la première relance</option>
+                <option <? if(modif && player.prioValue=="3") { ?> selected <? } ?> value="3">Convoqué si besoin à la deuxième relance</option>
+                <option <? if(modif && player.prioValue=="4") { ?> selected <? } ?> value="4">Jamais convoqué</option>
+                <? if(admin) { ?>
+                <option <? if(modif && player.prioValue=="9") { ?> selected <? } ?> value="9">Joueur archivé</option>
+                <? } ?>
+            </select>
+            <label for="priorityLevel">Convocation</label>
+        </div>
+        <div class="input-field col s4">
             <select id="site" required>
                 <option disabled selected value="">Choisi ton lieu de départ</option>
                 <option <? if(modif && player.site=="Campus") { ?> selected <? } ?>>Campus</option>
@@ -101,7 +113,7 @@
             </select>
             <label for="site">Lieu</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4">
             <select id="poste" required>
                 <option disabled selected value="">Choisi ton poste préféré</option>
                 <option <? if(modif && player.position=="Attaquant") { ?> selected <? } ?>>Attaquant</option>
@@ -207,25 +219,15 @@
             </p>
         </div>
     </div>
-    <? if(!modif || admin) { ?>
+    <? if(admin) { ?>
     <div class="row">
-        <div class="input-field col s4">
-            <select id="priorityLevel">
-                <option <? if(modif && player.prioValue=="1") { ?> selected <? } ?> value="1">Toujours convoqué</option>
-                <option <? if(modif && player.prioValue=="2") { ?> selected <? } ?> value="2">Convoqué si besoin (première relance)</option>
-                <option <? if(modif && player.prioValue=="3") { ?> selected <? } ?> value="3">Convoqué si besoin (deuxième relance) </option>
-                <option <? if(modif && player.prioValue=="4") { ?> selected <? } ?> value="4">Jamais convoqué</option>
-                <option <? if(modif && player.prioValue=="9") { ?> selected <? } ?> value="9">Joueur archivé</option>
-            </select>
-            <label for="priorityLevel">Convocation</label>
-        </div>
-        <div class="switch input-field col s4">
+        <div class="switch input-field col s6">
             <label>
                 <input id="isAnAdmin" type="checkbox" class="filled-in" <? if(modif && player.isAdmin) { ?>checked="checked"<? } ?> <? if(!admin) { ?>disabled<? } ?>/>
                 <span>Admin User</span>
             </label>
         </div>
-        <div class="switch input-field col s4">
+        <div class="switch input-field col s6">
             <label>
                 <input id="haveAPriority" type="checkbox" class="filled-in" <? if(modif && player.isPrioritary) { ?>checked="checked"<? } ?> <? if(!admin) { ?>disabled<? } ?>/>
                 <span>A une prio pour le prochain match</span>
@@ -233,6 +235,7 @@
         </div>
     </div>
     <? } ?>
+    <div class="row"></div>
     <? if(modif) { ?>
     <div class="row">
         <a id="updateProfil" class="buttonGreen" onclick="updateProfilCheck()">Mettre à jour</a>

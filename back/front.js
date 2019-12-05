@@ -21,6 +21,7 @@ function doGet(e) {
     Route.path("backoffice", loadPageBackoffice);
     Route.path("connection", loadPageConnection);
     Route.path("error", loadPageError);
+    Route.path("profilArchived", loadPageDeletion);
 
     var statusUser = getStatusUser(param);
 
