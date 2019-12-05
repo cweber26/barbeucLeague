@@ -138,6 +138,7 @@
                                     <th onclick="sortTableCompo(6)" style="cursor:pointer">Site</th>
                                     <th onclick="sortTableCompo(7)" style="cursor:pointer">Covoiturage</th>
                                     <th>Confirmation</th>
+                                    <th>Changement</th>
                                     <? } else { ?>
                                     <th onclick="sortTableCompo(3)" style="cursor:pointer">Série en cours</th>
                                     <th onclick="sortTableCompo(4)" style="cursor:pointer">Site</th>
@@ -150,26 +151,22 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </li>
-                <? } ?>
-
-                <? if(niveauEquipe != "") { ?>
-                <li>
-                    <div class="collapsible-header"><span class="text-align-center">Niveau équipe</span></div>
-                    <div class="collapsible-body text-align-center">
-                        <table id="level" class="centered striped">
-                            <thead>
-                            <tr>
-                                <th>Niveau</th>
-                                <th>Rouge</th>
-                                <th>Bleu</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?!=niveauEquipe?>
-                            </tbody>
-                        </table>
+                        <? if(niveauEquipe != "") { ?>
+                        <div class="text-align-center">
+                            <table id="level" class="centered striped">
+                                <thead>
+                                <tr>
+                                    <th>Niveau</th>
+                                    <th>Rouge</th>
+                                    <th>Bleu</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?!=niveauEquipe?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <? } ?>
                     </div>
                 </li>
                 <? } ?>

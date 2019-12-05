@@ -50,7 +50,7 @@ function getCompoPlayersListForMail() {
     if (numberPlayerInMatch > 0) {
         var data = playersInTheMatchForFinalCompo();
         data.forEach(function (p) {
-            players.push(p[1]);
+            players.push(p[2]);
         });
     }
     return players;

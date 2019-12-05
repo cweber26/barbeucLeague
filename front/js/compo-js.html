@@ -143,6 +143,15 @@
         });
     }
 
+    function swithTeamJs(element) {
+        M.toast({ html: "En cours" });
+        var playerMail1 = element.parentNode.firstChild.nextSibling.textContent;
+        var playerMail2 = element.parentNode.firstChild.nextSibling.nextSibling.textContent;
+        console.log(playerMail1);
+        console.log(playerMail2);
+        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).changePlayerTeamWithMail(playerMail1, playerMail2);
+    }
+
     function displaySuccessActionTeam() {
         M.toast({ html: "Success !!!" });
         refreshCompoPage();
