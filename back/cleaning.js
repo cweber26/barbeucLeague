@@ -1,8 +1,6 @@
-function cleaning() {
-    if ((sheetInscription.getLastRow() - 1) >= 1) {
-        sheetInscription.deleteRows(2, sheetInscription.getLastRow() - 1);
-    }
 
+function cleaning() {
+    purgeInscriptionAndConfirmationAnswer();
     clearParameter("mailSendingPrio1WithPriority");
     clearParameter("mailSendingPrio2WithPriority");
     clearParameter("mailSendingPrio3WithPriority");
@@ -15,4 +13,11 @@ function cleaning() {
     clearParameter("mailSendingConfirmation");
     clearParameter("teamSaved");
     updateParameter("isMatchCancel", false);
+}
+
+function purgeInscriptionAndConfirmationAnswer() {
+    if ((sheetInscription.getLastRow() - 1) >= 1) {
+        sheetInscription.deleteRows(2, sheetInscription.getLastRow() - 1);
+    }
+    unFlagInscriptionAndConfirmation();
 }

@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <? if(mail && key && inscriptionPhase && !confirmationPhase && !cancelMatch) { ?>
+    <? if(buttonStatus == "inscription" && !cancelMatch) { ?>
     <div class="row">
         <div class="input-field col s6 l2 offset-l4">
             <a id="inscription" class="buttonGreen" onclick="inscriptionJs()">Inscription</a>
@@ -93,7 +93,7 @@
             <a id="desinscription" class="buttonRed" onclick="desinscriptionJs()">Désinscription</a>
         </div>
     </div>
-    <? } else if(mail && key && confirmationPhase && !teamSaved && !cancelMatch) { ?>
+    <? } else if(buttonStatus =="confirmation" && !cancelMatch) { ?>
     <div class="row">
         <div class="input-field col s3">
             <a class="buttonGreen" onclick="confirmationJs('alone')">

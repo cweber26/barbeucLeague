@@ -96,6 +96,20 @@ function loadPageCompo() {
             }
         });
     }
+
+    var inscriptionSent = false;
+    var buttonStatus = "none";
+    if(param.mail) {
+        var player = getPlayerWithMail(param.mail)
+        if(player.isConfirmationSent) {
+            buttonStatus = "confirmation";
+        } else if(player.isInscriptionSent){
+            buttonStatus = "inscription";
+        } else if(mailSendingPrio3 != "") {
+            buttonStatus = "inscription";
+        }
+    }
+
     var tabTitle = "Barbeuc : Composition";
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
@@ -103,8 +117,7 @@ function loadPageCompo() {
         fullName: getFullName(param.mail),
         date: matchDayGapInFrench(true),
         compo: players,
-        inscriptionPhase: mailSendingPrio1!="",
-        confirmationPhase: mailSendingConfirmation!="",
+        buttonStatus: buttonStatus,
         teamSaved: teamSaved!="",
         confirmations: confirmations,
         effectif: effectif,

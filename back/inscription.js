@@ -28,6 +28,7 @@ function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch,
     for (var i in playersList) {
         var player = initPlayer(playersList[i]);
         if (shouldReceiveInscriptionMail(player, prio, withPriority, relaunch)) {
+            flagInscriptionToSentForPlayer(player);
             sendInscriptionMailForAPlayer(player, withPriority, displayAvailableSlot);
         }
     }

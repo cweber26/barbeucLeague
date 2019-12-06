@@ -16,6 +16,7 @@ function sendConfirmMailWithoutControl() {
 }
 
 function sendConfirmMailForAPlayer(player, isNewPlayer) {
+    flagConfirmationToSentForPlayer(player);
     var body = includeWithArgs("front/mail/mailConfirmation", {
         date: matchDayGapInFrench(true),
         nbAvailableSlots: numberAvailableSlotInMatch,

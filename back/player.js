@@ -67,6 +67,9 @@ function initPlayer(playerLine) {
     player.prioValue = playerLine[21];
     player.isAdmin = playerLine[22];
     player.isPrioritary = playerLine[23];
+    player.isInscriptionSent = playerLine[24];
+    player.isConfirmationSent = playerLine[25];
+    player.row = playerLine[26];
     return player;
 }
 
@@ -147,6 +150,18 @@ function loadPageNewProfil() {
         modif: false,
         testing: isTest()
     });
+}
+
+function flagInscriptionToSentForPlayer(player) {
+    sheetTeam.getRange(player.row, 25).setValue(true);
+}
+
+function flagConfirmationToSentForPlayer(player) {
+    sheetTeam.getRange(player.row, 26).setValue(true);
+}
+
+function unFlagInscriptionAndConfirmation() {
+    sheetTeam.getRange(3,25, sheetTeam.getRange("A3:A").getValues().filter(String).length, 2).clearContent();
 }
 
 // noinspection JSUnusedGlobalSymbols
