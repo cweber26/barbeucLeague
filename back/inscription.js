@@ -93,16 +93,8 @@ function isValidAnswer(parameter) {
         throw "La réponse ne peut être que Oui ou Non";
     }
     var player = getPlayerWithMail(parameter.mail);
-    switch (getNextStep()) {
-        case 1:
-            throw "Trop tot pour s inscrire";
-        case 2:
-            return player.isPrioritary && player.prioValue == 1;
-        case 3:
-            return player.prioValue == 1 || (player.isPrioritary && player.prioValue == 2);
-        case 4:
-            return player.prioValue <= 2 || (player.isPrioritary && player.prioValue == 3);
-        default:
-            return true;
+    if(player.isInscriptionSent || player.isConfirmationSent || mailSendingPrio3 != "") {
+        return true;
     }
+    throw "Le joueur " + player.fullName + " a voulu s inscrire mais n'a pas le droit";
 }

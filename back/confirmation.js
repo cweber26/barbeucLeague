@@ -59,4 +59,5 @@ function confirmation(parameter) {
             return;
         }
     }
+    throw "le joueur " + parameter.mail + " a voulu confirmer mais n'est pas présent dans la liste des inscrits";
 }

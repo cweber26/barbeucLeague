@@ -48,7 +48,7 @@ function loadPageCompo() {
     if (param.isAdmin && effectif != "") {
         niveauEquipe = "<tr><td>Dribble</td><td>" + levelDribbleRed + "</td><td>" + levelDribbleBlue + "</td></tr>"
             + "<tr><td>Frappe</td><td>" + levelShotRed + "</td><td>" + levelShotBlue + "</td></tr>"
-            + "<tr><td>Défence</td><td>" + levelDefenceRed + "</td><td>" + levelDefenceBlue + "</td></tr>"
+            + "<tr><td>Défense</td><td>" + levelDefenceRed + "</td><td>" + levelDefenceBlue + "</td></tr>"
             + "<tr><td>Total</td><td>" + levelRed + "</td><td>" + levelBlue + "</td></tr>"
     }
 
