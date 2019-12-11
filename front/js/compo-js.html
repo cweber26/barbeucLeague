@@ -109,7 +109,8 @@
         var parameter = {
             mail: player.mail,
             key: player.keyWithSecurity,
-            answer: "Oui"
+            answer: "Oui",
+            carSharing: "unknow"
         };
         google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).confirmation(parameter);
     }

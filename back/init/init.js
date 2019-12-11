@@ -1,7 +1,6 @@
 ////////////SHEET////////////
 var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 var sheetTeam = spreadsheet.getSheetByName("Team");
-var sheetInscription = spreadsheet.getSheetByName("Inscription");
 var sheetResult = spreadsheet.getSheetByName("Result");
 var sheetResultFilter = spreadsheet.getSheetByName("ResultFilter");
 var sheetRecordFilter = spreadsheet.getSheetByName("RecordFilter");

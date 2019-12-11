@@ -16,8 +16,5 @@ function cleaning() {
 }
 
 function purgeInscriptionAndConfirmationAnswer() {
-    if ((sheetInscription.getLastRow() - 1) >= 1) {
-        sheetInscription.deleteRows(2, sheetInscription.getLastRow() - 1);
-    }
-    unFlagInscriptionAndConfirmation();
+    sheetTeam.getRange(3, playerColumnRange.isInscriptionSent, sheetTeam.getRange("A3:A").getValues().filter(String).length, 5).clearContent();
 }

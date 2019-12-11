@@ -42,22 +42,36 @@ function loadPageConfirmation() {
 
 function confirmation(parameter) {
     Logger.log("Confirmation for " + parameter.mail + " and answer " + parameter.answer);
-    var inscriptions = sheetInscription.getRange(2, 1, sheetInscription.getLastRow(), sheetInscription.getLastColumn()).getValues();
-    for (var i in inscriptions) {
-        var inscriptionLine = inscriptions[i];
-        if (inscriptionLine[0] == parameter.mail) {
-            var row = Number(i) + 2;
-            if(sheetInscription.getRange(row, 3).getValue() == "Non") {
-                inscription(parameter);
-            }
-            sheetInscription.getRange(row, 4).setValue(now());
-            sheetInscription.getRange(row, 5).setValue(parameter.answer);
-            sheetInscription.getRange(row, 6).setValue(parameter.carSharing);
-            if (parameter.answer == "Non") {
-                actionsToDoIfDesistement();
-            }
-            return;
+
+    if (parameter.answer != "Oui" && parameter.answer != "Non") {
+        throw "La réponse ne peut être que Oui ou Non";
+    }
+    var player = getPlayerWithMail(parameter.mail);
+
+    if (!player.isInscriptionSent && !player.isConfirmationSent && mailSendingPrio3 == "") {
+        throw "Le joueur " + player.fullName + " a voulu confirmer mais n'a pas le droit";
+    }
+
+    if (parameter.answer == "Oui") {
+        if(player.answer == "Oui") {
+            savePlayerConfirmation(player, parameter.answer, parameter.carSharing);
+        } else {
+            inscription(parameter);
+            confirmation(parameter);
+        }
+    } else { //parameter.answer == "Non"
+        if(player.answer == "Oui") {
+            savePlayerConfirmation(player, parameter.answer, parameter.carSharing);
+            actionsToDoIfDesistement();
         }
     }
-    throw "le joueur " + parameter.mail + " a voulu confirmer mais n'est pas présent dans la liste des inscrits";
+}
+
+function flagConfirmationToSentForPlayer(player) {
+    sheetTeam.getRange(player.row, playerColumnRange.isConfirmationSent).setValue(true);
+}
+
+function savePlayerConfirmation(player, answer, carSharing) {
+    sheetTeam.getRange(player.row, playerColumnRange.answer).setValue(answer);
+    sheetTeam.getRange(player.row, playerColumnRange.carSharing).setValue(carSharing);
 }

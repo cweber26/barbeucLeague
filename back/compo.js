@@ -97,7 +97,6 @@ function loadPageCompo() {
         });
     }
 
-    var inscriptionSent = false;
     var buttonStatus = "none";
     if(param.mail) {
         var player = getPlayerWithMail(param.mail)

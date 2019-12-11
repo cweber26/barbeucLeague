@@ -1,3 +1,70 @@
+var gapLine = 3;
+var playerColumn = {
+    mail: 0,
+    key: 1,
+    firstName: 2,
+    lastName: 3,
+    fullName: 4,
+    shortfullName: 5,
+    nickName: 6,
+    isUnavailable: 7,
+    endDateOfUnavailibility: 8,
+    mondaySelected: 9,
+    tuesdaySelected: 10,
+    wednesdaySelected: 11,
+    thursdaySelected: 12,
+    fridaySelected: 13,
+    site: 14,
+    position: 15,
+    levelDribble: 16,
+    levelFrappe: 17,
+    levelDefense: 18,
+    haveDoneAutoEvaluation: 19,
+    haveAlreadyAnswer: 20,
+    prioValue: 21,
+    isAdmin: 22,
+    isPrioritary: 23,
+    isInscriptionSent: 24,
+    isConfirmationSent: 25,
+    answer: 26,
+    answerDate: 27,
+    carSharing: 28,
+    row: 29
+};
+
+var playerColumnRange = {
+    mail: (playerColumn.mail +1),
+    key: (playerColumn.key +1),
+    firstName: (playerColumn.firstName +1),
+    lastName: (playerColumn.lastName +1),
+    fullName: (playerColumn.fullName +1),
+    shortfullName: (playerColumn.shortfullName +1),
+    nickName: (playerColumn.nickName +1),
+    isUnavailable: (playerColumn.isUnavailable +1),
+    endDateOfUnavailibility: (playerColumn.endDateOfUnavailibility +1),
+    mondaySelected: (playerColumn.mondaySelected +1),
+    tuesdaySelected: (playerColumn.tuesdaySelected +1),
+    wednesdaySelected: (playerColumn.wednesdaySelected +1),
+    thursdaySelected: (playerColumn.thursdaySelected +1),
+    fridaySelected: (playerColumn.fridaySelected +1),
+    site: (playerColumn.site +1),
+    position: (playerColumn.position +1),
+    levelDribble: (playerColumn.levelDribble +1),
+    levelFrappe: (playerColumn.levelFrappe +1),
+    levelDefense: (playerColumn.levelDefense +1),
+    haveDoneAutoEvaluation: (playerColumn.haveDoneAutoEvaluation +1),
+    haveAlreadyAnswer: (playerColumn.haveAlreadyAnswer +1),
+    prioValue: (playerColumn.prioValue +1),
+    isAdmin: (playerColumn.isAdmin +1),
+    isPrioritary: (playerColumn.isPrioritary +1),
+    isInscriptionSent: (playerColumn.isInscriptionSent +1),
+    isConfirmationSent: (playerColumn.isConfirmationSent +1),
+    answer: (playerColumn.answer +1),
+    answerDate: (playerColumn.answerDate +1),
+    carSharing: (playerColumn.carSharing +1),
+    row: (playerColumn.row +1)
+};
+
 function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
     if (player.mail
         && player.haveAlreadyAnswer == false
@@ -18,9 +85,9 @@ function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
         }
     }
     return false;
+
+
 }
-
-
 function getPlayerWithMail(mail) {
     for (var i in playersTeamList) {
         if (playersTeamList[i][0] == mail) {
@@ -28,8 +95,8 @@ function getPlayerWithMail(mail) {
         }
     }
     throw "mail " + mail + " inconnu";
-}
 
+}
 function getPlayerWithFullName(fullName) {
     for (var i in playersTeamList) {
         if (playersTeamList[i][4] == fullName) {
@@ -39,37 +106,42 @@ function getPlayerWithFullName(fullName) {
     throw "fullName " + fullName + " inconnu";
 }
 
+
+
 function initPlayer(playerLine) {
     //Logger.log("initPlayer : " + playerLine);
     var player = {};
-    player.mail = playerLine[0];
-    player.key = playerLine[1];
-    player.keyWithSecurity = (playerLine[1] * 2 + 10);
-    player.firstName = playerLine[2];
-    player.lastName = playerLine[3];
-    player.fullName = playerLine[4];
-    player.shortfullName = playerLine[5];
-    player.nickName = playerLine[6];
-    player.isUnavailable = playerLine[7];
-    player.endDateOfUnavailibility = playerLine[8];
-    player.mondaySelected = playerLine[9];
-    player.tuesdaySelected = playerLine[10];
-    player.wednesdaySelected = playerLine[11];
-    player.thursdaySelected = playerLine[12];
-    player.fridaySelected = playerLine[13];
-    player.site = playerLine[14];
-    player.position = playerLine[15];
-    player.levelDribble = playerLine[16];
-    player.levelFrappe = playerLine[17];
-    player.levelDefense = playerLine[18];
-    player.haveDoneAutoEvaluation = playerLine[19];
-    player.haveAlreadyAnswer = playerLine[20];
-    player.prioValue = playerLine[21];
-    player.isAdmin = playerLine[22];
-    player.isPrioritary = playerLine[23];
-    player.isInscriptionSent = playerLine[24];
-    player.isConfirmationSent = playerLine[25];
-    player.row = playerLine[26];
+    player.mail =                       playerLine[playerColumn.mail];
+    player.key =                        playerLine[playerColumn.key];
+    player.keyWithSecurity =            (playerLine[playerColumn.key] * 2 + 10);
+    player.firstName =                  playerLine[playerColumn.firstName];
+    player.lastName =                   playerLine[playerColumn.lastName];
+    player.fullName =                   playerLine[playerColumn.fullName];
+    player.shortfullName =              playerLine[playerColumn.shortfullName];
+    player.nickName =                   playerLine[playerColumn.nickName];
+    player.isUnavailable =              playerLine[playerColumn.isUnavailable];
+    player.endDateOfUnavailibility =    playerLine[playerColumn.endDateOfUnavailibility];
+    player.mondaySelected =             playerLine[playerColumn.mondaySelected];
+    player.tuesdaySelected =            playerLine[playerColumn.tuesdaySelected];
+    player.wednesdaySelected =          playerLine[playerColumn.wednesdaySelected];
+    player.thursdaySelected =           playerLine[playerColumn.thursdaySelected];
+    player.fridaySelected =             playerLine[playerColumn.fridaySelected];
+    player.site =                       playerLine[playerColumn.site];
+    player.position =                   playerLine[playerColumn.position];
+    player.levelDribble =               playerLine[playerColumn.levelDribble];
+    player.levelFrappe =                playerLine[playerColumn.levelFrappe];
+    player.levelDefense =               playerLine[playerColumn.levelDefense];
+    player.haveDoneAutoEvaluation =     playerLine[playerColumn.haveDoneAutoEvaluation];
+    player.haveAlreadyAnswer =          playerLine[playerColumn.haveAlreadyAnswer];
+    player.prioValue =                  playerLine[playerColumn.prioValue];
+    player.isAdmin =                    playerLine[playerColumn.isAdmin];
+    player.isPrioritary =               playerLine[playerColumn.isPrioritary];
+    player.isInscriptionSent =          playerLine[playerColumn.isInscriptionSent];
+    player.isConfirmationSent =         playerLine[playerColumn.isConfirmationSent];
+    player.answer =                     playerLine[playerColumn.answer];
+    player.answerDate =                 playerLine[playerColumn.answerDate];
+    player.carSharing =                 playerLine[playerColumn.carSharing];
+    player.row =                        playerLine[playerColumn.row];
     return player;
 }
 
@@ -108,9 +180,9 @@ function deleteUnavaibility() {
     var playersList = playersTeamList;
     for (var i in playersList) {
         var player = playersList[i];
-        if (player[8] && player[8].valueOf() < nextMatchDate.valueOf()) {
-            sheetTeam.getRange(Number(i) + 3, 8).setValue(false);
-            sheetTeam.getRange(Number(i) + 3, 9).clearContent();
+        if (player[playerColumn.endDateOfUnavailibility] && player[playerColumn.endDateOfUnavailibility].valueOf() < nextMatchDate.valueOf()) {
+            sheetTeam.getRange(Number(i) + gapLine, playerColumnRange.isUnavailable).setValue(false);
+            sheetTeam.getRange(Number(i) + gapLine, playerColumnRange.endDateOfUnavailibility).clearContent();
         }
     }
 }
@@ -152,18 +224,6 @@ function loadPageNewProfil() {
     });
 }
 
-function flagInscriptionToSentForPlayer(player) {
-    sheetTeam.getRange(player.row, 25).setValue(true);
-}
-
-function flagConfirmationToSentForPlayer(player) {
-    sheetTeam.getRange(player.row, 26).setValue(true);
-}
-
-function unFlagInscriptionAndConfirmation() {
-    sheetTeam.getRange(3,25, sheetTeam.getRange("A3:A").getValues().filter(String).length, 2).clearContent();
-}
-
 // noinspection JSUnusedGlobalSymbols
 function updateProfil(user) {
 
@@ -196,85 +256,84 @@ function updateProfil(user) {
         var isAnAdmin = user.isAnAdmin;
         var haveAPriority = user.haveAPriority;
 
-        var oldFirstName = sheetTeam.getRange(row, 3).getValue();
-        var oldLastName = sheetTeam.getRange(row, 4).getValue();
+        var oldFirstName = sheetTeam.getRange(row, playerColumnRange.firstName).getValue();
+        var oldLastName = sheetTeam.getRange(row, playerColumnRange.lastName).getValue();
         if (oldFirstName != firstName || oldLastName != lastName) {
             updateNameProfil(oldFirstName, firstName, oldLastName, lastName, row);
         }
 
         if (nickName) {
-            sheetTeam.getRange(row, 7).setValue(nickName)
+            sheetTeam.getRange(row, playerColumnRange.nickName).setValue(nickName)
         }
         if (unavailable) {
-            sheetTeam.getRange(row, 8).setValue(true);
-            sheetTeam.getRange(row, 9).setValue(new Date(Utilities.formatDate(endDate, "Europe/Paris", "MM/dd/yy")));
+            sheetTeam.getRange(row, playerColumnRange.isUnavailable).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.endDateOfUnavailibility).setValue(new Date(Utilities.formatDate(endDate, "Europe/Paris", "MM/dd/yy")));
         } else {
-            sheetTeam.getRange(row, 8).setValue(false);
-            sheetTeam.getRange(row, 9).setValue("");
+            sheetTeam.getRange(row, playerColumnRange.isUnavailable).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.endDateOfUnavailibility).setValue("");
         }
         if (monday) {
-            sheetTeam.getRange(row, 10).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.mondaySelected).setValue(true);
         } else {
-            sheetTeam.getRange(row, 10).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.mondaySelected).setValue(false);
         }
         if (tuesday) {
-            sheetTeam.getRange(row, 11).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.tuesdaySelected).setValue(true);
         } else {
-            sheetTeam.getRange(row, 11).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.tuesdaySelected).setValue(false);
         }
         if (wednesday) {
-            sheetTeam.getRange(row, 12).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.wednesdaySelected).setValue(true);
         } else {
-            sheetTeam.getRange(row, 12).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.wednesdaySelected).setValue(false);
         }
         if (thursday) {
-            sheetTeam.getRange(row, 13).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.fridaySelected).setValue(true);
         } else {
-            sheetTeam.getRange(row, 13).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.fridaySelected).setValue(false);
         }
         if (friday) {
-            sheetTeam.getRange(row, 14).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.fridaySelected).setValue(true);
         } else {
-            sheetTeam.getRange(row, 14).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.fridaySelected).setValue(false);
         }
         if (site) {
-            sheetTeam.getRange(row, 15).setValue(site);
+            sheetTeam.getRange(row, playerColumnRange.site).setValue(site);
         }
         if (position) {
-            sheetTeam.getRange(row, 16).setValue(position);
+            sheetTeam.getRange(row, playerColumnRange.position).setValue(position);
         }
         if (levelDribble) {
-            sheetTeam.getRange(row, 17).setValue(levelDribble);
+            sheetTeam.getRange(row, playerColumnRange.levelDribble).setValue(levelDribble);
         }
         if (levelFrappe) {
-            sheetTeam.getRange(row, 18).setValue(levelFrappe);
+            sheetTeam.getRange(row, playerColumnRange.levelFrappe).setValue(levelFrappe);
         }
         if (levelDefense) {
-            sheetTeam.getRange(row, 19).setValue(levelDefense);
+            sheetTeam.getRange(row, playerColumnRange.levelDefense).setValue(levelDefense);
         }
         if (levelDribble && levelFrappe && levelDefense) {
-            sheetTeam.getRange(row, 20).setValue(true);
+            sheetTeam.getRange(row, playerColumnRange.haveDoneAutoEvaluation).setValue(true);
         } else {
-            sheetTeam.getRange(row, 20).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.haveDoneAutoEvaluation).setValue(false);
         }
         if(priorityLevel)  {
-            sheetTeam.getRange(row, 22).setValue(priorityLevel)
+            sheetTeam.getRange(row, playerColumnRange.prioValue).setValue(priorityLevel)
         }
         if(isAnAdmin) {
-            sheetTeam.getRange(row, 23).setValue(true)
+            sheetTeam.getRange(row, playerColumnRange.isAdmin).setValue(true)
         } else {
-            sheetTeam.getRange(row, 23).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.isAdmin).setValue(false);
         }
         if(haveAPriority) {
-            sheetTeam.getRange(row, 24).setValue(true)
+            sheetTeam.getRange(row, playerColumnRange.isPrioritary).setValue(true)
         } else {
-            sheetTeam.getRange(row, 24).setValue(false);
+            sheetTeam.getRange(row, playerColumnRange.isPrioritary).setValue(false);
         }
 
         if(user.oldMail != mail) {
-            sheetTeam.getRange(row, 1).setValue(mail);
-            updateMailProfilInInscriptionSheet(user.oldMail, mail);
-            return {mail: mail, key: sheetTeam.getRange(row, 2).getValue() * 2 + 10};
+            sheetTeam.getRange(row, playerColumnRange.mail).setValue(mail);
+            return {mail: mail, key: sheetTeam.getRange(row, playerColumnRange.key).getValue() * 2 + 10};
         }
 
     } else {
@@ -285,8 +344,8 @@ function updateProfil(user) {
 function getRowSheetTeamWithMail(mail) {
     var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
-        if (teamList[i][0] == mail) {
-            return i + 3;
+        if (teamList[i][playerColumn.mail] == mail) {
+            return i + gapLine;
         }
     }
 }
@@ -294,17 +353,17 @@ function getRowSheetTeamWithMail(mail) {
 function getRowSheetTeamWithFullName(firstname, lastname) {
     var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
-        if (teamList[i][2] == firstname && teamList[i][3] == lastname) {
-            return i + 3;
+        if (teamList[i][playerColumn.firstName] == firstname && teamList[i][playerColumn.lastName] == lastname) {
+            return i + gapLine;
         }
     }
 }
 
-function getRowSheetTeamWithSurName(surname) {
+function getRowSheetTeamWithNickname(nickname) {
     var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
-        if (teamList[i][6] == surname) {
-            return i + 3;
+        if (teamList[i][playerColumn.nickName] == nickname) {
+            return i + gapLine;
         }
     }
 }
@@ -313,12 +372,12 @@ function getRowSheetTeamWithSurName(surname) {
 // met à jour le nom complet modifié dans la page des résultats afin que les stats fonctionnent toujours
 function updateNameProfil(oldFirstName, firstName, oldLastName, lastName, row) {
     if (firstName != oldFirstName) {
-        sheetTeam.getRange(row, 3).setValue(firstName);
+        sheetTeam.getRange(row, playerColumnRange.firstName).setValue(firstName);
     } else {
         firstName = oldFirstName;
     }
     if (lastName != oldLastName) {
-        sheetTeam.getRange(row, 4).setValue(lastName);
+        sheetTeam.getRange(row, playerColumnRange.lastName).setValue(lastName);
     } else {
         lastName = oldLastName;
     }
@@ -329,15 +388,6 @@ function updateNameProfil(oldFirstName, firstName, oldLastName, lastName, row) {
     replaceInSheet(resultValues, oldFullName, newFullName);
     rangeResult.setValues(resultValues);
 }
-
-// met à jour le mail et la clef dans la page d'inscriptions
-function updateMailProfilInInscriptionSheet(oldMail, newMail) {
-    var rangeInscriptionMail = sheetInscription.getRange(2, 1, sheetInscription.getLastRow(), 1);
-    var inscriptionMailValues = rangeInscriptionMail.getValues();
-    replaceInSheet(inscriptionMailValues, oldMail, newMail);
-    rangeInscriptionMail.setValues(inscriptionMailValues);
-}
-
 
 function replaceInSheet(values, to_replace, replace_with) {
     var replaced_values;
@@ -398,15 +448,15 @@ function createProfil(user, creatorMail) {
     if(getRowSheetTeamWithFullName(user.prenom, user.nom)) {
         return "Le joueur existe " + user.prenom + " " + user.nom + " est déjà utilisé";
     }
-    if(getRowSheetTeamWithSurName(user.surnom)) {
+    if(getRowSheetTeamWithNickname(user.surnom)) {
         return "Le surnom " + user.surnom + " est déjà utilisé";
     }
     var row = sheetTeam.getRange("A3:A").getValues().filter(String).length + 3;
 
-    sheetTeam.getRange(row, 1).setValue(user.mail);
-    sheetTeam.getRange(row, 3).setValue(user.prenom);
-    sheetTeam.getRange(row, 4).setValue(user.nom);
-    sheetTeam.getRange(row, 7).setValue(user.surnom);
+    sheetTeam.getRange(row, playerColumnRange.mail).setValue(user.mail);
+    sheetTeam.getRange(row, playerColumnRange.firstName).setValue(user.prenom);
+    sheetTeam.getRange(row, playerColumnRange.lastName).setValue(user.nom);
+    sheetTeam.getRange(row, playerColumnRange.nickName).setValue(user.surnom);
 
     var unavailable = user.indispo;
     var dateEuropeFormat = user.indispoDate;
@@ -415,55 +465,55 @@ function createProfil(user, creatorMail) {
     var day = dateEuropeFormat.substring(0, 2);
     var endDate = new Date(year, month - 1, day);
     if (unavailable) {
-        sheetTeam.getRange(row, 8).setValue(true);
-        sheetTeam.getRange(row, 9).setValue(new Date(Utilities.formatDate(endDate, "Europe/Paris", "MM/dd/yy")));
+        sheetTeam.getRange(row, playerColumnRange.isUnavailable).setValue(true);
+        sheetTeam.getRange(row, playerColumnRange.endDateOfUnavailibility).setValue(new Date(Utilities.formatDate(endDate, "Europe/Paris", "MM/dd/yy")));
     } else {
-        sheetTeam.getRange(row, 8).setValue(false);
-        sheetTeam.getRange(row, 9).setValue("");
+        sheetTeam.getRange(row, playerColumnRange.isUnavailable).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.endDateOfUnavailibility).setValue("");
     }
 
     if (user.lundi) {
-        sheetTeam.getRange(row, 10).setValue(true);
+        sheetTeam.getRange(row, playerColumnRange.mondaySelected).setValue(true);
     } else {
-        sheetTeam.getRange(row, 10).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.mondaySelected).setValue(false);
     }
     if (user.mardi) {
-        sheetTeam.getRange(row, 11).setValue(true);
+        sheetTeam.getRange(row, playerColumnRange.tuesdaySelected).setValue(true);
     } else {
-        sheetTeam.getRange(row, 11).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.tuesdaySelected).setValue(false);
     }
     if (user.mercredi) {
-        sheetTeam.getRange(row, 12).setValue(true);
+        sheetTeam.getRange(row, playerColumnRange.wednesdaySelected).setValue(true);
     } else {
-        sheetTeam.getRange(row, 12).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.wednesdaySelected).setValue(false);
     }
     if (user.jeudi) {
-        sheetTeam.getRange(row, 13).setValue(true);
+        sheetTeam.getRange(row, playerColumnRange.thursdaySelected).setValue(true);
     } else {
-        sheetTeam.getRange(row, 13).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.thursdaySelected).setValue(false);
     }
     if (user.vendredi) {
-        sheetTeam.getRange(row, 14).setValue(true);
+        sheetTeam.getRange(row, playerColumnRange.fridaySelected).setValue(true);
     } else {
-        sheetTeam.getRange(row, 14).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.fridaySelected).setValue(false);
     }
-    sheetTeam.getRange(row, 15).setValue(user.site);
-    sheetTeam.getRange(row, 16).setValue(user.poste);
-    sheetTeam.getRange(row, 17).setValue(user.dribble);
-    sheetTeam.getRange(row, 18).setValue(user.frappe);
-    sheetTeam.getRange(row, 19).setValue(user.defense);
-    sheetTeam.getRange(row, 20).setValue(true);
-    sheetTeam.getRange(row, 22).setValue(user.priorityLevel);
+    sheetTeam.getRange(row, playerColumnRange.site).setValue(user.site);
+    sheetTeam.getRange(row, playerColumnRange.position).setValue(user.poste);
+    sheetTeam.getRange(row, playerColumnRange.levelDribble).setValue(user.dribble);
+    sheetTeam.getRange(row, playerColumnRange.levelFrappe).setValue(user.frappe);
+    sheetTeam.getRange(row, playerColumnRange.levelDefense).setValue(user.defense);
+    sheetTeam.getRange(row, playerColumnRange.haveDoneAutoEvaluation).setValue(true);
+    sheetTeam.getRange(row, playerColumnRange.prioValue).setValue(user.priorityLevel);
 
     if (user.isAnAdmin) {
-        sheetTeam.getRange(row, 23).setValue(true)
+        sheetTeam.getRange(row, playerColumnRange.isAdmin).setValue(true)
     } else {
-        sheetTeam.getRange(row, 23).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.isAdmin).setValue(false);
     }
     if (user.haveAPriority) {
-        sheetTeam.getRange(row, 24).setValue(true)
+        sheetTeam.getRange(row, playerColumnRange.isPrioritary).setValue(true)
     } else {
-        sheetTeam.getRange(row, 24).setValue(false);
+        sheetTeam.getRange(row, playerColumnRange.isPrioritary).setValue(false);
     }
 
     playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();

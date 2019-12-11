@@ -60,41 +60,35 @@ function loadPageInscription() {
 
 function inscription(parameter) {
     Logger.log("Inscription for " + parameter.mail + " and answer " + parameter.answer);
-    if (isValidAnswer(parameter)) {
-        var playersInTheMatchMailBefore = playersInTheMatchMail();
-        if (sheetInscription.getLastRow() > 1) {
-            var inscriptions = sheetInscription.getRange(2, 1, sheetInscription.getLastRow(), sheetInscription.getLastColumn()).getValues();
-            for (var i in inscriptions) {
-                if (inscriptions[i][0] == parameter.mail) {
-                    if (inscriptions[i][2] == parameter.answer) {
-                        // user already send us the same answer. we do nothing
-                        return;
-                    } else {
-                        // answer different. we delete the row and check if it is a desistement.
-                        sheetInscription.deleteRow(Number(i) + 2);
-                        checkIfDesistement(parameter, playersInTheMatchMailBefore);
-                        break;
-                    }
-                }
-            }
-        }
-        var row = sheetInscription.getLastRow() + 1;
-        sheetInscription.getRange(row, 1).setValue(parameter.mail);
-        sheetInscription.getRange(row, 2).setValue(now());
-        sheetInscription.getRange(row, 3).setValue(parameter.answer);
-        return;
-    }
-    throw "Pas le droit de s'inscrire maintenant";
-}
 
-
-function isValidAnswer(parameter) {
     if (parameter.answer != "Oui" && parameter.answer != "Non") {
         throw "La réponse ne peut être que Oui ou Non";
     }
     var player = getPlayerWithMail(parameter.mail);
-    if(player.isInscriptionSent || player.isConfirmationSent || mailSendingPrio3 != "") {
-        return true;
+
+    if (!(player.isInscriptionSent || player.isConfirmationSent || mailSendingPrio3 != "")) {
+        throw "Le joueur " + player.fullName + " a voulu s inscrire mais n'a pas le droit";
     }
-    throw "Le joueur " + player.fullName + " a voulu s inscrire mais n'a pas le droit";
+
+    var playersInTheMatchMailBefore = playersInTheMatchMail();
+
+    if (player.answer == "") {
+        // new answer
+        savePlayerAnswer(player, parameter.answer);
+    } else if (player.answer != parameter.answer) {
+        // answer different. we delete the row and check if it is a desistement.
+        savePlayerAnswer(player, parameter.answer);
+        if(player.answer == "Oui") {
+            checkIfDesistement(parameter, playersInTheMatchMailBefore);
+        }
+    }
+}
+
+function savePlayerAnswer(player, answer) {
+    sheetTeam.getRange(player.row, playerColumnRange.answer).setValue(answer);
+    sheetTeam.getRange(player.row, playerColumnRange.answerDate).setValue(now());
+}
+
+function flagInscriptionToSentForPlayer(player) {
+    sheetTeam.getRange(player.row, playerColumnRange.isInscriptionSent).setValue(true);
 }
