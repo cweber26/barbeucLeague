@@ -97,18 +97,6 @@ function loadPageCompo() {
         });
     }
 
-    var buttonStatus = "none";
-    if(param.mail) {
-        var player = getPlayerWithMail(param.mail)
-        if(player.isConfirmationSent) {
-            buttonStatus = "confirmation";
-        } else if(player.isInscriptionSent){
-            buttonStatus = "inscription";
-        } else if(mailSendingPrio3 != "") {
-            buttonStatus = "inscription";
-        }
-    }
-
     var tabTitle = "Barbeuc : Composition";
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
@@ -116,7 +104,7 @@ function loadPageCompo() {
         fullName: getFullName(param.mail),
         date: matchDayGapInFrench(true),
         compo: players,
-        buttonStatus: buttonStatus,
+        buttonStatus: getButtonStatus(),
         teamSaved: teamSaved!="",
         confirmations: confirmations,
         effectif: effectif,
@@ -148,21 +136,20 @@ function getLogoCar(p) {
     return "";
 }
 
-
 function getLevels(p) {
     return Utilities.formatString("%02d", Number(p[4] + p[5] + p[6])) + " : " + p[4] + "/" + p[5] + "/" + p[6];
 }
-
 
 
 function buttonInscriptionCompo() {
     return "<a id=inscriptionCompo class=smallButtonGreen onclick=inscriptionCompo(this)>Inscription</a>";
 }
 
+
+
 function buttonDesinscriptionCompo() {
     return "<a id=desinscriptionCompo class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
 }
-
 
 function buttonModificationProfilCompo(name) {
     if(name) {
@@ -171,6 +158,7 @@ function buttonModificationProfilCompo(name) {
         return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>Profil</a>";
     }
 }
+
 
 function buttonConfirmationCompo() {
     return "<a id=confirmationCompo class=smallButtonGreen onclick=confirmationCompo(this)><i class='tiny material-icons'>check</i></a>";
@@ -239,9 +227,30 @@ function changePlayerTeamWithMail(playerMail1, playerMail2) {
     }
 }
 
-
 function playersInTheMatchForFinalCompo() {
     if (numberPlayerInMatch > 0) {
         return sheetComposition.getRange(2, 3, numberPlayerMatch, 14).getValues();
     }
+}
+
+
+function getButtonStatus() {
+    var buttonStatus = {
+        type: "none",
+        status: "none"
+    };
+    if (param.mail) {
+        var player = getPlayerWithMail(param.mail);
+        if (player.isConfirmationSent) {
+            buttonStatus.type = "confirmation";
+            buttonStatus.status = player.carSharing;
+        } else if (player.isInscriptionSent) {
+            buttonStatus.type = "inscription";
+            buttonStatus.status = player.answer;
+        } else if (mailSendingPrio3 != "") {
+            buttonStatus.type = "inscription";
+            buttonStatus.status = player.answer;
+        }
+    }
+    return buttonStatus;
 }

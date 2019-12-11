@@ -2,7 +2,7 @@ function loadPageTeam() {
     var tableTeam = "";
     var data = playersTeamList;
     data.forEach(function (p) {
-        if(p[21] < 9) {
+        if(p[21] <= 4) {
             tableTeam += "<tr>"
                 + "<td id='mail'>" + p[0] + "</td>"
                 + "<td>" + p[2] + "</td>"

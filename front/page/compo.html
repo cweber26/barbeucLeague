@@ -84,29 +84,29 @@
         </div>
     </div>
 
-    <? if(buttonStatus == "inscription" && !cancelMatch) { ?>
+    <? if(buttonStatus.type == "inscription" && !cancelMatch) { ?>
     <div class="row">
         <div class="input-field col s6 l2 offset-l4">
-            <a id="inscription" class="buttonGreen" onclick="inscriptionJs()">Inscription</a>
+            <a id="inscription" <? if(buttonStatus.status == "Oui") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="inscriptionJs()" <? } ?>>Inscription</a>
         </div>
         <div class="input-field col s6 l2">
-            <a id="desinscription" class="buttonRed" onclick="desinscriptionJs()">Désinscription</a>
+            <a id="desinscription" <? if(buttonStatus.status == "Non") { ?> class="buttonGray" <? } else { ?> class="buttonRed" onclick="desinscriptionJs()" <? } ?>>Désinscription</a>
         </div>
     </div>
-    <? } else if(buttonStatus =="confirmation" && !cancelMatch) { ?>
+    <? } else if(buttonStatus.type =="confirmation" && !cancelMatch) { ?>
     <div class="row">
         <div class="input-field col s3">
-            <a class="buttonGreen" onclick="confirmationJs('alone')">
+            <a <? if(buttonStatus.status == "alone") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="confirmationJs('alone')" <? } ?>>
                 Je viens seul<div class="logoCarAloneWhite"></div>
             </a>
         </div>
         <div class="input-field col s3">
-            <a class="buttonGreen" onclick="confirmationJs('sharing')">
+            <a <? if(buttonStatus.status == "sharing") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="confirmationJs('sharing')" <? } ?>>
                 J'ai de la place dans ma voiture<div class="logoCarSharingWhite"></div>
             </a>
         </div>
         <div class="input-field col s3">
-            <a class="buttonGreen" onclick="confirmationJs('need')">
+            <a <? if(buttonStatus.status == "need") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="confirmationJs('need')" <? } ?>>
                 J'ai besoin d'un chauffeur<div class="logoCarNeedWhite"></div>
             </a>
         </div>
@@ -226,8 +226,8 @@
     <div class="modal-content">
         <h5>Inscriptions</h5>
         <p>Les inscriptions sont envoyées par vague :
-            <br>1ère vaque : les prioritaires
-            <br>2ème vaque : les habitués
+            <br>1ère vague : les prioritaires
+            <br>2ème vague : les habitués
             <br>3ème vague : les joueurs occasionnels
             <br>4ème vague : les joueurs venant rarement
             <br>Les vagues 3 et 4 ne sont envoyées que s'il reste de la place
