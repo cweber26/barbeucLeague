@@ -14,10 +14,10 @@ function loadPageResultat() {
         if(matchDates[i][0]){
             var dateFormated = getDateFormat(matchDates[i][0]);
             if(dateFormated == date) {
-                var playersList = sheetResult.getRange(i+1, 2, 1, 10).getValues();
-                playersList[0].forEach(function (p) {
-                    if(p) {
-                        players.push(getPlayerWithFullName(p).nickName);
+                var playersMailList = sheetResult.getRange(i+1, 2, 1, 10).getValues();
+                playersMailList[0].forEach(function (m) {
+                    if(m) {
+                        players.push(getPlayerWithMail(m).nickName);
                     } else {
                         players.push("");
                     }

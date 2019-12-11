@@ -97,16 +97,6 @@ function getPlayerWithMail(mail) {
     throw "mail " + mail + " inconnu";
 
 }
-function getPlayerWithFullName(fullName) {
-    for (var i in playersTeamList) {
-        if (playersTeamList[i][4] == fullName) {
-            return initPlayer(playersTeamList[i]);
-        }
-    }
-    throw "fullName " + fullName + " inconnu";
-}
-
-
 
 function initPlayer(playerLine) {
     //Logger.log("initPlayer : " + playerLine);
@@ -256,12 +246,13 @@ function updateProfil(user) {
         var isAnAdmin = user.isAnAdmin;
         var haveAPriority = user.haveAPriority;
 
-        var oldFirstName = sheetTeam.getRange(row, playerColumnRange.firstName).getValue();
-        var oldLastName = sheetTeam.getRange(row, playerColumnRange.lastName).getValue();
-        if (oldFirstName != firstName || oldLastName != lastName) {
-            updateNameProfil(oldFirstName, firstName, oldLastName, lastName, row);
-        }
 
+        if(firstName) {
+            sheetTeam.getRange(row, playerColumnRange.firstName).setValue(firstName);
+        }
+        if(lastName) {
+            sheetTeam.getRange(row, playerColumnRange.lastName).setValue(lastName);
+        }
         if (nickName) {
             sheetTeam.getRange(row, playerColumnRange.nickName).setValue(nickName)
         }
@@ -333,6 +324,7 @@ function updateProfil(user) {
 
         if(user.oldMail != mail) {
             sheetTeam.getRange(row, playerColumnRange.mail).setValue(mail);
+            updateMailInResultSheet(oldMail, mail);
             return {mail: mail, key: sheetTeam.getRange(row, playerColumnRange.key).getValue() * 2 + 10};
         }
 
@@ -369,23 +361,11 @@ function getRowSheetTeamWithNickname(nickname) {
 }
 
 
-// met à jour le nom complet modifié dans la page des résultats afin que les stats fonctionnent toujours
-function updateNameProfil(oldFirstName, firstName, oldLastName, lastName, row) {
-    if (firstName != oldFirstName) {
-        sheetTeam.getRange(row, playerColumnRange.firstName).setValue(firstName);
-    } else {
-        firstName = oldFirstName;
-    }
-    if (lastName != oldLastName) {
-        sheetTeam.getRange(row, playerColumnRange.lastName).setValue(lastName);
-    } else {
-        lastName = oldLastName;
-    }
-    var oldFullName = oldFirstName + " " + oldLastName;
-    var newFullName = firstName + " " + lastName;
+// met à jour le mail modifié dans la page des résultats afin que les stats fonctionnent toujours
+function updateMailInResultSheet(oldMail, newMail) {
     var rangeResult = sheetResult.getRange(4, 2, sheetResult.getLastRow(), 13);
     var resultValues = rangeResult.getValues();
-    replaceInSheet(resultValues, oldFullName, newFullName);
+    replaceInSheet(resultValues, oldMail, newMail);
     rangeResult.setValues(resultValues);
 }
 
@@ -570,4 +550,17 @@ function getFullName(mail) {
         return getPlayerWithMail(param.mail).fullName;
     }
     return "";
+}
+
+
+function changeFullNameByMail() {
+    var players = playersTeamList;
+    var rangeResult = sheetResult.getRange(4, 2, sheetResult.getLastRow(), 13);
+    var resultValues = rangeResult.getValues();
+    for (var i in players) {
+        if (players[i][0]) {
+            replaceInSheet(resultValues, players[i][playerColumn.fullName], players[i][playerColumn.mail]);
+        }
+    }
+    rangeResult.setValues(resultValues);
 }

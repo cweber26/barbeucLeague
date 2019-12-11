@@ -16,7 +16,7 @@ function stats(players) {
 }
 
 function statsForAPlayer(playerName) {
-    var resultFilterColumn = 15;
+    var resultFilterColumn = 16;
     var row = getRowSheetResultFilter(playerName);
     var serie = sheetResultFilter.getRange(row, resultFilterColumn + 4, 1, sheetResultFilter.getLastColumn()).getValues()[0].filter(String);
     var maxWin = 0;
@@ -113,6 +113,6 @@ function loadPageStat() {
 }
 
 function saveRank() {
-    var currentRank = sheetResultFilter.getRange(1, 12, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).getValues();
-    sheetResultFilter.getRange(1, 13, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).setValues(currentRank);
+    var currentRank = sheetResultFilter.getRange(1, 13, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).getValues();
+    sheetResultFilter.getRange(1, 14, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).setValues(currentRank);
 }
