@@ -542,16 +542,3 @@ function getFullName(mail) {
     }
     return "";
 }
-
-
-function changeFullNameByMail() {
-    var players = playersTeamList;
-    var rangeResult = sheetResult.getRange(4, 2, sheetResult.getLastRow(), 13);
-    var resultValues = rangeResult.getValues();
-    for (var i in players) {
-        if (players[i][0]) {
-            replaceInSheet(resultValues, players[i][playerColumn.fullName], players[i][playerColumn.mail]);
-        }
-    }
-    rangeResult.setValues(resultValues);
-}
