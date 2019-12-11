@@ -19,17 +19,16 @@ var playerColumn = {
     levelDribble: 16,
     levelFrappe: 17,
     levelDefense: 18,
-    haveDoneAutoEvaluation: 19,
-    haveAlreadyAnswer: 20,
-    prioValue: 21,
-    isAdmin: 22,
-    isPrioritary: 23,
-    isInscriptionSent: 24,
-    isConfirmationSent: 25,
-    answer: 26,
-    answerDate: 27,
-    carSharing: 28,
-    row: 29
+    haveAlreadyAnswer: 19,
+    prioValue: 20,
+    isAdmin: 21,
+    isPrioritary: 22,
+    isInscriptionSent: 23,
+    isConfirmationSent: 24,
+    answer: 25,
+    answerDate: 26,
+    carSharing: 27,
+    row: 28
 };
 
 var playerColumnRange = {
@@ -52,7 +51,6 @@ var playerColumnRange = {
     levelDribble: (playerColumn.levelDribble +1),
     levelFrappe: (playerColumn.levelFrappe +1),
     levelDefense: (playerColumn.levelDefense +1),
-    haveDoneAutoEvaluation: (playerColumn.haveDoneAutoEvaluation +1),
     haveAlreadyAnswer: (playerColumn.haveAlreadyAnswer +1),
     prioValue: (playerColumn.prioValue +1),
     isAdmin: (playerColumn.isAdmin +1),
@@ -121,7 +119,6 @@ function initPlayer(playerLine) {
     player.levelDribble =               playerLine[playerColumn.levelDribble];
     player.levelFrappe =                playerLine[playerColumn.levelFrappe];
     player.levelDefense =               playerLine[playerColumn.levelDefense];
-    player.haveDoneAutoEvaluation =     playerLine[playerColumn.haveDoneAutoEvaluation];
     player.haveAlreadyAnswer =          playerLine[playerColumn.haveAlreadyAnswer];
     player.prioValue =                  playerLine[playerColumn.prioValue];
     player.isAdmin =                    playerLine[playerColumn.isAdmin];
@@ -303,11 +300,6 @@ function updateProfil(user) {
         if (levelDefense) {
             sheetTeam.getRange(row, playerColumnRange.levelDefense).setValue(levelDefense);
         }
-        if (levelDribble && levelFrappe && levelDefense) {
-            sheetTeam.getRange(row, playerColumnRange.haveDoneAutoEvaluation).setValue(true);
-        } else {
-            sheetTeam.getRange(row, playerColumnRange.haveDoneAutoEvaluation).setValue(false);
-        }
         if(priorityLevel)  {
             sheetTeam.getRange(row, playerColumnRange.prioValue).setValue(priorityLevel)
         }
@@ -482,7 +474,6 @@ function createProfil(user, creatorMail) {
     sheetTeam.getRange(row, playerColumnRange.levelDribble).setValue(user.dribble);
     sheetTeam.getRange(row, playerColumnRange.levelFrappe).setValue(user.frappe);
     sheetTeam.getRange(row, playerColumnRange.levelDefense).setValue(user.defense);
-    sheetTeam.getRange(row, playerColumnRange.haveDoneAutoEvaluation).setValue(true);
     sheetTeam.getRange(row, playerColumnRange.prioValue).setValue(user.priorityLevel);
 
     if (user.isAnAdmin) {

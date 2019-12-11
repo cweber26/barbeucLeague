@@ -58,21 +58,6 @@
     }
 
 
-    function retractationTeam(element) {
-        M.toast({ html: "En cours" });
-        var mail = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(retractationPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithMail(mail);
-    }
-
-    function retractationPlayer(player) {
-        var parameter = {
-            mail: player.mail,
-            key: player.keyWithSecurity,
-            answer: "Non"
-        };
-        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).confirmation(parameter);
-    }
-
     function displaySuccessActionTeam() {
         M.toast({ html: "Success !!!" });
     }
