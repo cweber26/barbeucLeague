@@ -49,10 +49,12 @@
 
         Object.keys(toValidate).forEach(function (k) {
             if (!checkValidity(k, toValidate[k])) {
+                console.log("data missing to create/update a profil");
                 return false;
             }
         });
-        return true;
+
+        return validateNotEmpty() && validateEmailFormat();
     }
 
     function checkValidity(elementId, message) {
@@ -64,14 +66,27 @@
         return true;
     }
 
+    function validateNotEmpty() {
+        return document.getElementById("mail").value.trim() != "" && document.getElementById("prenom").value.trim() != "" && document.getElementById("nom").value.trim() != "";
+    }
+
+    function validateEmailFormat() {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(String(document.getElementById("mail").value).toLowerCase())){
+            M.toast({html: "Le format de l'adresse mail n'est pas correct"});
+            return false;
+        }
+        return true;
+    }
+
     function updateProfil() {
         var user = {};
-        user.mail = document.getElementById("mail").value;
+        user.mail = document.getElementById("mail").value.trim();
         user.oldMail = document.getElementById("oldMail").value;
         user.key = document.getElementById("key").value;
-        user.prenom = document.getElementById("prenom").value;
-        user.nom = document.getElementById("nom").value;
-        user.surnom = document.getElementById("surnom").value;
+        user.prenom = document.getElementById("prenom").value.trim();
+        user.nom = document.getElementById("nom").value.trim();
+        user.surnom = document.getElementById("surnom").value.trim();
         user.indispo = document.getElementById("indispo").checked;
         user.indispoDate = document.getElementById("indispoDate").value;
         user.lundi = document.getElementById("lundi").checked;
@@ -125,10 +140,10 @@
 
     function createProfil() {
         var user = {};
-        user.mail = document.getElementById("mail").value;
-        user.prenom = document.getElementById("prenom").value;
-        user.nom = document.getElementById("nom").value;
-        user.surnom = document.getElementById("surnom").value;
+        user.mail = document.getElementById("mail").value.trim();
+        user.prenom = document.getElementById("prenom").value.trim();
+        user.nom = document.getElementById("nom").value.trim();
+        user.surnom = document.getElementById("surnom").value.trim();
         user.indispo = document.getElementById("indispo").checked;
         user.indispoDate = document.getElementById("indispoDate").value;
         user.lundi = document.getElementById("lundi").checked;

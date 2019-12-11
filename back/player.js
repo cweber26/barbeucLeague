@@ -291,6 +291,24 @@ function getRowSheetTeamWithMail(mail) {
     }
 }
 
+function getRowSheetTeamWithFullName(firstname, lastname) {
+    var teamList = playersTeamList;
+    for (var i = 0; i < teamList.length; i++) {
+        if (teamList[i][2] == firstname && teamList[i][3] == lastname) {
+            return i + 3;
+        }
+    }
+}
+
+function getRowSheetTeamWithSurName(surname) {
+    var teamList = playersTeamList;
+    for (var i = 0; i < teamList.length; i++) {
+        if (teamList[i][6] == surname) {
+            return i + 3;
+        }
+    }
+}
+
 
 // met à jour le nom complet modifié dans la page des résultats afin que les stats fonctionnent toujours
 function updateNameProfil(oldFirstName, firstName, oldLastName, lastName, row) {
@@ -375,7 +393,13 @@ function archiveProfil(mail) {
 // noinspection JSUnusedGlobalSymbols
 function createProfil(user, creatorMail) {
     if(getRowSheetTeamWithMail(user.mail)) {
-        return "Le mail est déjà utilisé";
+        return "Le mail " + user.mail + " est déjà utilisé";
+    }
+    if(getRowSheetTeamWithFullName(user.prenom, user.nom)) {
+        return "Le joueur existe " + user.prenom + " " + user.nom + " est déjà utilisé";
+    }
+    if(getRowSheetTeamWithSurName(user.surnom)) {
+        return "Le surnom " + user.surnom + " est déjà utilisé";
     }
     var row = sheetTeam.getRange("A3:A").getValues().filter(String).length + 3;
 
@@ -429,7 +453,7 @@ function createProfil(user, creatorMail) {
     sheetTeam.getRange(row, 18).setValue(user.frappe);
     sheetTeam.getRange(row, 19).setValue(user.defense);
     sheetTeam.getRange(row, 20).setValue(true);
-    sheetTeam.getRange(row, 22).setValue(user.priorityLevel)
+    sheetTeam.getRange(row, 22).setValue(user.priorityLevel);
 
     if (user.isAnAdmin) {
         sheetTeam.getRange(row, 23).setValue(true)
@@ -449,7 +473,7 @@ function createProfil(user, creatorMail) {
 }
 
 function sendMailToNewUser(player) {
-    sendMail(player.mail, "Bienvenue " , includeWithArgs("front/mail/mailNewProfil", {
+    sendMail(player.mail, "Bienvenue" , includeWithArgs("front/mail/mailNewProfil", {
         urlMail: getUrlMail(player)
     }));
 }
