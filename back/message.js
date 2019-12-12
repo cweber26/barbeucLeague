@@ -32,13 +32,12 @@ function envoyerMessage(messageContent) {
 }
 
 function sendMessageForAPlayerList(playerMailList, messageContent) {
-    var playerList = getPlayerListWithMail(playerMailList)
+    var playerList = getPlayerListWithMail(playerMailList);
     for (var i in playerList) {
         if (playerList[i].prioValue <= messageContent.filtrePrio) {
             sendMessageForAPlayer(playerList[i], messageContent.message, messageContent.isAnAlert)
         }
     }
-
 }
 
 function getPlayerListWithMail(playerMailList) {
@@ -56,6 +55,48 @@ function sendMessageForAPlayer(player, message, isAnAlert) {
     } else {
         html = "<div style='width: 400px; margin: auto; font-size: 14px;'>" + message + "</div>"
     }
+    var body = includeWithArgs("front/mail/mailSimple", {
+        html: html,
+        urlMail: getUrlMail(player)
+    });
+    sendMail(player.mail, "Message", body);
+}
+
+// noinspection JSUnusedGlobalSymbols
+function envoyerMessageForum(mailSender, message) {
+
+    Logger.log("envoyerMessageForum (message: " + message);
+
+    var playerMailListForMessage = matchPlayerAndWaitingListPlayerMailList.split(',');
+
+    var playerSender = getPlayerWithMail(mailSender);
+    if (playerMailListForMessage != "") {
+        Logger.log("playerMailList : " + playerMailListForMessage);
+        sendMessageForumForAPlayerList(playerMailListForMessage, playerSender, message);
+    }
+
+    saveMessageForum(playerSender, message);
+}
+
+
+function saveMessageForum(playerSender, message) {
+    var row = sheetForum.getLastRow() + 1;
+    sheetForum.getRange(row, 1).setValue(playerSender.nickName);
+    sheetForum.getRange(row, 2).setValue(now());
+    sheetForum.getRange(row, 3).setValue(message);
+}
+
+function sendMessageForumForAPlayerList(playerMailList, playerSender, message) {
+    var playerList = getPlayerListWithMail(playerMailList);
+    for (var i in playerList) {
+        if(playerList[i].mail != playerSender.mail) {
+            sendMessageForumForAPlayer(playerList[i], playerSender, message, false)
+        }
+    }
+}
+
+function sendMessageForumForAPlayer(player, playerSender, message) {
+    var html = "<div style='width: 400px; margin: auto; font-size: 14px;'>" + playerSender.nickName + " : " + message + "</div>"
     var body = includeWithArgs("front/mail/mailSimple", {
         html: html,
         urlMail: getUrlMail(player)

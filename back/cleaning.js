@@ -1,6 +1,7 @@
 
 function cleaning() {
     purgeInscriptionAndConfirmationAnswer();
+    purgeMessageForum();
     clearParameter("mailSendingPrio1WithPriority");
     clearParameter("mailSendingPrio2WithPriority");
     clearParameter("mailSendingPrio3WithPriority");
@@ -17,4 +18,10 @@ function cleaning() {
 
 function purgeInscriptionAndConfirmationAnswer() {
     sheetTeam.getRange(3, playerColumnRange.isInscriptionSent, sheetTeam.getRange("A3:A").getValues().filter(String).length, 5).clearContent();
+}
+
+function purgeMessageForum() {
+    if ((sheetForum.getLastRow() - 1) >= 1) {
+        sheetForum.deleteRows(2, sheetForum.getLastRow() - 1);
+    }
 }

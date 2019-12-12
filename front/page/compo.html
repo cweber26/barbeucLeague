@@ -116,10 +116,16 @@
     </div>
     <? } ?>
 
-    <? if (effectif != "" || listeAttente != "" ||listePasDispo != "" || listePasRepondu != "" || listeBlesse != "" ) { ?>
+    <? if (effectif != "" || listeAttente != "" ||listePasDispo != "" || listePasRepondu != "" || listeBlesse != "" || forum != "") { ?>
     <div class="row">
         <div class="col s12">
-            <ul class="collapsible">
+            <ul class="collapsible expandable">
+                <? if(forum != "") { ?>
+                <li class="active">
+                    <div class="collapsible-header"><span class="text-align-center">Forum du match</span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-body text-align-center"><?!=forum?></div>
+                </li>
+                <? } ?>
                 <? if (effectif != "") { ?>
                 <li class="active">
                     <div class="collapsible-header"><span class="text-align-center">Composition</span></div>
@@ -174,9 +180,9 @@
                 <? if(listeAttente != "") { ?>
                 <li>
                     <? if((listeAttente.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur en attente </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur en attente</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs en attente </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueurs en attente</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } ?>
                     <div class="collapsible-body text-align-center"><?!=listeAttente?></div>
                 </li>
@@ -185,9 +191,9 @@
                 <? if(listePasDispo != "") { ?>
                 <li>
                     <? if((listePasDispo.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur pas dispo </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur pas dispo</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs pas dispo </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueurs pas dispo</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } ?>
                     <div class="collapsible-body text-align-center"><?!=listePasDispo?></div>
                 </li>
@@ -196,19 +202,20 @@
                 <? if(listePasRepondu != "") { ?>
                 <li>
                     <? if((listePasRepondu.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur sans réponse </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur sans réponse</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs sans réponse </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueurs sans réponse</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } ?>
                     <div class="collapsible-body text-align-center"><?!=listePasRepondu?></div>
                 </li>
                 <? } ?>
+
                 <? if(listeBlesse != "") { ?>
                 <li>
                     <? if((listePasRepondu.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur blessé </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueur blessé</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs blessés </span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Joueurs blessés</span><i class="material-icons tiny">arrow_drop_down</i></div>
                     <? } ?>
                     <div class="collapsible-body text-align-center"><?!=listeBlesse?></div>
                 </li>
@@ -217,6 +224,20 @@
         </div>
     </div>
     <? } ?>
+</div>
+
+<div class="fixed-action-btn direction-top active" style="bottom: 100px; right: 25px;">
+    <a data-target="messageForumModal" class="btn-floating btn-large waves-effect waves-light modal-trigger green lighten-2 pulse"><i class="material-icons">email</i></a>
+</div>
+<div id="messageForumModal" class="modal">
+    <div class="modal-content">
+        <h5>Envoyer un message aux joueurs du match</h5>
+        <div class="container">
+            <label for="messageForum">message :</label>
+            <textarea id="messageForum" class="materialize-textarea"></textarea>
+            <a class="buttonGreen modal-close" onclick="envoyerMessageForumJs()">Envoyer</a>
+        </div>
+    </div>
 </div>
 
 <div class="fixed-action-btn direction-top active" style="bottom: 25px; right: 25px;">

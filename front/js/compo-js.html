@@ -162,6 +162,21 @@
         M.toast({ html: "Erreur !!!" });
     }
 
+    function envoyerMessageForumJs() {
+        if(document.getElementById("messageForum").value && document.getElementById("messageForum").value.trim() != "") {
+            google.script.url.getLocation(function (location) {
+                google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).envoyerMessageForum(location.parameter.mail, document.getElementById("messageForum").value.replace(/\n\r?/g, '<br />'));
+                M.toast({html: "Message en cours d'envoi"});
+            })
+        }
+    }
+
+    function displaySuccessActionTeam() {
+        M.toast({ html: "Message envoyé" });
+        refreshCompoPage();
+    }
+
+
     function sortTableCompo(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("equipes");

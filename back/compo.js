@@ -97,6 +97,20 @@ function loadPageCompo() {
         });
     }
 
+    var forum = "";
+    if(forumMessages.length > 0) {
+        forum += "<div class='row s6'><table class='striped'><tbody>";
+        forumMessages.forEach(function (m) {
+                forum += "<tr>" +
+                    "<td>" + getDateTimeFormatForForum(m[1]) + "</td>" +
+                    "<td>"+ m[0] + "</td>" +
+                    "<td>" + m[2] + "</td>" +
+                    "</tr>";
+            }
+        );
+        forum += "</tbody></table>";
+    }
+
     var tabTitle = "Barbeuc : Composition";
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
@@ -116,7 +130,8 @@ function loadPageCompo() {
         admin: param.isAdmin,
         cancelMatch: isTheMatchCancel(),
         testing: isTest(),
-        stadium: getStadiumInfo()
+        stadium: getStadiumInfo(),
+        forum: forum
     });
 }
 

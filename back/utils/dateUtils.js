@@ -91,6 +91,15 @@ function getDateTimeFormat(date) {
     }
 }
 
+
+function getDateTimeFormatForForum(date) {
+    if (date != "") {
+        return LanguageApp.translate(Utilities.formatDate(date,  "Europe/Paris", "EEEE dd MMMM ' at ' HH:mm"),"en","fr");
+    } else {
+        return "";
+    }
+}
+
 function getDateAt000000(date) {
     if (date != "") {
         return new Date(Utilities.formatDate(new Date(date), "Europe/Paris", "MM/dd/yyyy"));
