@@ -1,15 +1,11 @@
 <div class="row"></div>
 <? if(stadium.name=="Urban Soccer") { ?>
 <div class="row">
-    <a href="<?=stadium.urlAddress?>">
-        <div class="logoUrban"></div>
-    </a>
+    <div class="logoUrban" onclick="redirectToUrl(<?=stadium.urlAddress?>)"></div>
 </div>
 <? } else if(stadium.name=="Footsal Pro") { ?>
 <div class="row">
-    <a href="<?=stadium.urlAddress?>">
-        <div class="logoFootsal"></div>
-    </a>
+    <div class="logoFootsal" onclick="redirectToUrl(<?=stadium.urlAddress?>)"></div>
 </div>
 <? } ?>
 <? if(withDetail) { ?>
@@ -19,3 +15,8 @@
     <br><?!=stadium.infoGame?>
 </h4>
 <? } ?>
+<script>
+    function redirectToUrl(url) {
+        window.top.location.href = url;
+    }
+</script>

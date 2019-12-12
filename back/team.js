@@ -67,7 +67,3 @@ function buttonDesinscriptionTeam() {
 function buttonConfirmationTeam() {
     return "<a id=confirmationTeam class=smallButtonGreen onclick=confirmationTeam(this)>Confirmation</a>";
 }
-
-function buttonRetractationTeam() {
-    return "<a id=retractationTeam class=smallButtonRed onclick=retractationTeam(this)>Retractation</a>";
-}
