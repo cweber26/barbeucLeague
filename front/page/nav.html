@@ -7,23 +7,23 @@
 
         <ul id="nav-mobile" class="right hide-on-med-and-down navbar">
             <? if(mail && key) {?>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=<?=mail?>&key=<?=key?>">Prochain Match</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=<?=mail?>&key=<?=key?>">Résultats</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat&mail=<?=mail?>&key=<?=key?>">Classement</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record&mail=<?=mail?>&key=<?=key?>">Records</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team&mail=<?=mail?>&key=<?=key?>">Equipe</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=<?=mail?>&key=<?=key?>"><?= fullName ?></a></li>
+            <li <? if(page=="compo") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=<?=mail?>&key=<?=key?>">Prochain Match</a></li>
+            <li <? if(page=="resultat") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=<?=mail?>&key=<?=key?>">Résultats</a></li>
+            <li <? if(page=="stat") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat&mail=<?=mail?>&key=<?=key?>">Classement</a></li>
+            <li <? if(page=="record") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record&mail=<?=mail?>&key=<?=key?>">Records</a></li>
+            <li <? if(page=="team") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team&mail=<?=mail?>&key=<?=key?>">Equipe</a></li>
+            <li <? if(page=="profil") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=<?=mail?>&key=<?=key?>"><?= fullName ?></a></li>
             <?if(admin){?>
-            <li><a class="dropdown-trigger" data-target="dropdownBO">BackOffice<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li <? if(page=="backoffice") { ?>class="active" <? } ?>><a class="dropdown-trigger" data-target="dropdownBO">BackOffice<i class="material-icons right">arrow_drop_down</i></a></li>
             <?}?>
             <?} else {?>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo">Prochain Match</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat">Résultats</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat">Classement</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record">Records</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team">Equipe</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=connection">Me connecter</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=newProfil">M'inscrire</a></li>
+            <li <? if(page=="compo") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo">Prochain Match</a></li>
+            <li <? if(page=="resultat") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat">Résultats</a></li>
+            <li <? if(page=="stat") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=stat">Classement</a></li>
+            <li <? if(page=="record") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=record">Records</a></li>
+            <li <? if(page=="team") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=team">Equipe</a></li>
+            <li <? if(page=="connection") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=connection">Me connecter</a></li>
+            <li <? if(page=="profil") { ?>class="active" <? } ?>><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=newProfil">M'inscrire</a></li>
             <?}?>
         </ul>
 

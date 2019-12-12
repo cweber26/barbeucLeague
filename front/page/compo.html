@@ -5,7 +5,7 @@
     <?!= include("front/page/head"); ?>
     <?!= include("front/css/pageCss"); ?>
     <?!= include("front/css/mainCss"); ?>
-    <?!= includeWithArgs("front/page/nav", {mail: mail, key: key, fullName: fullName, admin: admin, testing: testing}); ?>
+    <?!= includeWithArgs("front/page/nav", {mail: mail, key: key, fullName: fullName, admin: admin, testing: testing, page: "compo"}); ?>
 </head>
 
 <body>
@@ -93,7 +93,7 @@
             <a id="desinscription" <? if(buttonStatus.status == "Non") { ?> class="buttonGray" <? } else { ?> class="buttonRed" onclick="desinscriptionJs()" <? } ?>>Désinscription</a>
         </div>
     </div>
-    <? } else if(buttonStatus.type =="confirmation" && !cancelMatch) { ?>
+    <? } else if(buttonStatus.type == "confirmation" && !cancelMatch) { ?>
     <div class="row">
         <div class="input-field col s3">
             <a <? if(buttonStatus.status == "alone") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="confirmationJs('alone')" <? } ?>>
