@@ -11,7 +11,6 @@ var sheetSchedule = spreadsheet.getSheetByName("Schedule");
 var sheetForum = spreadsheet.getSheetByName("Forum");
 
 var playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
-var forumMessages = sheetForum.getRange(2,1, sheetForum.getRange("A2:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
 
 ////////////PARAMETERS INIT////////////
 var parametersList = sheetParameters.getRange(1,1).getDataRegion().getValues();

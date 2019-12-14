@@ -98,9 +98,9 @@ function loadPageCompo() {
     }
 
     var forum = "";
-    if(forumMessages.length > 0) {
+    if(sheetForum.getRange("A2:A").getValues().filter(String).length > 0) {
         forum += "<div class='row s6'><table class='striped'><tbody>";
-        forumMessages.forEach(function (m) {
+        sheetForum.getRange(2,1, sheetForum.getRange("A2:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues().forEach(function (m) {
                 forum += "<tr>" +
                     "<td>" + getDateTimeFormatForForum(m[1]) + "</td>" +
                     "<td>"+ m[0] + "</td>" +
