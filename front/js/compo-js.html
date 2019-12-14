@@ -4,6 +4,8 @@
         M.Collapsible.init(collapsible, {
             accordion: false
         });
+        var tooltips = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(tooltips, {});
     });
 
     // noinspection JSUnusedGlobalSymbols
@@ -74,7 +76,7 @@
     function inscriptionCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+        google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
     }
 
     function inscriptionPlayer(player) {
@@ -83,13 +85,13 @@
             key: player.keyWithSecurity,
             answer: "Oui"
         };
-        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
+        google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).inscription(parameter);
     }
 
     function confirmationCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(confirmationPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+        google.script.run.withSuccessHandler(confirmationPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
     }
 
     function confirmationPlayer(player) {
@@ -99,13 +101,13 @@
             answer: "Oui",
             carSharing: "unknow"
         };
-        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).confirmation(parameter);
+        google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).confirmation(parameter);
     }
 
     function desinscriptionCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+        google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
     }
 
     function desinscriptionPlayer(player) {
@@ -114,13 +116,13 @@
             key: player.keyWithSecurity,
             answer: "Non"
         };
-        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).inscription(parameter);
+        google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).inscription(parameter);
     }
 
     function redirectProfilPageCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionTeam).getPlayerWithFullName(fullName);
+        google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
     }
 
     function redirectProfilPageWithPlayer(player) {
@@ -137,28 +139,28 @@
         var playerMail2 = element.parentNode.firstChild.nextSibling.nextSibling.textContent;
         console.log(playerMail1);
         console.log(playerMail2);
-        google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).changePlayerTeamWithMail(playerMail1, playerMail2);
+        google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).changePlayerTeamWithMail(playerMail1, playerMail2);
     }
 
-    function displaySuccessActionTeam() {
+    function displaySuccessActionCompo() {
         M.toast({ html: "Success !!!" });
         refreshCompoPage();
     }
 
-    function displayErrorActionTeam() {
+    function displayErrorActionCompo() {
         M.toast({ html: "Erreur !!!" });
     }
 
     function envoyerMessageForumJs() {
         if(document.getElementById("messageForum").value && document.getElementById("messageForum").value.trim() != "") {
             google.script.url.getLocation(function (location) {
-                google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).envoyerMessageForum(location.parameter.mail, document.getElementById("messageForum").value.replace(/\n\r?/g, '<br />'));
+                google.script.run.withSuccessHandler(displayMessageSentCompo).withFailureHandler(displayErrorActionCompo).envoyerMessageForum(location.parameter.mail, document.getElementById("messageForum").value.replace(/\n\r?/g, '<br />'));
                 M.toast({html: "Message en cours d'envoi"});
             })
         }
     }
 
-    function displaySuccessActionTeam() {
+    function displayMessageSentCompo() {
         M.toast({ html: "Message envoyé" });
         refreshCompoPage();
     }

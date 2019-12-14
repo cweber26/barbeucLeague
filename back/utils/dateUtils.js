@@ -1,6 +1,5 @@
 var currentWeekDay = parseInt(Utilities.formatDate(new Date(), "Europe/Paris", "u"));
-var nextMatchDateInFrench = LanguageApp.translate(Utilities.formatDate(nextMatchDate,  "Europe/Paris", "EEEE dd MMMM"),"en","fr");
-var nextMatchDay = nextMatchDate.getDay();
+var nextMatchDateInFrench = LanguageApp.translate(Utilities.formatDate(nextMatchDate,  "Europe/Paris", "EEEE dd MMMM"), "en", "fr");
 var scheduleValues = sheetSchedule.getRange(1, 1).getDataRegion().getValues();
 
 function setNextMatchDate() {
@@ -32,23 +31,6 @@ function nextDay(weekDay) {
         cptDay = (7 - (currentWeekDay - weekDay));
     }
     return Utilities.formatDate(new Date(Date.now() + ((cptDay * 1000) * 60 * 60 * 24)), "GMT", "MM/dd/yy");
-}
-
-function haveSelectedMatchDay(player, nextMatchDay) {
-    switch (nextMatchDay) {
-        case 1:
-            return player.mondaySelected == true;
-        case 2:
-            return player.tuesdaySelected == true;
-        case 3:
-            return player.wednesdaySelected == true;
-        case 4:
-            return player.thursdaySelected == true;
-        case 5:
-            return player.fridaySelected == true;
-        default:
-            return false;
-    }
 }
 
 function matchDayGapInFrench(withPronom) {

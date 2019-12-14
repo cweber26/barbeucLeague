@@ -23,61 +23,61 @@
         <div class="col s12 m8 offset-m2 l6 offset-l3 xl4 offset-xl4">
             <div class="field">
                 <div class="zone1 valign-wrapper">
-                    <div class="joueur red z-depth-3">
-                        <?= compo[0] ?><? if(confirmations[0] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                    <div class="joueur red z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[0]?>'>
+                        <?= compoNickName[0] ?><? if(confirmations[0] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                     </div>
                 </div>
                 <div class="zone2">
                     <div class="zoneGauche valign-wrapper">
-                        <div class="joueur red z-depth-3">
-                            <?= compo[1] ?><? if(confirmations[1] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        <div class="joueur red z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[1]?>'>
+                            <?= compoNickName[1] ?><? if(confirmations[1] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                         </div>
                     </div>
                     <div class="zoneDroite valign-wrapper">
-                        <div class="joueur red z-depth-3">
-                            <?= compo[2] ?><? if(confirmations[2] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="zone2">
-                    <div class="zoneGauche valign-wrapper">
-                        <div class="joueur red z-depth-3">
-                            <?= compo[3] ?><? if(confirmations[3] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
-                        </div>
-                    </div>
-                    <div class="zoneDroite valign-wrapper">
-                        <div class="joueur red z-depth-3">
-                            <?= compo[4] ?><? if(confirmations[4] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        <div class="joueur red z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[2]?>'>
+                            <?= compoNickName[2] ?><? if(confirmations[2] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                         </div>
                     </div>
                 </div>
                 <div class="zone2">
                     <div class="zoneGauche valign-wrapper">
-                        <div class="joueur blue z-depth-3">
-                            <?= compo[5] ?><? if(confirmations[5] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        <div class="joueur red z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[3]?>'>
+                            <?= compoNickName[3] ?><? if(confirmations[3] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                         </div>
                     </div>
                     <div class="zoneDroite valign-wrapper">
-                        <div class="joueur blue z-depth-3">
-                            <?= compo[6] ?><? if(confirmations[6] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        <div class="joueur red z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[4]?>'>
+                            <?= compoNickName[4] ?><? if(confirmations[4] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                         </div>
                     </div>
                 </div>
                 <div class="zone2">
                     <div class="zoneGauche valign-wrapper">
-                        <div class="joueur blue z-depth-3">
-                            <?= compo[7] ?><? if(confirmations[7] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        <div class="joueur blue z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[5]?>'>
+                            <?= compoNickName[5] ?><? if(confirmations[5] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                         </div>
                     </div>
                     <div class="zoneDroite valign-wrapper">
-                        <div class="joueur blue z-depth-3">
-                            <?= compo[8] ?><? if(confirmations[8] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        <div class="joueur blue z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[6]?>'>
+                            <?= compoNickName[6] ?><? if(confirmations[6] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="zone2">
+                    <div class="zoneGauche valign-wrapper">
+                        <div class="joueur blue z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[7]?>'>
+                            <?= compoNickName[7] ?><? if(confirmations[7] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                        </div>
+                    </div>
+                    <div class="zoneDroite valign-wrapper">
+                        <div class="joueur blue z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[8]?>'>
+                            <?= compoNickName[8] ?><? if(confirmations[8] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                         </div>
                     </div>
                 </div>
                 <div class="zone1 valign-wrapper">
-                    <div class="joueur blue z-depth-3">
-                        <?= compo[9] ?><? if(confirmations[9] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
+                    <div class="joueur blue z-depth-3 tooltipped" data-position="bottom" data-tooltip='<?!=compoFullName[9]?>'>
+                        <?= compoNickName[9] ?><? if(confirmations[9] == "Oui") { ?> <i class='tiny material-icons'>check</i><? } ?>
                     </div>
                 </div>
             </div>
@@ -157,7 +157,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <? if(niveauEquipe != "") { ?>
+                    </div>
+                </li>
+                <? } ?>
+
+                <? if(niveauEquipe != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">Niveau équipe</span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
+                    <div class="collapsible-body text-align-center">
                         <div class="text-align-center">
                             <table id="level" class="centered striped">
                                 <thead>
@@ -172,7 +179,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <? } ?>
                     </div>
                 </li>
                 <? } ?>
@@ -219,12 +225,13 @@
     <? } ?>
 </div>
 
+<? if(mail) { ?>
 <div class="fixed-action-btn direction-top active" style="bottom: 100px; right: 25px;">
     <a data-target="messageForumModal" class="btn-floating btn-large waves-effect waves-light modal-trigger green lighten-2 pulse"><i class="material-icons">email</i></a>
 </div>
 <div id="messageForumModal" class="modal">
     <div class="modal-content">
-        <h5>Envoyer un message aux joueurs du match</h5>
+        <h5>Envoyer un message aux joueurs inscris</h5>
         <div class="container">
             <label for="messageForum">message :</label>
             <textarea id="messageForum" class="materialize-textarea"></textarea>
@@ -232,6 +239,7 @@
         </div>
     </div>
 </div>
+<? } ?>
 
 <div class="fixed-action-btn direction-top active" style="bottom: 25px; right: 25px;">
     <a data-target="helper" class="btn-floating btn-large waves-effect waves-light modal-trigger green lighten-2 pulse"><i class="material-icons">help_outline</i></a>

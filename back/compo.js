@@ -1,11 +1,13 @@
 function loadPageCompo() {
-    var players = [];
+    var compoFullName = [];
+    var compoNickName = [];
     var confirmations = [];
     var effectif = "";
     if (numberPlayerInMatch > 0) {
         var data = playersInTheMatchForFinalCompo();
         data.forEach(function (p) {
-            players.push(p[2]);
+            compoFullName.push(p[1]);
+            compoNickName.push(p[2]);
             confirmations.push(p[11]);
             if (p[0] && numberPlayerInMatch == numberPlayerMatch) {
                 if(p[10]=='Rouge') {
@@ -78,8 +80,7 @@ function loadPageCompo() {
             var player = getPlayerWithMail(m);
             if(player) {
                 listePasRepondu += "<tr>" +
-                    "<td>"+ player.fullName + "</td>" +
-                    "<td>" + buttonModificationProfilCompo() + "</td>" +
+                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
                     "<td>" + buttonInscriptionCompo() + "</td>" +
                     "<td>" + buttonDesinscriptionCompo() + "</td>" +
                     "</tr>";
@@ -117,7 +118,8 @@ function loadPageCompo() {
         key: param.key,
         fullName: getFullName(param.mail),
         date: matchDayGapInFrench(true),
-        compo: players,
+        compoFullName: compoFullName,
+        compoNickName: compoNickName,
         buttonStatus: getButtonStatus(),
         teamSaved: teamSaved!="",
         confirmations: confirmations,
@@ -166,12 +168,8 @@ function buttonDesinscriptionCompo() {
     return "<a id=desinscriptionCompo class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
 }
 
-function buttonModificationProfilCompo(name) {
-    if(name) {
-        return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>" + name + "</a>";
-    } else {
-        return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>Profil</a>";
-    }
+function buttonModificationProfilCompo(fullName) {
+    return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>" + fullName + "</a>";
 }
 
 

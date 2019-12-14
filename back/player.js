@@ -28,7 +28,8 @@ var playerColumn = {
     answer: 25,
     answerDate: 26,
     carSharing: 27,
-    row: 28
+    isAvailableDay: 28,
+    row: 29
 };
 
 var playerColumnRange = {
@@ -60,14 +61,16 @@ var playerColumnRange = {
     answer: (playerColumn.answer +1),
     answerDate: (playerColumn.answerDate +1),
     carSharing: (playerColumn.carSharing +1),
+    isAvailableDay: (playerColumn.isAvailableDay +1),
     row: (playerColumn.row +1)
 };
 
 function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
     if (player.mail
-        && player.haveAlreadyAnswer == false
-        && player.isUnavailable == false
-        && haveSelectedMatchDay(player, nextMatchDay)) {
+        && player.haveAlreadyAnswer
+        && player.isUnavailable
+        && player.isAvailableDay
+    ) {
         if(relaunch) {
             if(player.prioValue <= prior) {
                 return true;
@@ -88,13 +91,23 @@ function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
 }
 function getPlayerWithMail(mail) {
     for (var i in playersTeamList) {
-        if (playersTeamList[i][0] == mail) {
+        if (playersTeamList[i][playerColumn.mail] == mail) {
             return initPlayer(playersTeamList[i]);
         }
     }
     throw "mail " + mail + " inconnu";
-
 }
+
+// noinspection JSUnusedGlobalSymbols
+function getPlayerWithFullName(fullName) {
+    for (var i in playersTeamList) {
+        if (playersTeamList[i][playerColumn.fullName] == fullName) {
+            return initPlayer(playersTeamList[i]);
+        }
+    }
+    throw "fullName " + fullName + " inconnu";
+}
+
 
 function initPlayer(playerLine) {
     //Logger.log("initPlayer : " + playerLine);
@@ -128,6 +141,7 @@ function initPlayer(playerLine) {
     player.answer =                     playerLine[playerColumn.answer];
     player.answerDate =                 playerLine[playerColumn.answerDate];
     player.carSharing =                 playerLine[playerColumn.carSharing];
+    player.isAvailableDay =             playerLine[playerColumn.isAvailableDay];
     player.row =                        playerLine[playerColumn.row];
     return player;
 }

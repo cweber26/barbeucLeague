@@ -46,7 +46,7 @@ function getUrlMail(player) {
     var urlFormMail = "&mail=";
     var urlFormKey = "&key=";
     var urlFormAnswer = "&answer=";
-    var urlCarSharing = "&carSharing="
+    var urlCarSharing = "&carSharing=";
     return {
         compo: urlForm + urlFormPage + "compo" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity,
         stat: urlForm + urlFormPage + "stat" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity,
