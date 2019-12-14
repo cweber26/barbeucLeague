@@ -87,6 +87,9 @@ function inscription(parameter) {
 function savePlayerAnswer(player, answer) {
     sheetTeam.getRange(player.row, playerColumnRange.answer).setValue(answer);
     sheetTeam.getRange(player.row, playerColumnRange.answerDate).setValue(now());
+    if(answer == "Non") {
+        sheetTeam.getRange(player.row, playerColumnRange.carSharing).clearContent();
+    }
 }
 
 function flagInscriptionToSentForPlayer(player) {

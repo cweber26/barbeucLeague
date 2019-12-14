@@ -33,8 +33,6 @@ function sendConfirmMailForAPlayer(player, isNewPlayer) {
 function loadPageConfirmation() {
     if (param.answer == "Oui") {
         return render("front/page/confirmation", "confirmation",{mail: param.mail, key: param.key, admin: param.isAdmin});
-    } else if (param.answer == "Non") {
-        return render("front/page/desinscription", "desinscription",{mail: param.mail, key: param.key, admin: param.isAdmin});
     }
 }
 
@@ -43,8 +41,8 @@ function loadPageConfirmation() {
 function confirmation(parameter) {
     Logger.log("Confirmation for " + parameter.mail + " and answer " + parameter.answer);
 
-    if (parameter.answer != "Oui" && parameter.answer != "Non") {
-        throw "La réponse ne peut être que Oui ou Non";
+    if (parameter.answer != "Oui") {
+        throw "La réponse ne peut être que Oui";
     }
     var player = getPlayerWithMail(parameter.mail);
 
@@ -52,18 +50,11 @@ function confirmation(parameter) {
         throw "Le joueur " + player.fullName + " a voulu confirmer mais n'a pas le droit";
     }
 
-    if (parameter.answer == "Oui") {
-        if(player.answer == "Oui") {
-            savePlayerConfirmation(player, parameter.answer, parameter.carSharing);
-        } else {
-            inscription(parameter);
-            confirmation(parameter);
-        }
-    } else { //parameter.answer == "Non"
-        if(player.answer == "Oui") {
-            savePlayerConfirmation(player, parameter.answer, parameter.carSharing);
-            actionsToDoIfDesistement();
-        }
+    if(player.answer == "Oui") {
+        savePlayerConfirmation(player, parameter.answer, parameter.carSharing);
+    } else {
+        inscription(parameter);
+        confirmation(parameter);
     }
 }
 

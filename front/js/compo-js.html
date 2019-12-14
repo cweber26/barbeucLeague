@@ -1,9 +1,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var collapsible = document.querySelectorAll('.collapsible');
-        M.Collapsible.init(collapsible);
+        var collapsible = document.querySelectorAll('.collapsible.expandable');
+        M.Collapsible.init(collapsible, {
+            accordion: false
+        });
     });
 
+    // noinspection JSUnusedGlobalSymbols
     function inscriptionJs() {
         M.toast({html: "Inscription en cours"});
         var parameter = {};
@@ -22,6 +25,7 @@
         }
     }
 
+    // noinspection JSUnusedGlobalSymbols
     function desinscriptionJs() {
         M.toast({html: "Désinscription en cours"});
         var parameter = {};
@@ -40,6 +44,7 @@
         }
     }
 
+    // noinspection JSUnusedGlobalSymbols
     function confirmationJs(carSharingValue) {
         M.toast({html: "Confirmation en cours"});
         var parameter = {};
@@ -47,24 +52,6 @@
             parameter = location.parameter;
             parameter.answer = "Oui";
             parameter.carSharing = carSharingValue;
-            google.script.run.withSuccessHandler(reloadPageCompo).withFailureHandler(redirectToPageError).confirmation(parameter);
-        });
-
-        function reloadPageCompo() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(parameter.mail) + "&key=" + String(parameter.key);
-        }
-
-        function redirectToPageError() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=error";
-        }
-    }
-
-    function retractationJs() {
-        M.toast({html: "Désinscription en cours"});
-        var parameter = {};
-        google.script.url.getLocation(function (location) {
-            parameter = location.parameter;
-            parameter.answer = "Non";
             google.script.run.withSuccessHandler(reloadPageCompo).withFailureHandler(redirectToPageError).confirmation(parameter);
         });
 

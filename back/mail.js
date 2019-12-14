@@ -57,8 +57,7 @@ function getUrlMail(player) {
         desinscription: urlForm + urlFormPage + "inscription" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity + urlFormAnswer + "Non",
         confirmationCarAlone: urlForm + urlFormPage + "confirmation" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity + urlFormAnswer + "Oui" + urlCarSharing + "alone",
         confirmationCarSharing: urlForm + urlFormPage + "confirmation" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity + urlFormAnswer + "Oui" + urlCarSharing + "sharing",
-        confirmationCarNeed: urlForm + urlFormPage + "confirmation" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity + urlFormAnswer + "Oui" + urlCarSharing + "need",
-        deconfirmation: urlForm + urlFormPage + "confirmation" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity + urlFormAnswer + "Non"
+        confirmationCarNeed: urlForm + urlFormPage + "confirmation" + urlFormMail + player.mail + urlFormKey + player.keyWithSecurity + urlFormAnswer + "Oui" + urlCarSharing + "need"
     };
 }
 

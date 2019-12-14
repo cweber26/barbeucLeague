@@ -111,7 +111,7 @@
             </a>
         </div>
         <div class="input-field col s3">
-            <a id="deconfirmation" class="buttonRed valign-wrapper" onclick="retractationJs()">Désinscription<br><i class='material-icons' style='font-size: 34px'>cancel</i></a>
+            <a id="deconfirmation" class="buttonRed valign-wrapper" onclick="desinscriptionJs()">Désinscription<br><i class='material-icons' style='font-size: 34px'>cancel</i></a>
         </div>
     </div>
     <? } ?>
@@ -122,13 +122,13 @@
             <ul class="collapsible expandable">
                 <? if(forum != "") { ?>
                 <li class="active">
-                    <div class="collapsible-header"><span class="text-align-center">Forum du match</span><i class="material-icons tiny">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Forum du match</span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center"><?!=forum?></div>
                 </li>
                 <? } ?>
                 <? if (effectif != "") { ?>
                 <li class="active">
-                    <div class="collapsible-header"><span class="text-align-center">Composition</span></div>
+                    <div class="collapsible-header"><span class="text-align-center">Composition</span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center">
                         <div class="row">
                             <table id="equipes" class="centered striped">
@@ -179,44 +179,37 @@
 
                 <? if(listeAttente != "") { ?>
                 <li>
-                    <? if((listeAttente.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur en attente</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs en attente</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } ?>
+                    <div class="collapsible-header"><span class="text-align-center">
+                        <? if((listeAttente.split('<br>').length - 1) == 1) { ?>Joueur en attente<? } else { ?>Joueurs en attente<? } ?>
+                    </span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center"><?!=listeAttente?></div>
                 </li>
                 <? } ?>
 
                 <? if(listePasDispo != "") { ?>
                 <li>
-                    <? if((listePasDispo.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur pas dispo</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs pas dispo</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } ?>
+                    <div class="collapsible-header"><span class="text-align-center">
+                        <? if((listePasDispo.split('<br>').length - 1) == 1) { ?>Joueur pas dispo<? } else { ?>Joueurs pas dispo<? } ?>
+                    </span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center"><?!=listePasDispo?></div>
                 </li>
                 <? } ?>
 
                 <? if(listePasRepondu != "") { ?>
                 <li>
-                    <? if((listePasRepondu.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur sans réponse</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs sans réponse</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } ?>
+
+                    <div class="collapsible-header"><span class="text-align-center">
+                        <? if((listePasRepondu.split('<br>').length - 1) == 1) { ?>Joueur sans réponse<? } else { ?>Joueurs sans réponse<? } ?>
+                    </span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center"><?!=listePasRepondu?></div>
                 </li>
                 <? } ?>
 
                 <? if(listeBlesse != "") { ?>
                 <li>
-                    <? if((listePasRepondu.split('<br>').length - 1) == 1) { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueur blessé</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } else { ?>
-                    <div class="collapsible-header"><span class="text-align-center">Joueurs blessés</span><i class="material-icons tiny">arrow_drop_down</i></div>
-                    <? } ?>
+                    <div class="collapsible-header"><span class="text-align-center">
+                        <? if((listePasRepondu.split('<br>').length - 1) == 1) { ?>Joueur blessé<? } else { ?>Joueurs blessés<? } ?>
+                    </span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center"><?!=listeBlesse?></div>
                 </li>
                 <? } ?>
