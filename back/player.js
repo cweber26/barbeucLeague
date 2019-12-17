@@ -408,6 +408,13 @@ function playersNotAvailablePlayerListMail() {
     return [];
 }
 
+function playersNotAvailableByDayPlayerMailListMail() {
+    if(notAvailableByDayPlayerMailList) {
+        return notAvailableByDayPlayerMailList.split(',');
+    }
+    return [];
+}
+
 function playersNotRespondedPlayerMailList() {
     if(notRespondedPlayerMailList) {
         return notRespondedPlayerMailList.split(',');

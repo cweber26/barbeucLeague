@@ -201,6 +201,15 @@
                 </li>
                 <? } ?>
 
+                <? if(listePasDispoJour != "") { ?>
+                <li>
+                    <div class="collapsible-header"><span class="text-align-center">
+                        <? if((listePasDispoJour.split('<br>').length - 1) == 1) { ?>Joueur pas disp jour<? } else { ?>Joueurs pas dispo jour<? } ?>
+                    </span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
+                    <div class="collapsible-body text-align-center"><?!=listePasDispoJour?></div>
+                </li>
+                <? } ?>
+
                 <? if(listePasRepondu != "") { ?>
                 <li>
 
