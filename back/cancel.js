@@ -15,7 +15,8 @@ function sendCancelMatchMailForAPlayer(player, isAutoCancel) {
         player: player,
         nbLimitPlayers: minPlayerForAutoCancelation,
         isAutoCancel: isAutoCancel,
-        urlMail: getUrlMail(player)
+        urlMail: getUrlMail(player),
+        reservationAlreadyDone: reservationAlreadyDone
     });
     sendMail(player.mail, "⛔ Annulation du match de Footsal " + matchDayGapInFrench(true) + " ⛔😢", body);
 }

@@ -12,6 +12,9 @@
     <?!= includeWithArgs("front/mail/mailHeader", {urlMail: urlMail}); ?>
     <div class="row">
         <h2 class="title">Le match <?= date ?> est complet</h2>
+        <? if(!reservationAlreadyDone) { ?>
+        <h3 class="title">Pense à réserver le terrain</h3>
+        <? } ?>
     </div>
     <?!= includeWithArgs("front/mail/mailCompo", {compo: compo}) ?>
     <?!= includeWithArgs("front/mail/mailFooter", {urlMail: urlMail}); ?>

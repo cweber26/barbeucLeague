@@ -33,7 +33,7 @@ function getNextStep() {
 function isTimeForStep(step) {
     var nextMatchDay = nextMatchDate.getDay();
     var column = nextMatchDay + 1;
-    var row = step + 4;
+    var row = step + 5;
     var nextStepDate = sheetSchedule.getRange(row, column).getValue();
     var nextStepDay = nextStepDate.substring(0, 3);
     var nextStepHour = nextStepDate.substring(4, 9);

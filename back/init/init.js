@@ -60,6 +60,7 @@ var nextMatchStadiumCost = getParameterFromList("nextMatchStadiumCost");
 var nextMatchReservationName = getParameterFromList("nextMatchReservationName");
 var nextMatchBeginGameHour = getParameterFromList("nextMatchBeginGameHour");
 var nextMatchComment = getParameterFromList("nextMatchComment");
+var reservationAlreadyDone = getParameterFromList("reservationAlreadyDone");
 var levelDribbleRed = getParameterFromList("levelDribbleRed");
 var levelShotRed = getParameterFromList("levelShotRed");
 var levelDefenceRed = getParameterFromList("levelDefenceRed");
