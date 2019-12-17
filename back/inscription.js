@@ -24,6 +24,7 @@ function sendInscriptionMailForAPrio(prio, withPriority, relaunch, displayAvaila
 }
 
 function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch, displayAvailableSlot) {
+    Logger.log("sendInscriptionMailForAPrioWithoutControl for prio : " + prio + " / withPriority : " + withPriority + " / relaunch : " + relaunch + " / displayAvailableSlot : " + displayAvailableSlot);
     var playersList = playersTeamList;
     for (var i in playersList) {
         var player = initPlayer(playersList[i]);

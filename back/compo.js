@@ -56,26 +56,34 @@ function loadPageCompo() {
 
     var listeAttente = "";
     if (numberPlayerInWaitingList > 0 && isTheMatchInProgress()) {
+        listeAttente += "<div class='row s6'><table class='centered striped'><tbody>";
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listeAttente += player.fullName + "<br>";
+                listeAttente += "<tr><td>" + buttonModificationProfilCompo(player.fullName) + "</td></tr>";
             }
+            listeAttente += "</tbody></table>";
         });
 
     }
     var listePasDispo = "";
     if(param.isAdmin && notAvailablePlayerMailList && isTheMatchInProgress()) {
+        listePasDispo += "<div class='row s6'><table class='centered striped'><tbody>";
         playersNotAvailablePlayerListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasDispo += player.fullName + "<br>";
+                listePasDispo += "<tr>" +
+                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
+                    "<td>" + buttonInscriptionCompo() + "</td>" +
+                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
+                    "</tr>";
             }
         });
+        listePasDispo += "</tbody></table>";
     }
     var listePasRepondu = "";
     if(param.isAdmin && notRespondedPlayerMailList && isTheMatchInProgress()) {
-        listePasRepondu += "<div class='row s6'><table class='centered striped'><tbody>";
+        listePasRepondu += "<div class='row s6'><table id='listePasReponduTable' class='centered striped'><tbody>";
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
@@ -90,12 +98,18 @@ function loadPageCompo() {
     }
     var listeBlesse = "";
     if(param.isAdmin && injuredPlayerMailList && isTheMatchInProgress()) {
+        listeBlesse += "<div class='row s6'><table id='listeBlesseTable' class='centered striped'><tbody>";
         playersInjuredPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listeBlesse += player.fullName + "<br>";
+                listeBlesse += "<tr>" +
+                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
+                    "<td>" + buttonInscriptionCompo() + "</td>" +
+                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
+                    "</tr>";
             }
         });
+        listeBlesse += "</tbody></table>";
     }
 
     var forum = "";
@@ -159,22 +173,24 @@ function getLevels(p) {
 
 
 function buttonInscriptionCompo() {
-    return "<a id=inscriptionCompo class=smallButtonGreen onclick=inscriptionCompo(this)>Inscription</a>";
+    return "<a class=smallButtonGreen onclick=inscriptionCompo(this)>Inscription</a>";
 }
 
-
-
 function buttonDesinscriptionCompo() {
-    return "<a id=desinscriptionCompo class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
+    return "<a class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
 }
 
 function buttonModificationProfilCompo(fullName) {
-    return "<a id=redirectProfilPageCompo class=smallButtonGreen onclick=redirectProfilPageCompo(this)>" + fullName + "</a>";
+    if(param.isAdmin) {
+        return "<a class=smallButtonGreen onclick=redirectProfilPageCompo(this)>" + fullName + "</a>";
+    } else {
+        return fullName;
+    }
 }
 
 
 function buttonConfirmationCompo() {
-    return "<a id=confirmationCompo class=smallButtonGreen onclick=confirmationCompo(this)><i class='tiny material-icons'>check</i></a>";
+    return "<a class=smallButtonGreen onclick=confirmationCompo(this)><i class='tiny material-icons'>check</i></a>";
 }
 
 function buttonSwitchTeam(p) {

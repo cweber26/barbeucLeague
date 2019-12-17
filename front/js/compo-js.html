@@ -76,13 +76,15 @@
     function inscriptionCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
+        console.log("fullname : " + fullName);
+        google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
 
-    function inscriptionPlayer(player) {
+    function inscriptionPlayer(playerForInscription) {
+        console.log("playerForInscription : " + playerForInscription);
         var parameter = {
-            mail: player.mail,
-            key: player.keyWithSecurity,
+            mail: playerForInscription.mail,
+            key: playerForInscription.keyWithSecurity,
             answer: "Oui"
         };
         google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).inscription(parameter);
@@ -91,13 +93,15 @@
     function confirmationCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(confirmationPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
+        console.log("fullname : " + fullName);
+        google.script.run.withSuccessHandler(confirmationPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
 
-    function confirmationPlayer(player) {
+    function confirmationPlayer(playerForConfirmation) {
+        console.log("playerForConfirmation : " + playerForConfirmation);
         var parameter = {
-            mail: player.mail,
-            key: player.keyWithSecurity,
+            mail: playerForConfirmation.mail,
+            key: playerForConfirmation.keyWithSecurity,
             answer: "Oui",
             carSharing: "unknow"
         };
@@ -107,13 +111,15 @@
     function desinscriptionCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
+        console.log("fullname : " + fullName);
+        google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
 
-    function desinscriptionPlayer(player) {
+    function desinscriptionPlayer(playerForDesinscription) {
+        console.log("playerForDesinscription : " + playerForDesinscription);
         var parameter = {
-            mail: player.mail,
-            key: player.keyWithSecurity,
+            mail: playerForDesinscription.mail,
+            key: playerForDesinscription.keyWithSecurity,
             answer: "Non"
         };
         google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).inscription(parameter);
@@ -122,14 +128,16 @@
     function redirectProfilPageCompo(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
-        google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionCompo).getPlayerWithFullName(fullName);
+        console.log("fullname : " + fullName);
+        google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
 
-    function redirectProfilPageWithPlayer(player) {
+    function redirectProfilPageWithPlayer(playerForProfilRedirection) {
+        console.log("playerForProfilRedirection : " + playerForProfilRedirection);
         var parameter = {};
         google.script.url.getLocation(function (location) {
             parameter = location.parameter;
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key)+"&profilMail="+String(player.mail);
+            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key)+"&profilMail="+String(playerForProfilRedirection.mail);
         });
     }
 
@@ -137,8 +145,8 @@
         M.toast({ html: "En cours" });
         var playerMail1 = element.parentNode.firstChild.nextSibling.textContent;
         var playerMail2 = element.parentNode.firstChild.nextSibling.nextSibling.textContent;
-        console.log(playerMail1);
-        console.log(playerMail2);
+        console.log("playerMail1 : " + playerMail1);
+        console.log("playerMail2 : " + playerMail2);
         google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).changePlayerTeamWithMail(playerMail1, playerMail2);
     }
 

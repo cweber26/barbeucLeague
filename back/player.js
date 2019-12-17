@@ -67,9 +67,9 @@ var playerColumnRange = {
 
 function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
     if (player.mail
-        && player.haveAlreadyAnswer
-        && player.isUnavailable
-        && player.isAvailableDay
+        && player.haveAlreadyAnswer == false
+        && player.isUnavailable == false
+        && player.isAvailableDay == true
     ) {
         if(relaunch) {
             if(player.prioValue <= prior) {
@@ -99,10 +99,12 @@ function getPlayerWithMail(mail) {
 }
 
 // noinspection JSUnusedGlobalSymbols
-function getPlayerWithFullName(fullName) {
+function getPlayerInfoForFrontWithFullName(fullName) {
     for (var i in playersTeamList) {
         if (playersTeamList[i][playerColumn.fullName] == fullName) {
-            return initPlayer(playersTeamList[i]);
+            var player = initPlayer(playersTeamList[i]);
+            Logger.log("Player with fullname " + fullName + " found. The mail is " + player.mail + ". And Player is : " + player);
+            return {mail : player.mail, keyWithSecurity : player.keyWithSecurity};
         }
     }
     throw "fullName " + fullName + " inconnu";
