@@ -1,4 +1,14 @@
 <script>
+    google.script.url.getLocation(function (location) {
+            parameter = location.parameter;
+            if (parameter.refresh == "auto") {
+                setTimeout(function () {
+                    refreshCompoPage()
+                }, 60000);
+            }
+        }
+    );
+
     document.addEventListener('DOMContentLoaded', function () {
         var collapsible = document.querySelectorAll('.collapsible.expandable');
         M.Collapsible.init(collapsible, {
@@ -66,10 +76,9 @@
         }
     }
 
-
     function refreshCompoPage() {
         google.script.url.getLocation(function (location) {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key);
+            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&refresh=" + String(location.parameter.refresh);
         });
     }
 
