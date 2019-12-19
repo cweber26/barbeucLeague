@@ -12,7 +12,7 @@
     <?!= includeWithArgs("front/mail/mailHeader", {urlMail: urlMail}); ?>
     <div class="row">
         <h2 class="title">Le match <?= date ?> est complet</h2>
-        <? if(!reservationAlreadyDone) { ?>
+        <? if(reservationAlreadyDone == false) { ?>
         <h3 class="title">Pense à réserver le terrain</h3>
         <? } ?>
     </div>

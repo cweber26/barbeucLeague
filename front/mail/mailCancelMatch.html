@@ -12,7 +12,7 @@
     <?!= includeWithArgs("front/mail/mailHeader", {urlMail: urlMail}); ?>
         <div class="row">
             <h2 class="alert">Le match <?=date?> a été <?if(isAutoCancel){?>automatiquement annulé en raison d'un manque de joueurs (moins de <?=nbLimitPlayers?> inscrits)<?}else{?>manuellement annulé<?}?> </h2>
-            <? if(reservationAlreadyDone) { ?>
+            <? if(reservationAlreadyDone == true) { ?>
             <h3 class="title">Pense à annuler la résevation du terrain</h3>
             <? } ?>
         </div>
