@@ -84,7 +84,7 @@
 
     function refreshCompoPageAuto(refreshAutoMiliSecondNumber) {
         if (!refreshAutoMiliSecondNumber) {
-            refreshAutoMiliSecondNumber = 6000;
+            refreshAutoMiliSecondNumber = 60000; //1min
         }
         google.script.url.getLocation(function (location) {
             window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&refreshAutoMiliSecond=" + refreshAutoMiliSecondNumber;
