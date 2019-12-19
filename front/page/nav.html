@@ -1,4 +1,5 @@
-<nav>
+<div class="navbar-fixed">
+    <nav>
     <div class="nav-wrapper <?if(!admin || !testing){?>green<?} else {?>red<?}?> lighten-2">
         <a class="brand-logo center">
             <div class="logoBlancSansFond"></div>
@@ -45,8 +46,8 @@
         </ul>
 
     </div>
-</nav>
-
+    </nav>
+</div>
 <ul id="dropdownBO" class="dropdown-content" width="400px">
     <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=backoffice&mail=<?=mail?>&key=<?=key?>">Parameters</a></li>
     <li class="divider"></li>
