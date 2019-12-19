@@ -1,10 +1,10 @@
 <script>
     google.script.url.getLocation(function (location) {
             parameter = location.parameter;
-            if (parameter.refresh == "auto") {
+            if (parameter.refreshAutoMiliSecond && parameter.refreshAutoMiliSecond > 0) {
                 setTimeout(function () {
-                    refreshCompoPage()
-                }, 60000);
+                    refreshCompoPageAuto(parameter.refreshAutoMiliSecond)
+                }, parameter.refreshAutoMiliSecond);
             }
         }
     );
@@ -78,7 +78,16 @@
 
     function refreshCompoPage() {
         google.script.url.getLocation(function (location) {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&refresh=" + String(location.parameter.refresh);
+            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key);
+        });
+    }
+
+    function refreshCompoPageAuto(refreshAutoMiliSecondNumber) {
+        if (!refreshAutoMiliSecondNumber) {
+            refreshAutoMiliSecondNumber = 6000;
+        }
+        google.script.url.getLocation(function (location) {
+            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&refreshAutoMiliSecond=" + refreshAutoMiliSecondNumber;
         });
     }
 

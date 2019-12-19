@@ -163,7 +163,8 @@ function loadPageCompo() {
         cancelMatch: isTheMatchCancel(),
         testing: isTest(),
         stadium: getStadiumInfo(),
-        forum: forum
+        forum: forum,
+        refreshAutoMiliSecond: param.refreshAutoMiliSecond
     });
 }
 
