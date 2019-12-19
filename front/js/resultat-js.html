@@ -56,10 +56,11 @@
     }
 
     function saveScoreActionJs() {
-        var scoreValues = {};
-        scoreValues.rouge = document.getElementById("scoreRouge").value;
-        scoreValues.bleu = document.getElementById("scoreBleu").value;
-        scoreValues.date = document.getElementById("matchDate").value;
+        var scoreValues = {
+            rouge: document.getElementById("scoreRouge").value,
+            bleu: document.getElementById("scoreBleu").value,
+            date: document.getElementById("matchDate").value
+        };
         M.toast({html: "Enregistrement du score en cours"});
         M.toast({html: "Recalcul des stats"});
         google.script.run.withSuccessHandler(saveScoreSuccess).withFailureHandler(saveScoreFailure).saveScore(scoreValues);
@@ -67,13 +68,10 @@
 
     function saveScoreSuccess() {
         M.toast({html: "Score enregistré"});
-        refreshCompoPage();
     }
 
     function saveScoreFailure() {
         M.toast({html: "Enregistrement du score en erreur!"});
-        refreshCompoPage();
     }
-
 
 </script>
