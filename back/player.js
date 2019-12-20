@@ -232,7 +232,7 @@ function updateProfil(user) {
 
     var row = getRowSheetTeamWithMail(user.oldMail);
 
-    if (user.key == (sheetTeam.getRange(row, 2).getValue() * 2 + 10)) {
+    if (user.key == (sheetTeam.getRange(row, playerColumnRange.key).getValue() * 2 + 10)) {
         var mail = user.mail;
         var firstName = user.prenom;
         var lastName = user.nom;
@@ -432,7 +432,7 @@ function playersInjuredPlayerMailList() {
 // noinspection JSUnusedGlobalSymbols
 function archiveProfil(mail) {
     var row = getRowSheetTeamWithMail(mail);
-    sheetTeam.getRange(row, 22).setValue(9);
+    sheetTeam.getRange(row, playerColumnRange.prioValue).setValue(9);
 }
 
 // noinspection JSUnusedGlobalSymbols

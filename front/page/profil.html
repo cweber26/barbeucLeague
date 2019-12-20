@@ -241,7 +241,7 @@
         <a id="updateProfil" class="buttonGreen" onclick="updateProfilCheck()">Mettre à jour</a>
     </div>
     <div class="row">
-        <a id="archiveProfil" class="buttonRed" onclick="archiveProfilJs()">Supprimer</a>
+        <a id="archiveProfil" class="buttonRed modal-trigger" data-target="confirm-modal">Supprimer</a>
     </div>
     <? } else { ?>
     <div class="row">
@@ -270,6 +270,17 @@
         <h5>Niveaux</h5>
         <p>Il est important de mettre tes niveaux à jour afin que la composition automatique soit la plus équilibrée possible
         </p>
+    </div>
+</div>
+<div id="confirm-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de voiloir supprimer le profil ?</h5>
+        <div class="row">
+            <div class="buttonRed" onclick="archiveProfilJs()">Oui</div>
+        </div>
+        <div class="row">
+            <div class="buttonGreen" onclick="closeModalJs()">Non</div>
+        </div>
     </div>
 </div>
 </body>

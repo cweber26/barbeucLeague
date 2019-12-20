@@ -39,5 +39,5 @@ function addPriorityWithMail(mail) {
 function updatePriorityWithMail(mail, value) {
     Logger.log("updatePriorityWithMail with mail %s and value %s", mail, value);
     var row = getRowSheetTeamWithMail(mail);
-    sheetTeam.getRange(row, 24).setValue(value);
+    sheetTeam.getRange(row, playerColumnRange.isPrioritary).setValue(value);
 }

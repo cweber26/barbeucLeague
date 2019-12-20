@@ -9,6 +9,7 @@ var sheetStats = spreadsheet.getSheetByName("Stats");
 var sheetParameters = spreadsheet.getSheetByName("Parameters");
 var sheetSchedule = spreadsheet.getSheetByName("Schedule");
 var sheetForum = spreadsheet.getSheetByName("Forum");
+var sheetHoliday = spreadsheet.getSheetByName("Holiday");
 
 var playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
 

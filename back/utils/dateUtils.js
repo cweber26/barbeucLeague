@@ -4,11 +4,15 @@ var scheduleValues = sheetSchedule.getRange(1, 1).getDataRegion().getValues();
 
 function setNextMatchDate() {
     //lundi = 1 , dimanche = 7
-    for (var i = 1; i <= 7; i++) {
+    for (var i = 1; i <= 30; i++) {
         var dayToTest = (currentWeekDay+i);
         if(isADayWithMatch(dayToTest)){
-            nextMatchDate=nextDay(dayToTest);
-            updateParameter("nextMatchDate", nextDay(dayToTest));
+            var nextMatchDate=nextDay(dayToTest);
+            if(isHolidayDay(nextMatchDate)){
+                sendMailToAdminAboutMatchDuringHoliday(nextMatchDate);
+                continue;
+            }
+            updateParameter("nextMatchDate", nextMatchDate);
             return;
         }
     }
@@ -30,7 +34,7 @@ function nextDay(weekDay) {
     } else {
         cptDay = (7 - (currentWeekDay - weekDay));
     }
-    return Utilities.formatDate(new Date(Date.now() + ((cptDay * 1000) * 60 * 60 * 24)), "GMT", "MM/dd/yy");
+    return Utilities.formatDate(new Date(Date.now() + ((cptDay * 1000) * 60 * 60 * 24)), "Europe/Paris", "MM/dd/yy");
 }
 
 function matchDayGapInFrench(withPronom) {
@@ -64,6 +68,13 @@ function getDateFormat(date) {
         return "";
     }
 }
+function getDateWithDayNameFormat(date) {
+    if (date != "") {
+        return Utilities.formatDate(new Date(date), "Europe/Paris", "EEEE dd/MM/yy");
+    } else {
+        return "";
+    }
+}
 
 function getDateTimeFormat(date) {
     if (date != "") {
@@ -92,4 +103,26 @@ function getDateAt000000(date) {
 
 function now() {
     return new Date(Date.now());
+}
+
+function isHolidayDay(dayToTest) {
+    var holidayDayList = sheetHoliday.getRange(1,1).getDataRegion().getValues();
+    for (var i in holidayDayList) {
+        if(Utilities.formatDate(new Date(holidayDayList[i]), "Europe/Paris", "MM/dd/yy") == dayToTest) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function sendMailToAdminAboutMatchDuringHoliday(day) {
+    var mailsAdmin = adminMailList.split(',');
+    for (var i in mailsAdmin) {
+        var playerAdmin = getPlayerWithMail(mailsAdmin[i]);
+        sendMail(playerAdmin.mail, "Alerte Jour férie" , includeWithArgs("front/mail/mailSimple", {
+            html: "<h3>Attention le prochain jour de match est ferié : " + getDateWithDayNameFormat(day),
+            urlMail: getUrlMail(playerAdmin)
+        }));
+    }
 }

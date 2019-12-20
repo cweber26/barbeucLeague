@@ -205,11 +205,14 @@
     }
 
     function archiveProfilJs() {
-        if (window.confirm("Es tu sûr de vouloir supprimer ?")) {
-            var mail = document.getElementById("mail").value;
-            google.script.run.archiveProfil(mail);
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profilArchived";
-        }
+        var mail = document.getElementById("mail").value;
+        google.script.run.archiveProfil(mail);
+        window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profilArchived";
+    }
+
+    function closeModalJs() {
+        var modal = M.Modal.getInstance(document.getElementById('confirm-modal'));
+        modal.close()
     }
 
 </script>
