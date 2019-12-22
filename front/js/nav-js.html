@@ -11,77 +11,33 @@
     });
 
     function cleaningJs() {
-        if (window.confirm("Es tu sûr de vouloir purger toutes les inscriptions ?")) {
-            M.toast({html: "Purge en cours"});
-            google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).cleaning();
-        }
-    }
-
-    function sendPrio1Js() {
-        if (window.confirm("Es tu sûr de vouloir envoyer les inscriptions aux joueurs de la prio 1 ?")) {
-            M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(1, false, true, true);
-        }
-    }
-
-    function sendPrio2Js() {
-        if (window.confirm("Es tu sûr de vouloir envoyer les inscriptions aux joueurs de la prio 2 ?")) {
-            M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(2, false, true, true);
-        }
-    }
-
-    function sendPrio3Js() {
-        if (window.confirm("Es tu sûr de vouloir envoyer les inscriptions aux joueurs de la prio 3 ?")) {
-            M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendInscriptionMailForAPrioWithoutControl(3, false, true, true);
-        }
-    }
-
-    function sendReminderJs() {
-        if (window.confirm("Es tu sûr de vouloir envoyer les rappels aux joueurs ?")) {
-            M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendReminderMailWithoutControl();
-        }
-    }
-
-    function sendConfirmationJs() {
-        if (window.confirm("Es tu sûr de vouloir envoyer les confirmations aux joueurs ?")) {
-            M.toast({html: "Envoi en cours"});
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendConfirmMailWithoutControl();
-        }
+        M.toast({html: "Purge en cours"});
+        google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).cleaning();
     }
 
     function cancelMatchJs() {
-        if (window.confirm("Es tu sûr de vouloir annuler le match ?")) {
-            M.toast({html: "Annulation en cours"});
-            google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).cancelMatchAndSendMail(false);
-        }
+        M.toast({html: "Annulation en cours"});
+        google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).cancelMatchAndSendMail(false);
     }
 
     function switchModeJs() {
-        if (window.confirm("Es tu sûr de vouloir basculer le mode ?")) {
-            google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).switchMode();
-        }
+        M.toast({html: "Bascule en cours"});
+        google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).switchMode();
     }
 
     function sendRecordsLastMontJs() {
-        if (window.confirm("Es tu sûr de vouloir envoyer le mail des résultats du dernier mois ?")) {
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendLastMonthResultMail();
-        }
+        M.toast({html: "Envoi en cours"});
+        google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendLastMonthResultMail();
     }
 
     function recalculateStatsJs() {
-        if (window.confirm("Es tu sûr de vouloir recalculer les statistiques (série de victoire / défaite) pour tous les joueurs ?")) {
-            M.toast({ html: "Recalcul des statistiques en cours " });
-            google.script.run.withSuccessHandler(successStats).withFailureHandler(failNav).initStats();
-        }
+        M.toast({ html: "Recalcul des statistiques en cours" });
+        google.script.run.withSuccessHandler(successStats).withFailureHandler(failNav).initStats();
     }
 
     function sendMailsTestJs() {
-        if (window.confirm("Es tu sûr de vouloir envoyer les mails de test ?")) {
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).testMails();
-        }
+        M.toast({ html: "Envoi des mails en cours" });
+        google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).testMails();
     }
 
     function reloadNav() {
@@ -92,20 +48,15 @@
     }
 
     function envoyerMessageJs() {
-
         if(document.getElementById("message").value) {
-
             google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).envoyerMessage({
                 filtreEtatJoueur: document.querySelector('input[name="filtreEtatJoueur"]:checked').value,
                 filtrePrio: document.querySelector('input[name="filtrePrio"]:checked').value,
                 message: document.getElementById("message").value.replace(/\n\r?/g, '<br />'),
                 isAnAlert: document.getElementById("isAnAlert").checked
             });
-
             M.toast({html: "Message en cours d'envoi"});
-
         }
-
     }
 
     function successStats() {

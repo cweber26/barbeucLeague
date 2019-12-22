@@ -51,19 +51,14 @@
 <ul id="dropdownBO" class="dropdown-content" width="400px">
     <li><a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=backoffice&mail=<?=mail?>&key=<?=key?>">Parameters</a></li>
     <li class="divider"></li>
-    <li><a data-target="helperMessage" class="modal-trigger">Envoyer un message</a></li>
-    <li><a onclick="sendPrio1Js()">Envoyer mail prio 1</a></li>
-    <li><a onclick="sendPrio2Js()">Envoyer mail prio 2</a></li>
-    <li><a onclick="sendPrio3Js()">Envoyer mail prio 3</a></li>
-    <li><a onclick="sendReminderJs()">Envoyer mail rappel</a></li>
-    <li><a onclick="sendConfirmationJs()">Envoyer mail confirmation</a></li>
-    <li><a onclick="sendRecordsLastMontJs()">Envoyer mail records dernier mois</a></li>
-    <li><a onclick="recalculateStatsJs()">Recalculer les statistiques</a></li>
-    <li><a onclick="sendMailsTestJs()">Envoyer mails test</a></li>
-    <li><a onclick="cleaningJs()" style="color: #e57373">Purge match</a></li>
-    <li><a onclick="cancelMatchJs()" style="color: #e57373">Cancel match</a></li>
+    <li><a class="modal-trigger" data-target="helperMessage">Envoyer un message</a></li>
+    <li><a class="modal-trigger" data-target="recordmonth-modal">Envoyer mail records dernier mois</a></li>
+    <li><a class="modal-trigger" data-target="stats-modal">Recalculer les statistiques</a></li>
+    <li><a class="modal-trigger" data-target="mailtest-modal">Envoyer mails test</a></li>
+    <li><a class="modal-trigger" data-target="purge-modal" style="color: #e57373">Purge match</a></li>
+    <li><a class="modal-trigger" data-target="cancel-modal" style="color: #e57373">Cancel match</a></li>
     <li class="divider"></li>
-    <li><a onclick="switchModeJs()"><?if(testing){?>Prod mode<?} else {?><span style="color: #e57373">Test mode<?}?></span></a></li>
+    <li><a class="modal-trigger" data-target="switchmode-modal"><?if(testing){?>Prod mode<?} else {?><span style="color: #e57373">Test mode<?}?></span></a></li>
 </ul>
 
 <div id="helperMessage" class="modal">
@@ -143,7 +138,84 @@
                 </div>
             </div>
             <label for="message">message :</label><textarea id="message" class="materialize-textarea"></textarea>
-            <a class="buttonGreen modal-close" onclick="envoyerMessageJs()">Envoyer</a>
+            <div class="row">
+                <div class="buttonGreen modal-close" onclick="envoyerMessageJs()">Envoyer</div>
+            </div>
+            <div class="row">
+                <div class="buttonRed modal-close">Annuler</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cancel-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir annuler le match ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="cancelMatchJs()">Annuler</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Non</div>
+        </div>
+    </div>
+</div>
+
+<div id="recordmonth-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir envoyer le mail des résultats du dernier mois ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="sendRecordsLastMontJs()">Envoyer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
+        </div>
+    </div>
+</div>
+
+<div id="purge-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir purger toutes les inscriptions ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="cleaningJs()">Envoyer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
+        </div>
+    </div>
+</div>
+
+<div id="stats-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir recalculer les statistiques (série de victoire / défaite) pour tous les joueurs ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="recalculateStatsJs()">Recalculer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
+        </div>
+    </div>
+</div>
+
+<div id="mailtest-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir envoyer les mails de test ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="sendMailsTestJs()">Envoyer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
+        </div>
+    </div>
+</div>
+
+<div id="switchmode-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir basculer le mode ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="switchModeJs()">Confirmer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
         </div>
     </div>
 </div>

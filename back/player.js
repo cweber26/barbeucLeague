@@ -259,7 +259,6 @@ function updateProfil(user) {
         var isAnAdmin = user.isAnAdmin;
         var haveAPriority = user.haveAPriority;
 
-
         if(firstName) {
             sheetTeam.getRange(row, playerColumnRange.firstName).setValue(firstName);
         }
