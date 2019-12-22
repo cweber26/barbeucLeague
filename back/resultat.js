@@ -1,5 +1,6 @@
 function loadPageResultat() {
-    var players = [];
+    var playersNickName = [];
+    var playersFullName = [];
     var matchDates = sheetResult.getRange("A1:A").getValues();
     var row = sheetResult.getRange("A1:A").getValues().filter(String).length + 1;
     var date;
@@ -17,9 +18,12 @@ function loadPageResultat() {
                 var playersMailList = sheetResult.getRange(i+1, 2, 1, 10).getValues();
                 playersMailList[0].forEach(function (m) {
                     if(m) {
-                        players.push(getPlayerWithMail(m).nickName);
+                        var player = getPlayerWithMail(m);
+                        playersNickName.push(player.nickName);
+                        playersFullName.push(player.fullName);
                     } else {
-                        players.push("");
+                        playersNickName.push("");
+                        playersFullName.push("");
                     }
                 });
                 var scoreRed = sheetResult.getRange(i+1, 12).getValue();
@@ -38,7 +42,8 @@ function loadPageResultat() {
         fullName: getFullName(param.mail),
         matchDateSelect: matchDateSelect,
         date: date,
-        compo: players,
+        compoNickName: playersNickName,
+        compoFullName: playersFullName,
         admin: param.isAdmin,
         testing: isTest(),
         scoreRed: scoreRed,
