@@ -421,6 +421,14 @@ function playersNotRespondedPlayerMailList() {
     return [];
 }
 
+
+function playersNotInvitedPlayerMailList() {
+    if(notInvitedPlayerMailList) {
+        return notInvitedPlayerMailList.split(',');
+    }
+    return [];
+}
+
 function playersInjuredPlayerMailList() {
     if(injuredPlayerMailList) {
         return injuredPlayerMailList.split(',');

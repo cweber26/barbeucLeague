@@ -111,6 +111,21 @@ function loadPageCompo() {
         });
         listePasRepondu += "</tbody></table>";
     }
+    var listePasInvite = "";
+    if(param.isAdmin && notInvitedPlayerMailList && isTheMatchInProgress()) {
+        listePasInvite += "<div class='row s6'><table id='listePasInviteTable' class='centered striped'><tbody>";
+        playersNotInvitedPlayerMailList().forEach(function (m) {
+            var player = getPlayerWithMail(m);
+            if(player) {
+                listePasInvite += "<tr>" +
+                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
+                    "<td>" + buttonInscriptionCompo() + "</td>" +
+                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
+                    "</tr>";
+            }
+        });
+        listePasInvite += "</tbody></table>";
+    }
     var listeBlesse = "";
     if(param.isAdmin && injuredPlayerMailList && isTheMatchInProgress()) {
         listeBlesse += "<div class='row s6'><table id='listeBlesseTable' class='centered striped'><tbody>";
@@ -158,6 +173,7 @@ function loadPageCompo() {
         listePasDispo: listePasDispo,
         listePasDispoJour: listePasDispoJour,
         listePasRepondu: listePasRepondu,
+        listePasInvite: listePasInvite,
         listeBlesse: listeBlesse,
         admin: param.isAdmin,
         cancelMatch: isTheMatchCancel(),
