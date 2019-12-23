@@ -76,28 +76,56 @@ function getRowSheetResultFilter(playerName) {
     }
 }
 
+var statsColumnRange = {
+    rank: 0,
+    mail: 1,
+    nickName: 2,
+    match: 3,
+    victory: 4,
+    draw: 5,
+    defeat: 6,
+    offensiveBonus: 7,
+    defensiveBonus: 8,
+    points: 9,
+    pointsPerMatch: 10,
+    victoryPercent: 11,
+    defeatPercent: 12,
+    rankThisWeek: 13,
+    rankLastWeek: 14,
+    rankEvolution: 15,
+    maxVictoryInRaw: 16,
+    maxDefeatInRaw: 17,
+    currentVictoryInRaw: 18,
+    currentDefeatInRaw: 19,
+    result1: 20,
+    result2: 21,
+    result3: 22,
+    result4: 23,
+    result5: 24
+};
+
 function loadPageStat() {
     var stats = "";
     var data = sheetStats.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
     data.forEach(function (p) {
-        if(p[1]){
+        if(p[statsColumnRange.mail]){
             stats += "<tr>";
-            if (p[14]) {
-                stats += "<td>" + p[0] + "<sup> (" + p[14] + ")</sup></td>";
+            if (p[statsColumnRange.rankEvolution]) {
+                stats += "<td>" + p[statsColumnRange.rank] + "<sup> (" + p[statsColumnRange.rankEvolution] + ")</sup></td>";
             } else {
-                stats += "<td>" + p[0] + "</td>";
+                stats += "<td>" + p[statsColumnRange.rank] + "</td>";
             }
-            stats += "<td>" + p[1] + "</td>"
-                + "<td>" + p[2] + "</td>"
-                + "<td>" + p[3] + "</td>"
-                + "<td>" + p[4] + "</td>"
-                + "<td>" + p[5] + "</td>"
-                + "<td>" + p[6] + "</td>"
-                + "<td>" + p[7] + "</td>"
-                + "<td>" + p[8] + "</td>"
-                + "<td>" + p[9] + "</td>"
-                + "<td>" + p[15] + "</td>"
-                + "<td>" + p[16] + "</td>"
+            stats += "<td class='tooltipped' data-position='bottom' data-tooltip='" + getPlayerWithMail(p[statsColumnRange.mail]).fullName + "'>" + p[statsColumnRange.nickName] + "</td>"
+                + "<td>" + p[statsColumnRange.match] + "</td>"
+                + "<td>" + p[statsColumnRange.victory] + "</td>"
+                + "<td>" + p[statsColumnRange.draw] + "</td>"
+                + "<td>" + p[statsColumnRange.defeat] + "</td>"
+                + "<td>" + p[statsColumnRange.offensiveBonus] + "</td>"
+                + "<td>" + p[statsColumnRange.defensiveBonus] + "</td>"
+                + "<td>" + p[statsColumnRange.points] + "</td>"
+                + "<td>" + p[statsColumnRange.pointsPerMatch] + "</td>"
+                + "<td>" + p[statsColumnRange.maxVictoryInRaw] + "</td>"
+                + "<td>" + p[statsColumnRange.maxDefeatInRaw] + "</td>"
                 + "<td>" + getLumieres(p) + "</td>"
                 + "</tr>";
         }
