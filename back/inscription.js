@@ -1,38 +1,70 @@
-function sendInscriptionMailForAPrio(prio, withPriority, relaunch, displayAvailableSlot) {
+function sendInscriptionMailForPrioritaryPlayers() {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
-        sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch, displayAvailableSlot);
-    }
-
-    if(prio==1 && withPriority) {
-        updateParameter("mailSendingPrio1WithPriority", now());
-    }
-    if(prio==1 && !withPriority) {
-        updateParameter("mailSendingPrio1", now());
-    }
-    if(prio==2 && withPriority) {
-        updateParameter("mailSendingPrio2WithPriority", now());
-    }
-    if(prio==2 && !withPriority) {
-        updateParameter("mailSendingPrio2", now());
-    }
-    if(prio==3 && withPriority) {
-        updateParameter("mailSendingPrio3WithPriority", now());
-    }
-    if(prio==3 && !withPriority) {
-        updateParameter("mailSendingPrio3", now());
+        sendInscriptionMailForPrioritaryPlayersWithoutControl();
+        updateParameter("mailSentForPrioritaryPlayers", now());
     }
 }
 
-function sendInscriptionMailForAPrioWithoutControl(prio, withPriority, relaunch, displayAvailableSlot) {
-    Logger.log("sendInscriptionMailForAPrioWithoutControl for prio : " + prio + " / withPriority : " + withPriority + " / relaunch : " + relaunch + " / displayAvailableSlot : " + displayAvailableSlot);
-    var playersList = playersTeamList;
-    for (var i in playersList) {
-        var player = initPlayer(playersList[i]);
-        if (shouldReceiveInscriptionMail(player, prio, withPriority, relaunch)) {
-            flagInscriptionToSentForPlayer(player);
-            sendInscriptionMailForAPlayer(player, withPriority, displayAvailableSlot);
-        }
+function sendInscriptionMailForPlayersWithPrio1() {
+    if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
+        sendInscriptionMailForAPrioWithoutControl(1, false);
+        updateParameter("mailSentForPlayersWithPrio1", now());
     }
+}
+
+function sendInscriptionMailForPlayersWithPrio2() {
+    if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
+        sendInscriptionMailForAPrioWithoutControl(2, true);
+        updateParameter("mailSentForPlayersWithPrio2", now());
+    }
+}
+
+function sendInscriptionMailForPlayersWithPrio3() {
+    if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
+        sendInscriptionMailForAPrioWithoutControl(3, true);
+        updateParameter("mailSentForPlayersWithPrio3", now());
+    }
+}
+
+function relaunchInscriptionMailForPlayersWithoutAnswer() {
+    if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
+        relaunchInscriptionMailForPlayersWithoutAnswerWithoutControl(3, true);
+    }
+}
+
+function sendInscriptionMailForPrioritaryPlayersWithoutControl() {
+    playersTeamList.forEach(function (player) {
+        if (couldBeAvailableForMatch(player) && player[playerColumn.isPrioritary] == true) {
+            flagInscriptionToSentForPlayer(player);
+            sendInscriptionMailForAPlayer(player, true, false);
+        }
+    })
+}
+
+function sendInscriptionMailForAPrioWithoutControl(prio, displayAvailableSlot) {
+    playersTeamList.forEach(function (player) {
+        if (couldBeAvailableForMatch(player) && player[playerColumn.prioValue] == prio) {
+            flagInscriptionToSentForPlayer(player);
+            sendInscriptionMailForAPlayer(player, false, displayAvailableSlot);
+        }
+    });
+}
+
+function relaunchInscriptionMailForPlayersWithoutAnswerWithoutControl() {
+    playersTeamList.forEach(function (player) {
+        if (couldBeAvailableForMatch(player) && player[playerColumn.prioValue] <= 3) {
+            flagInscriptionToSentForPlayer(player);
+            sendInscriptionMailForAPlayer(player, false, true);
+        }
+    });
+}
+
+
+function couldBeAvailableForMatch(player) {
+    return player[playerColumn.mail]
+        && player[playerColumn.answer] == ""
+        && player[playerColumn.isAvailableDay] == true
+        && player[playerColumn.isUnavailable] == false;
 }
 
 

@@ -6,7 +6,7 @@ function controlAndCancelOrRelaunch() {
                 sendMailSimple("Pense à annuler la réservation du match " + matchDayGapInFrench(true), "<h2>Pense à annuler la réservation " + nextMatchStadiumName + "</h2>");
 
             } else if (numberPlayerInMatch >= minPlayerForAutoCancelation && numberPlayerInMatch < numberPlayerMatch) {
-                sendInscriptionMailForAPrio(2, false, true, true);
+                relaunchInscriptionMailForPlayersWithoutAnswer();
             }
         }
         updateParameter("controlDone", now());

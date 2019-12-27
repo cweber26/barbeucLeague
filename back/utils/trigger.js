@@ -9,13 +9,13 @@ function execBatch() {
 }
 
 function getNextStep() {
-    if(mailSendingPrio1WithPriority==""){
+    if(mailSentForPrioritaryPlayers==""){
         return 1;
-    } else if(mailSendingPrio1==""){
+    } else if(mailSentForPlayersWithPrio1==""){
         return 2;
-    } else if(mailSendingPrio2==""){
+    } else if(mailSentForPlayersWithPrio2==""){
         return 3;
-    } else if(mailSendingPrio3==""){
+    } else if(mailSentForPlayersWithPrio3==""){
         return 4;
     } else if(controlDone==""){
         return 5;
@@ -56,18 +56,16 @@ function execStep(step) {
     switch (step) {
         case 1:
             deleteUnavaibility();
-            sendInscriptionMailForAPrio(1, true, false, false);
+            sendInscriptionMailForPrioritaryPlayers();
             break;
         case 2:
-            sendInscriptionMailForAPrio(1, false, false, false);
-            sendInscriptionMailForAPrio(2, true, false, false);
+            sendInscriptionMailForPlayersWithPrio1();
             break;
         case 3:
-            sendInscriptionMailForAPrio(2, false, false, true);
-            sendInscriptionMailForAPrio(3, true, false, true);
+            sendInscriptionMailForPlayersWithPrio2();
             break;
         case 4:
-            sendInscriptionMailForAPrio(3, false, true, true);
+            sendInscriptionMailForPlayersWithPrio3();
             break;
         case 5:
             controlAndCancelOrRelaunch();

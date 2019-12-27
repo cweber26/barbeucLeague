@@ -21,12 +21,10 @@ function loadPageBackoffice() {
     parameterApplication.applicationName = applicationName;
 
     var log = {};
-    log.send1withPrio = getDateTimeFormat(mailSendingPrio1WithPriority);
-    log.send2withPrio = getDateTimeFormat(mailSendingPrio2WithPriority);
-    log.send3withPrio = getDateTimeFormat(mailSendingPrio3WithPriority);
-    log.send1 = getDateTimeFormat(mailSendingPrio1);
-    log.send2 = getDateTimeFormat(mailSendingPrio2);
-    log.send3 = getDateTimeFormat(mailSendingPrio3);
+    log.sentPrioritary = getDateTimeFormat(mailSentForPrioritaryPlayers);
+    log.sentPrio1 = getDateTimeFormat(mailSentForPlayersWithPrio1);
+    log.sentPrio2 = getDateTimeFormat(mailSentForPlayersWithPrio2);
+    log.sentPrio3 = getDateTimeFormat(mailSentForPlayersWithPrio3);
     log.control = getDateTimeFormat(controlDone);
     log.reminder = getDateTimeFormat(mailSendingReminder);
     log.googleEvent = getDateTimeFormat(creationGoogleEvent);

@@ -2,12 +2,10 @@
 function cleaning() {
     purgeInscriptionAndConfirmationAnswer();
     purgeMessageForum();
-    clearParameter("mailSendingPrio1WithPriority");
-    clearParameter("mailSendingPrio2WithPriority");
-    clearParameter("mailSendingPrio3WithPriority");
-    clearParameter("mailSendingPrio1");
-    clearParameter("mailSendingPrio2");
-    clearParameter("mailSendingPrio3");
+    clearParameter("mailSentForPrioritaryPlayers");
+    clearParameter("mailSentForPlayersWithPrio1");
+    clearParameter("mailSentForPlayersWithPrio2");
+    clearParameter("mailSentForPlayersWithPrio3");
     clearParameter("controlDone");
     clearParameter("mailSendingReminder");
     clearParameter("creationGoogleEvent");

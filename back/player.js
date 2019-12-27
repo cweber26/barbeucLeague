@@ -63,30 +63,6 @@ var playerColumnRange = {
     row: (playerColumn.row +1)
 };
 
-function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
-    if (player.mail
-        && player.answer == ""
-        && player.isUnavailable == false
-        && player.isAvailableDay == true
-    ) {
-        if(relaunch) {
-            if(player.prioValue <= prior) {
-                return true;
-            }
-        } else {
-            if(player.prioValue == prior) {
-                if (withPriority) {
-                    return player.isPrioritary;
-                } else {
-                    return !player.isPrioritary;
-                }
-            }
-        }
-    }
-    return false;
-
-
-}
 function getPlayerWithMail(mail) {
     for (var i in playersTeamList) {
         if (playersTeamList[i][playerColumn.mail] == mail) {
