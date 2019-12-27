@@ -16,9 +16,8 @@ function stats(players) {
 }
 
 function statsForAPlayer(playerName) {
-    var resultFilterColumn = 16;
     var row = getRowSheetResultFilter(playerName);
-    var serie = sheetResultFilter.getRange(row, resultFilterColumn + 4, 1, sheetResultFilter.getLastColumn()).getValues()[0].filter(String);
+    var serie = sheetResultFilter.getRange(row, resultFilterColumnRange.lastResult, 1, sheetResultFilter.getLastColumn()).getValues()[0].filter(String);
     var maxWin = 0;
     var maxLose = 0;
     var winInProgress = 0;
@@ -60,12 +59,35 @@ function statsForAPlayer(playerName) {
             previous = current;
         }
     }
-    sheetResultFilter.getRange(row, resultFilterColumn).setValue(maxWin);
-    sheetResultFilter.getRange(row, (resultFilterColumn + 1)).setValue(maxLose);
-    sheetResultFilter.getRange(row, (resultFilterColumn + 2)).setValue(winInProgress);
-    sheetResultFilter.getRange(row, (resultFilterColumn + 3)).setValue(loseInProgress);
+    sheetResultFilter.getRange(row, resultFilterColumnRange.maxVictoryInRaw).setValue(maxWin);
+    sheetResultFilter.getRange(row, resultFilterColumnRange.maxDefeatInRaw).setValue(maxLose);
+    sheetResultFilter.getRange(row, resultFilterColumnRange.currentVictoryInRaw).setValue(winInProgress);
+    sheetResultFilter.getRange(row, resultFilterColumnRange.currentDefeatInRaw).setValue(loseInProgress);
 }
 
+var resultFilterColumnRange = {
+    mail: 1,
+    nickName: 2,
+    fullName: 3,
+    match: 4,
+    victory: 5,
+    draw: 6,
+    defeat: 7,
+    offensiveBonus: 8,
+    defensiveBonus: 9,
+    points: 10,
+    pointsPerMatch: 11,
+    victoryPercent: 12,
+    defeatPercent: 13,
+    rankThisWeek: 14,
+    rankLastWeek: 15,
+    rankEvolution: 16,
+    maxVictoryInRaw: 17,
+    maxDefeatInRaw: 18,
+    currentVictoryInRaw: 19,
+    currentDefeatInRaw: 20,
+    lastResult: 21
+};
 
 function getRowSheetResultFilter(playerName) {
     var playerNames = playerNameInSheetResultFilter();
@@ -76,56 +98,57 @@ function getRowSheetResultFilter(playerName) {
     }
 }
 
-var statsColumnRange = {
+var statsColumn = {
     rank: 0,
     mail: 1,
     nickName: 2,
-    match: 3,
-    victory: 4,
-    draw: 5,
-    defeat: 6,
-    offensiveBonus: 7,
-    defensiveBonus: 8,
-    points: 9,
-    pointsPerMatch: 10,
-    victoryPercent: 11,
-    defeatPercent: 12,
-    rankThisWeek: 13,
-    rankLastWeek: 14,
-    rankEvolution: 15,
-    maxVictoryInRaw: 16,
-    maxDefeatInRaw: 17,
-    currentVictoryInRaw: 18,
-    currentDefeatInRaw: 19,
-    result1: 20,
-    result2: 21,
-    result3: 22,
-    result4: 23,
-    result5: 24
+    fullName: 3,
+    match: 4,
+    victory: 5,
+    draw: 6,
+    defeat: 7,
+    offensiveBonus: 8,
+    defensiveBonus: 9,
+    points: 10,
+    pointsPerMatch: 11,
+    victoryPercent: 12,
+    defeatPercent: 13,
+    rankThisWeek: 14,
+    rankLastWeek: 15,
+    rankEvolution: 16,
+    maxVictoryInRaw: 17,
+    maxDefeatInRaw: 18,
+    currentVictoryInRaw: 19,
+    currentDefeatInRaw: 20,
+    result1: 21,
+    result2: 22,
+    result3: 23,
+    result4: 24,
+    result5: 25
 };
 
 function loadPageStat() {
     var stats = "";
     var data = sheetStats.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
     data.forEach(function (p) {
-        if(p[statsColumnRange.mail]){
+        if(p[statsColumn.mail]){
             stats += "<tr>";
-            if (p[statsColumnRange.rankEvolution]) {
-                stats += "<td>" + p[statsColumnRange.rank] + "<sup> (" + p[statsColumnRange.rankEvolution] + ")</sup></td>";
+            if (p[statsColumn.rankEvolution]) {
+                stats += "<td>" + p[statsColumn.rank] + "<sup> (" + p[statsColumn.rankEvolution] + ")</sup></td>";
             } else {
-                stats += "<td>" + p[statsColumnRange.rank] + "</td>";
+                stats += "<td>" + p[statsColumn.rank] + "</td>";
             }
-            stats += "<td class='tooltipped' data-position='bottom' data-tooltip='" + getPlayerWithMail(p[statsColumnRange.mail]).fullName + "'>" + p[statsColumnRange.nickName] + "</td>"
-                + "<td>" + p[statsColumnRange.match] + "</td>"
-                + "<td>" + p[statsColumnRange.victory] + "</td>"
-                + "<td>" + p[statsColumnRange.draw] + "</td>"
-                + "<td>" + p[statsColumnRange.defeat] + "</td>"
-                + "<td>" + p[statsColumnRange.offensiveBonus] + "</td>"
-                + "<td>" + p[statsColumnRange.defensiveBonus] + "</td>"
-                + "<td>" + p[statsColumnRange.points] + "</td>"
-                + "<td>" + p[statsColumnRange.pointsPerMatch] + "</td>"
-                + "<td>" + p[statsColumnRange.maxVictoryInRaw] + "</td>"
-                + "<td>" + p[statsColumnRange.maxDefeatInRaw] + "</td>"
+            stats += "<td class='tooltipped' data-position='bottom' data-tooltip='" + p[statsColumn.fullName] + "'>" + p[statsColumn.nickName] + "</td>"
+                + "<td>" + p[statsColumn.match] + "</td>"
+                + "<td>" + p[statsColumn.victory] + "</td>"
+                + "<td>" + p[statsColumn.draw] + "</td>"
+                + "<td>" + p[statsColumn.defeat] + "</td>"
+                + "<td>" + p[statsColumn.offensiveBonus] + "</td>"
+                + "<td>" + p[statsColumn.defensiveBonus] + "</td>"
+                + "<td>" + p[statsColumn.points] + "</td>"
+                + "<td>" + p[statsColumn.pointsPerMatch] + "</td>"
+                + "<td>" + p[statsColumn.maxVictoryInRaw] + "</td>"
+                + "<td>" + p[statsColumn.maxDefeatInRaw] + "</td>"
                 + "<td>" + getLumieres(p) + "</td>"
                 + "</tr>";
         }
@@ -141,6 +164,6 @@ function loadPageStat() {
 }
 
 function saveRank() {
-    var currentRank = sheetResultFilter.getRange(1, 13, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).getValues();
-    sheetResultFilter.getRange(1, 14, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).setValues(currentRank);
+    var currentRank = sheetResultFilter.getRange(1, resultFilterColumnRange.rankThisWeek, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).getValues();
+    sheetResultFilter.getRange(1, resultFilterColumnRange.rankLastWeek, sheetResultFilter.getRange("A1:A").getValues().filter(String).length, 1).setValues(currentRank);
 }

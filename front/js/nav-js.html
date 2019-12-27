@@ -7,7 +7,9 @@
         var dropdown = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdown, {alignment: "right", constrainWidth: false});
         var textarea = document.querySelectorAll('.textarea');
-        M.CharacterCounter.init(textarea)
+        M.CharacterCounter.init(textarea);
+        var tooltips = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(tooltips, {});
     });
 
     function cleaningJs() {

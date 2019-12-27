@@ -1,11 +1,11 @@
 <div class="podium">
     <div class="tiers">
-        <? if(type=="win") { ?> <div class="vainqueur bottom2 z-depth-2"> <? } else { ?> <div class="perdant bottom2 z-depth-2"> <? } ?>
-            <?=values[0][1]?>
-            <br><?=values[1][1]?>
+        <div data-position='bottom' data-tooltip='<?=values[0][1]?>' class="tooltipped bottom2 z-depth-2 <? if(type=='win') { ?> vainqueur <? } else { ?> perdant <? } ?>">
+            <?=values[1][1]?>
+            <br><?=values[2][1]?>
             <?console.log(values.length)?>
-            <?if(values.length==3){?>
-             / <?=values[2][1]?>
+            <?if(values.length==4){?>
+             / <?=values[3][1]?>
             <?}?>
         </div>
         <div class="marche h2">
@@ -13,11 +13,11 @@
         </div>
     </div>
     <div class="tiers">
-        <? if(type=="win") { ?> <div class="vainqueur bottom1 z-depth-2"> <? } else { ?> <div class="perdant bottom1 z-depth-2"> <? } ?>
-            <?=values[0][0]?>
-            <br><?=values[1][0]?>
-            <?if(values.length==3){?>
-             / <?=values[2][0]?>
+        <div data-position='bottom' data-tooltip='<?=values[0][0]?>' class="tooltipped bottom1 z-depth-2 <? if(type=='win') { ?> vainqueur <? } else { ?> perdant <? } ?>">
+            <?=values[1][0]?>
+            <br><?=values[2][0]?>
+            <?if(values.length==4){?>
+             / <?=values[3][0]?>
             <?}?>
         </div>
         <div class="marche h1">
@@ -25,11 +25,11 @@
         </div>
     </div>
     <div class="tiers">
-        <? if(type=="win") { ?> <div class="vainqueur bottom3 z-depth-2"> <? } else { ?> <div class="perdant bottom3 z-depth-2"> <? } ?>
-            <?=values[0][2]?>
-            <br><?=values[1][2]?>
-            <?if(values.length==3){?>
-             / <?=values[2][2]?>
+        <div data-position='bottom' data-tooltip='<?=values[0][2]?>' class="tooltipped bottom3 z-depth-2 <? if(type=='win') { ?> vainqueur <? } else { ?> perdant <? } ?>">
+            <?=values[1][2]?>
+            <br><?=values[2][2]?>
+            <?if(values.length==4){?>
+             / <?=values[3][2]?>
             <?}?>
         </div>
         <div class="marche h3">
