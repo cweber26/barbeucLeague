@@ -73,23 +73,15 @@ function inscription(parameter) {
 
     var playersInTheMatchMailBefore = playersInTheMatchMail();
 
-    if (player.answer == "") {
-        // new answer
-        savePlayerAnswer(player, parameter.answer);
-    } else if (player.answer != parameter.answer) {
-        // answer different. we delete the row and check if it is a desistement.
-        savePlayerAnswer(player, parameter.answer);
+    sheetTeam.getRange(player.row, playerColumnRange.answer).setValue(parameter.answer);
+    if (player.answer == "" || player.answer != parameter.answer) {
+        sheetTeam.getRange(player.row, playerColumnRange.answerDate).setValue(now());
+    }
+    if (parameter.answer == "Non") {
+        sheetTeam.getRange(player.row, playerColumnRange.carSharing).clearContent();
         if(player.answer == "Oui") {
             checkIfDesistement(parameter, playersInTheMatchMailBefore);
         }
-    }
-}
-
-function savePlayerAnswer(player, answer) {
-    sheetTeam.getRange(player.row, playerColumnRange.answer).setValue(answer);
-    sheetTeam.getRange(player.row, playerColumnRange.answerDate).setValue(now());
-    if(answer == "Non") {
-        sheetTeam.getRange(player.row, playerColumnRange.carSharing).clearContent();
     }
 }
 

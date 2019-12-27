@@ -2,13 +2,13 @@
     sortTableTeamChar(0);
 
     function redirectProfilPage(element) {
-        var mail;
-        var parameter = {};
-        google.script.url.getLocation(function (location) {
-            mail = element.parentNode.parentNode.firstChild.textContent;
-            parameter = location.parameter;
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key)+"&profilMail="+String(mail);
-        });
+        google.script.run.withSuccessHandler(redirectProfilPageWithUrl).getUrl();
+        function redirectProfilPageWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                var mail = element.parentNode.parentNode.firstChild.textContent;
+                window.top.location.href = url+"?page=profil&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key)+"&profilMail="+String(mail);
+            });
+        }
     }
 
 
@@ -57,6 +57,14 @@
         google.script.run.withSuccessHandler(displaySuccessActionTeam).withFailureHandler(displayErrorActionTeam).confirmation(parameter);
     }
 
+    function creationAccountFromUserJs() {
+        google.script.run.withSuccessHandler(creationAccountFromUserJsWithUrl).getUrl();
+        function creationAccountFromUserJsWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                window.top.location.href = url+"?page=newProfil&mail="+location.parameter.mail+"&key="+location.parameter.key;
+            });
+        }
+    }
 
     function displaySuccessActionTeam() {
         M.toast({ html: "Success !!!" });

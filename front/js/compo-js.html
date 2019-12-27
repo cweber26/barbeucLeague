@@ -18,76 +18,56 @@
         M.Tooltip.init(tooltips, {});
     });
 
+    var parameter = {};
+
     // noinspection JSUnusedGlobalSymbols
     function inscriptionJs() {
         M.toast({html: "Inscription en cours"});
-        var parameter = {};
         google.script.url.getLocation(function (location) {
             parameter = location.parameter;
             parameter.answer = "Oui";
-            google.script.run.withSuccessHandler(reloadPageCompo).withFailureHandler(redirectToPageError).inscription(parameter);
+            google.script.run.withSuccessHandler(reloadNav).withFailureHandler(redirectToPageError).inscription(parameter);
         });
+    }
 
-        function reloadPageCompo() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(parameter.mail) + "&key=" + String(parameter.key);
+
+    function refreshCompoPageAuto(refreshAutoMiliSecondNumber) {
+        if (!refreshAutoMiliSecondNumber) {
+            refreshAutoMiliSecondNumber = 60000; //1min
         }
+        google.script.run.withSuccessHandler(refreshCompoPageAutoWithUrl).getUrl();
+        function refreshCompoPageAutoWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                window.top.location.href = url + "?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&refreshAutoMiliSecond=" + refreshAutoMiliSecondNumber;
+            });
+        }
+    }
 
-        function redirectToPageError() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=error";
+    function redirectToPageError() {
+        google.script.run.withSuccessHandler(redirectToPageErrorWithUrl).getUrl();
+        function redirectToPageErrorWithUrl(url) {
+            window.top.location.href = url + "?page=error";
         }
     }
 
     // noinspection JSUnusedGlobalSymbols
     function desinscriptionJs() {
         M.toast({html: "Désinscription en cours"});
-        var parameter = {};
         google.script.url.getLocation(function (location) {
             parameter = location.parameter;
             parameter.answer = "Non";
-            google.script.run.withSuccessHandler(reloadPageCompo).withFailureHandler(redirectToPageError).inscription(parameter);
+            google.script.run.withSuccessHandler(reloadNav).withFailureHandler(redirectToPageError).inscription(parameter);
         });
-
-        function reloadPageCompo() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(parameter.mail) + "&key=" + String(parameter.key);
-        }
-
-        function redirectToPageError() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=error";
-        }
     }
 
     // noinspection JSUnusedGlobalSymbols
     function confirmationJs(carSharingValue) {
         M.toast({html: "Confirmation en cours"});
-        var parameter = {};
         google.script.url.getLocation(function (location) {
             parameter = location.parameter;
             parameter.answer = "Oui";
             parameter.carSharing = carSharingValue;
-            google.script.run.withSuccessHandler(reloadPageCompo).withFailureHandler(redirectToPageError).confirmation(parameter);
-        });
-
-        function reloadPageCompo() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(parameter.mail) + "&key=" + String(parameter.key);
-        }
-
-        function redirectToPageError() {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=error";
-        }
-    }
-
-    function refreshCompoPage() {
-        google.script.url.getLocation(function (location) {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key);
-        });
-    }
-
-    function refreshCompoPageAuto(refreshAutoMiliSecondNumber) {
-        if (!refreshAutoMiliSecondNumber) {
-            refreshAutoMiliSecondNumber = 60000; //1min
-        }
-        google.script.url.getLocation(function (location) {
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&refreshAutoMiliSecond=" + refreshAutoMiliSecondNumber;
+            google.script.run.withSuccessHandler(reloadNav).withFailureHandler(redirectToPageError).confirmation(parameter);
         });
     }
 
@@ -152,11 +132,13 @@
 
     function redirectProfilPageWithPlayer(playerForProfilRedirection) {
         console.log("playerForProfilRedirection : " + playerForProfilRedirection);
-        var parameter = {};
-        google.script.url.getLocation(function (location) {
-            parameter = location.parameter;
-            window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key)+"&profilMail="+String(playerForProfilRedirection.mail);
-        });
+        google.script.run.withSuccessHandler(redirectProfilPageWithPlayerWithUrl).getUrl();
+        function redirectProfilPageWithPlayerWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                parameter = location.parameter;
+                window.top.location.href = url + "?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key)+"&profilMail="+String(playerForProfilRedirection.mail);
+            });
+        }
     }
 
     function swithTeamJs(element) {
@@ -170,7 +152,7 @@
 
     function displaySuccessActionCompo() {
         M.toast({ html: "Success !!!" });
-        refreshCompoPage();
+        reloadNav();
     }
 
     function displayErrorActionCompo() {
@@ -188,7 +170,7 @@
 
     function displayMessageSentCompo() {
         M.toast({ html: "Message envoyé" });
-        refreshCompoPage();
+        reloadNav();
     }
 
 

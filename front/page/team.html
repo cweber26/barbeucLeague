@@ -30,10 +30,9 @@
             <th onclick="sortTableTeamNumber(14)" style="cursor:pointer">Frappe</th>
             <th onclick="sortTableTeamNumber(15)" style="cursor:pointer">Défense</th>
             <? if(admin) { ?>
-            <th onclick="sortTableTeamChar(16)" style="cursor:pointer">A répondu</th>
-            <th onclick="sortTableTeamNumber(17)" style="cursor:pointer">Prio</th>
-            <th onclick="sortTableTeamChar(18)" style="cursor:pointer">Admin</th>
-            <th onclick="sortTableTeamChar(19)" style="cursor:pointer">Prioritaire</th>
+            <th onclick="sortTableTeamNumber(16)" style="cursor:pointer">Prio</th>
+            <th onclick="sortTableTeamChar(17)" style="cursor:pointer">Admin</th>
+            <th onclick="sortTableTeamChar(18)" style="cursor:pointer">Prioritaire</th>
             <th> Profil </th>
             <th> Inscription </th>
             <th> Désincription </th>
@@ -48,7 +47,7 @@
 </div>
 <? if(mail && key) { ?>
 <div class="fixed-action-btn direction-top active" style="bottom: 25px; right: 25px;">
-    <a href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=newProfil&mail=<?=mail?>&key=<?=key?>" class="btn-floating btn-large waves-effect waves-light green lighten-2 pulse"><i class="material-icons">add</i></a>
+    <a onclick="creationAccountFromUserJs()" class="btn-floating btn-large waves-effect waves-light green lighten-2 pulse"><i class="material-icons">add</i></a>
 </div>
 <? } ?>
 </body>

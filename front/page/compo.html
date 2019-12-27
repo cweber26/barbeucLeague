@@ -5,7 +5,7 @@
     <?!= include("front/page/head"); ?>
     <?!= include("front/css/pageCss"); ?>
     <?!= include("front/css/mainCss"); ?>
-    <?!= includeWithArgs("front/page/nav", {mail: mail, key: key, fullName: fullName, admin: admin, testing: testing, page: "compo"}); ?>
+    <?!= includeWithArgs("front/page/nav", {mail: mail, key: key, url: url, fullName: fullName, admin: admin, testing: testing, page: "compo"}); ?>
 </head>
 
 <body>
@@ -87,10 +87,10 @@
     <? if(buttonStatus.type == "inscription" && !cancelMatch) { ?>
     <div class="row">
         <div class="input-field col s6 l2 offset-l4">
-            <a id="inscription" <? if(buttonStatus.status == "Oui") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="inscriptionJs()" <? } ?>>Inscription</a>
+            <a id="inscription" <? if(buttonStatus.status == "Oui") { ?> class="buttonGray" <? } else { ?> class="buttonGreen" onclick="inscriptionJs()" <? } ?>>Je suis dispo</a>
         </div>
         <div class="input-field col s6 l2">
-            <a id="desinscription" <? if(buttonStatus.status == "Non") { ?> class="buttonGray" <? } else { ?> class="buttonRed" onclick="desinscriptionJs()" <? } ?>>Désinscription</a>
+            <a id="desinscription" <? if(buttonStatus.status == "Non") { ?> class="buttonGray" <? } else { ?> class="buttonRed" onclick="desinscriptionJs()" <? } ?>>Je suis pas dispo</a>
         </div>
     </div>
     <? } else if(buttonStatus.type == "confirmation" && !cancelMatch) { ?>
@@ -111,7 +111,9 @@
             </a>
         </div>
         <div class="input-field col s3">
-            <a id="deconfirmation" class="buttonRed valign-wrapper" onclick="desinscriptionJs()">Désinscription<br><i class='material-icons' style='font-size: 34px'>cancel</i></a>
+            <a <? if(buttonStatus.status == "") { ?> class="buttonGray" <? } else { ?> class="buttonRed valign-wrapper" onclick="desinscriptionJs()" <? } ?>>
+            Je ne suis pas dispo<br><i class='material-icons' style='font-size: 34px'>cancel</i>
+            </a>
         </div>
     </div>
     <? } ?>
@@ -122,7 +124,7 @@
             <ul class="collapsible expandable">
                 <? if(forum != "") { ?>
                 <li class="active">
-                    <div class="collapsible-header"><span class="text-align-center">Forum du match</span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
+                    <div class="collapsible-header"><span class="text-align-center">Message</span><i class="material-icons tiny rotate">arrow_drop_down</i></div>
                     <div class="collapsible-body text-align-center"><?!=forum?></div>
                 </li>
                 <? } ?>
@@ -248,7 +250,7 @@
 <div class="fixed-action-btn direction-top active" style="bottom: 175px; right: 25px;">
     <a class="btn-floating btn-large waves-effect waves-light green lighten-2 tooltipped" data-tooltip="Activer/Désactiver le rafraichissement automatique"
     <? if(refreshAutoMiliSecond && Number(refreshAutoMiliSecond) > 0) { ?>
-        onclick="refreshCompoPage()"><i class="material-icons">clear</i>
+        onclick="reloadNav()"><i class="material-icons">clear</i>
     <? } else { ?>
         onclick="refreshCompoPageAuto()"><i class="material-icons">autorenew</i>
     <? } ?>

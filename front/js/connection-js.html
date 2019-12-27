@@ -38,10 +38,13 @@
     }
 
     function connectionJs() {
-        var mailValue = document.getElementById("mail").value;
-        var keyValue = document.getElementById("key").value;
-        window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(mailValue) + "&key=" + String(keyValue);
-        M.toast({html: "Connection en cours"});
+        google.script.run.withSuccessHandler(connectionJsWithUrl).getUrl();
+        function connectionJsWithUrl(url) {
+            var mailValue = document.getElementById("mail").value;
+            var keyValue = document.getElementById("key").value;
+            window.top.location.href = url+"?page=profil&mail=" + String(mailValue) + "&key=" + String(keyValue);
+            M.toast({html: "Connection en cours"});
+        }
     }
 
     function sendKeyByMailJs() {
@@ -57,8 +60,11 @@
         M.toast({html: "Erreur"});
     }
 
-    function creationAccountWithCheckJs() {
-        window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=newProfil";
+    function creationAccountJs() {
+        google.script.run.withSuccessHandler(creationAccountJsWithUrl).getUrl();
+        function creationAccountJsWithUrl(url) {
+            window.top.location.href = url+"?page=newProfil";
+        }
     }
 
 </script>

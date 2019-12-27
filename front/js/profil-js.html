@@ -115,23 +115,27 @@
 
     }
 
+
+
     function updateProfilSuccess(newParameter) {
-        google.script.url.getLocation(function (location) {
-            var parameter = location.parameter;
-            console.log(parameter);
-            if (parameter.profilMail) {
-                if(newParameter){
-                    parameter.profilMail = newParameter.mail;
-                    window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key) + "&profilMail=" + String(parameter.profilMail);
+        google.script.run.withSuccessHandler(updateProfilSuccessWithUrl).getUrl();
+        function updateProfilSuccessWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                console.log(location.parameter);
+                if (location.parameter.profilMail) {
+                    if(newParameter){
+                        location.parameter.profilMail = newParameter.mail;
+                        window.top.location.href = url+"?page=profil&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&profilMail=" + String(location.parameter.profilMail);
+                    }
+                } else if (newParameter) {
+                    location.parameter.mail = newParameter.mail;
+                    location.parameter.key = newParameter.key;
+                    window.top.location.href = url+"?page=profil&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key);
+                } else {
+                    M.toast({html: "Profil modifié"});
                 }
-            } else if (newParameter) {
-                parameter.mail = newParameter.mail;
-                parameter.key = newParameter.key;
-                window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profil&mail=" + String(parameter.mail) + "&key=" + String(parameter.key);
-            } else {
-                M.toast({html: "Profil modifié"});
-            }
-        });
+            });
+        }
     }
 
     function updateProfilFailure() {
@@ -179,7 +183,7 @@
         if(message) {
             M.toast({html: message});
         } else {
-            M.toast({html: "Profil créé : l'utilisateur recevra les mails selon le type de convation choisi", displayLength: 10000});
+            M.toast({html: "Profil créé : l'utilisateur recevra les mails selon le type de convocation choisi", displayLength: 10000});
         }
     }
 
@@ -205,10 +209,13 @@
     }
 
     function archiveProfilJs() {
-        M.toast({html: "Suppression en cours"});
-        var mail = document.getElementById("mail").value;
-        google.script.run.archiveProfil(mail);
-        window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=profilArchived";
+        google.script.run.withSuccessHandler(archiveProfilJsWithUrl).getUrl();
+        function archiveProfilJsWithUrl(url) {
+            M.toast({html: "Suppression en cours"});
+            var mail = document.getElementById("mail").value;
+            google.script.run.archiveProfil(mail);
+            window.top.location.href = url+"?page=profilArchived";
+        }
     }
 
 </script>

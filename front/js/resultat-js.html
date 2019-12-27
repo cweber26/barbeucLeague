@@ -15,15 +15,17 @@
     });
 
     function reloadPageWithDate() {
-        google.script.url.getLocation(function (location) {
-            var parameter = location.parameter;
-            var date = encodeURIComponent(document.getElementById("matchDate").value);
-            if(parameter.mail && parameter.key) {
-                window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&mail=" + String(parameter.mail) + "&key=" + String(parameter.key) + "&matchDate=" + String(date);
-            } else {
-                window.top.location.href = "https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=resultat&matchDate=" + String(date);
-            }
-        });
+        google.script.run.withSuccessHandler(reloadPageWithDateWithUrl).getUrl();
+        function reloadPageWithDateWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                var date = encodeURIComponent(document.getElementById("matchDate").value);
+                if(location.parameter.mail && location.parameter.key) {
+                    window.top.location.href = url+"?page=resultat&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&matchDate=" + String(date);
+                } else {
+                    window.top.location.href = url+"?page=resultat&matchDate=" + String(date);
+                }
+            });
+        }
     }
 
     function saveScoreCheckJs() {

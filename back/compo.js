@@ -60,10 +60,14 @@ function loadPageCompo() {
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listeAttente += "<tr><td>" + buttonModificationProfilCompo(player.fullName) + "</td></tr>";
+                listeAttente += "<tr>" +
+                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
+                    "<td>" + buttonInscriptionCompo() + "</td>" +
+                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
+                    "</tr>";
             }
-            listeAttente += "</tbody></table>";
         });
+        listeAttente += "</tbody></table>";
 
     }
     var listePasDispo = "";
@@ -160,6 +164,7 @@ function loadPageCompo() {
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
         key: param.key,
+        url: url,
         fullName: getFullName(param.mail),
         date: matchDayGapInFrench(true),
         compoFullName: compoFullName,

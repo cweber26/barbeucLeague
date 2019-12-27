@@ -1,14 +1,17 @@
 <script>
   var parameter = {};
-  google.script.url.getLocation(function(location) {
-      parameter = location.parameter;
-      google.script.run.withSuccessHandler(redirectToPageCompo).withFailureHandler(redirectToPageError).inscription(parameter);
-  });
-  function redirectToPageCompo() {
-    window.top.location.href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=compo&mail="+String(parameter.mail)+"&key="+String(parameter.key);
-  }
-  function redirectToPageError() {
-    window.top.location.href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page=error";
+  var url = "";
+  google.script.run.withSuccessHandler(desinscriptionWithUrl).getUrl();
+  function desinscriptionWithUrl(url) {
+      google.script.url.getLocation(function(location) {
+          google.script.run.withSuccessHandler(redirectToPageCompo).withFailureHandler(redirectToPageError).inscription(location.parameter);
+          function redirectToPageCompo() {
+              window.top.location.href=url+"?page=compo&mail="+String(location.parameter.mail)+"&key="+String(location.parameter.key);
+          }
+          function redirectToPageError() {
+              window.top.location.href=url+"?page=error";
+          }
+      });
   }
 </script>
 

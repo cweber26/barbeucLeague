@@ -11,8 +11,9 @@ var sheetSchedule = spreadsheet.getSheetByName("Schedule");
 var sheetForum = spreadsheet.getSheetByName("Forum");
 var sheetHoliday = spreadsheet.getSheetByName("Holiday");
 
-var playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
+var url = ScriptApp.getService().getUrl();
 
+var playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
 ////////////PARAMETERS INIT////////////
 var parametersList = sheetParameters.getRange(1,1).getDataRegion().getValues();
 var victoryPoint = getParameterFromList("victoryPoint");
@@ -104,4 +105,14 @@ function reloadParameter() {
     waitingListPlayerMailList = getParameterFromList("waitingListPlayerMailList");
     notAvailablePlayerMailList = getParameterFromList("notAvailablePlayerMailList");
     notRespondedPlayerMailList = getParameterFromList("notRespondedPlayerMailList");
+}
+
+function reloadPlayersTeamList() {
+    playersTeamList = sheetTeam.getRange(3, 1, sheetTeam.getRange("A3:A").getValues().filter(String).length, sheetTeam.getLastColumn()).getValues();
+}
+
+// noinspection JSUnusedGlobalSymbols
+function getUrl() {
+    Logger.log("url : " + url);
+    return url;
 }

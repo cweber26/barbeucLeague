@@ -20,8 +20,7 @@ function loadPageTeam() {
                 + "<td>" + p[playerColumn.levelFrappe] + "</td>"
                 + "<td>" + p[playerColumn.levelDefense] + "</td>";
             if (param.isAdmin) {
-                tableTeam += "<td>" + checkbox(p[playerColumn.haveAlreadyAnswer]) + "</td>"
-                    + "<td>" + p[playerColumn.prioValue] + "</td>"
+                tableTeam += "<td>" + p[playerColumn.prioValue] + "</td>"
                     + "<td>" + checkbox(p[playerColumn.isAdmin]) + "</td>"
                     + "<td>" + checkbox(p[playerColumn.isPrioritary]) + "</td>"
                     + "<td>" + buttonModificationProfil() + "</td>"

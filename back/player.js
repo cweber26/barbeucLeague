@@ -19,17 +19,16 @@ var playerColumn = {
     levelDribble: 16,
     levelFrappe: 17,
     levelDefense: 18,
-    haveAlreadyAnswer: 19,
-    prioValue: 20,
-    isAdmin: 21,
-    isPrioritary: 22,
-    isInscriptionSent: 23,
-    isConfirmationSent: 24,
-    answer: 25,
-    answerDate: 26,
-    carSharing: 27,
-    isAvailableDay: 28,
-    row: 29
+    prioValue: 19,
+    isAdmin: 20,
+    isPrioritary: 21,
+    isInscriptionSent: 22,
+    isConfirmationSent: 23,
+    answer: 24,
+    answerDate: 25,
+    carSharing: 26,
+    isAvailableDay: 27,
+    row: 28
 };
 
 var playerColumnRange = {
@@ -52,7 +51,6 @@ var playerColumnRange = {
     levelDribble: (playerColumn.levelDribble +1),
     levelFrappe: (playerColumn.levelFrappe +1),
     levelDefense: (playerColumn.levelDefense +1),
-    haveAlreadyAnswer: (playerColumn.haveAlreadyAnswer +1),
     prioValue: (playerColumn.prioValue +1),
     isAdmin: (playerColumn.isAdmin +1),
     isPrioritary: (playerColumn.isPrioritary +1),
@@ -67,7 +65,7 @@ var playerColumnRange = {
 
 function shouldReceiveInscriptionMail(player, prior, withPriority, relaunch) {
     if (player.mail
-        && player.haveAlreadyAnswer == false
+        && player.answer == ""
         && player.isUnavailable == false
         && player.isAvailableDay == true
     ) {
@@ -134,7 +132,6 @@ function initPlayer(playerLine) {
     player.levelDribble =               playerLine[playerColumn.levelDribble];
     player.levelFrappe =                playerLine[playerColumn.levelFrappe];
     player.levelDefense =               playerLine[playerColumn.levelDefense];
-    player.haveAlreadyAnswer =          playerLine[playerColumn.haveAlreadyAnswer];
     player.prioValue =                  playerLine[playerColumn.prioValue];
     player.isAdmin =                    playerLine[playerColumn.isAdmin];
     player.isPrioritary =               playerLine[playerColumn.isPrioritary];
@@ -156,7 +153,7 @@ function getStatusUser(param) {
     try {
         var player = getPlayerWithMail(param.mail);
     } catch (error) {
-        return "unknow";
+        return "unknow error : " + error;
     }
 
     if (!isKeyValid(param.key, player.key)) {
@@ -331,7 +328,8 @@ function updateProfil(user) {
 
         if(user.oldMail != mail) {
             sheetTeam.getRange(row, playerColumnRange.mail).setValue(mail);
-            updateMailInResultSheet(oldMail, mail);
+            updateMailInResultSheet(user.oldMail, mail);
+            reloadPlayersTeamList();
             return {mail: mail, key: sheetTeam.getRange(row, playerColumnRange.key).getValue() * 2 + 10};
         }
 

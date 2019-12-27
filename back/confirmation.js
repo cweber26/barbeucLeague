@@ -31,38 +31,30 @@ function sendConfirmMailForAPlayer(player, isNewPlayer) {
 }
 
 function loadPageConfirmation() {
-    if (param.answer == "Oui") {
-        return render("front/page/confirmation", "confirmation",{mail: param.mail, key: param.key, admin: param.isAdmin});
-    }
+    return render("front/page/confirmation", "confirmation",{mail: param.mail, key: param.key, admin: param.isAdmin});
 }
 
 
 
 function confirmation(parameter) {
-    Logger.log("Confirmation for " + parameter.mail + " and answer " + parameter.answer);
+    Logger.log("Confirmation for " + parameter.mail + " with car sharing " + parameter.carSharing);
 
-    if (parameter.answer != "Oui") {
-        throw "La réponse ne peut être que Oui";
-    }
     var player = getPlayerWithMail(parameter.mail);
 
     if (!player.isInscriptionSent && !player.isConfirmationSent && mailSendingPrio3 == "") {
         throw "Le joueur " + player.fullName + " a voulu confirmer mais n'a pas le droit";
     }
-
-    if(player.answer == "Oui") {
-        savePlayerConfirmation(player, parameter.answer, parameter.carSharing);
-    } else {
-        inscription(parameter);
-        confirmation(parameter);
-    }
+    savePlayerConfirmation(player, parameter.carSharing);
 }
 
 function flagConfirmationToSentForPlayer(player) {
     sheetTeam.getRange(player.row, playerColumnRange.isConfirmationSent).setValue(true);
 }
 
-function savePlayerConfirmation(player, answer, carSharing) {
-    sheetTeam.getRange(player.row, playerColumnRange.answer).setValue(answer);
+function savePlayerConfirmation(player, carSharing) {
+    if(player.answer != "Oui") {
+        sheetTeam.getRange(player.row, playerColumnRange.answer).setValue("Oui");
+        sheetTeam.getRange(player.row, playerColumnRange.answerDate).setValue(now());
+    }
     sheetTeam.getRange(player.row, playerColumnRange.carSharing).setValue(carSharing);
 }

@@ -41,10 +41,12 @@
     }
 
     function reloadNav() {
-        google.script.url.getLocation(function (location) {
-            var parameter = location.parameter;
-            window.top.location.href="https://script.google.com/macros/s/AKfycbw7SggSd_5zNsbmfZ3nUU_nr2cXfRYIgntGSLh2n3sNhOJyUDs/exec?page="+String(parameter.page)+"&mail="+String(parameter.mail)+"&key="+String(parameter.key);
-        });
+        google.script.run.withSuccessHandler(reloadNavWithUrl).getUrl();
+        function reloadNavWithUrl(url) {
+            google.script.url.getLocation(function (location) {
+                window.top.location.href=url+"?page="+String(location.parameter.page)+"&mail="+String(location.parameter.mail)+"&key="+String(location.parameter.key);
+            });
+        }
     }
 
     function envoyerMessageJs() {
