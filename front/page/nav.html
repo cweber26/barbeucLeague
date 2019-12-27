@@ -55,6 +55,7 @@
     <li><a class="modal-trigger" data-target="recordmonth-modal">Envoyer mail records dernier mois</a></li>
     <li><a class="modal-trigger" data-target="stats-modal">Recalculer les statistiques</a></li>
     <li><a class="modal-trigger" data-target="mailtest-modal">Envoyer mails test</a></li>
+    <li><a class="modal-trigger" data-target="launchBatch-modal">Lancer le batch</a></li>
     <li><a class="modal-trigger" data-target="purge-modal" style="color: #e57373">Purge match</a></li>
     <li><a class="modal-trigger" data-target="cancel-modal" style="color: #e57373">Cancel match</a></li>
     <li class="divider"></li>
@@ -213,6 +214,18 @@
         <h5>Es tu sûr de vouloir basculer le mode ?</h5>
         <div class="row">
             <div class="buttonGreen modal-close" onclick="switchModeJs()">Confirmer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
+        </div>
+    </div>
+</div>
+
+<div id="launchBatch-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir lancer le batch ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="launchBatchJs()">Confirmer</div>
         </div>
         <div class="row">
             <div class="buttonRed modal-close">Annuler</div>

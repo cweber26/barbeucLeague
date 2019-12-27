@@ -27,6 +27,11 @@
         google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).switchMode();
     }
 
+    function launchBatchJs() {
+        M.toast({html: "Batch en cours"});
+        google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).execBatch();
+    }
+
     function sendRecordsLastMontJs() {
         M.toast({html: "Envoi en cours"});
         google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendLastMonthResultMail();
