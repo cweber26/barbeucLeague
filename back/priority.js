@@ -38,6 +38,6 @@ function addPriorityWithMail(mail) {
 
 function updatePriorityWithMail(mail, value) {
     Logger.log("updatePriorityWithMail with mail %s and value %s", mail, value);
-    var row = getRowSheetTeamWithMail(mail);
-    sheetTeam.getRange(row, playerColumnRange.isPrioritary).setValue(value);
+    var player = getPlayerWithMail(mail);
+    sheetTeam.getRange(player.row, playerColumnRange.isPrioritary).setValue(value);
 }

@@ -54,6 +54,7 @@ var notAvailableByDayPlayerMailList = getParameterFromList("notAvailableByDayPla
 var notRespondedPlayerMailList = getParameterFromList("notRespondedPlayerMailList");
 var notInvitedPlayerMailList = getParameterFromList("notInvitedPlayerMailList");
 var injuredPlayerMailList = getParameterFromList("injuredPlayerMailList");
+var invitedPlayerMailList = getParameterFromList("invitedPlayerMailList");
 var lastMonthPlayerMailList = getParameterFromList("lastMonthPlayerMailList");
 var nextMatchStadiumName = getParameterFromList("nextMatchStadiumName");
 var nextMatchStadiumAddress = getParameterFromList("nextMatchStadiumAddress");

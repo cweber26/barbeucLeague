@@ -51,15 +51,41 @@ function getPlayerListWithMail(playerMailList) {
 function sendMessageForAPlayer(player, message, isAnAlert) {
     var html;
     if(isAnAlert) {
-        html = "<div style='width: 400px; margin: auto; color: #ef5350; font-size: 16px; font-weight: bold;'>" + message + "</div>"
+        html = "<div style='width:400px;margin:auto;color:#ef5350;font-size:16px;font-weight:bold;'>"+ message +"</div>"
     } else {
-        html = "<div style='width: 400px; margin: auto; font-size: 14px;'>" + message + "</div>"
+        html = "<div style='width:400px;margin:auto;font-size:14px;'>"+ message +"</div>"
     }
     var body = includeWithArgs("front/mail/mailSimple", {
         html: html,
         urlMail: getUrlMail(player)
     });
     sendMail(player.mail, "Message", body);
+}
+
+// noinspection JSUnusedGlobalSymbols
+function envoyerNewMatchDateMessage(messageContent) {
+    var playerMailListForMessage = invitedPlayerMailList.split(',');
+
+    if (playerMailListForMessage != "") {
+        Logger.log("playerMailList : " + playerMailListForMessage);
+        sendNewMatchDateMessageForAPlayerList(playerMailListForMessage, messageContent);
+    }
+}
+
+function sendNewMatchDateMessageForAPlayerList(playerMailList, messageContent) {
+    playerMailList.forEach(function (m) {
+        var player = getPlayerWithMail(m);
+        sendNewMatchDateMessageForAPlayer(player, messageContent);
+    });
+}
+
+function sendNewMatchDateMessageForAPlayer(player, messageContent) {
+    var html = "<div style='width:400px;margin:auto;color:#ef5350;font-size:16px;font-weight:bold;'>"+ messageContent.messageNewMatchDate +"</div>";
+    var body = includeWithArgs("front/mail/mailSimple", {
+        html: html,
+        urlMail: getUrlMail(player)
+    });
+    sendMail(player.mail, "Changement de date de match : " + getDateFormat(messageContent.newDate), body);
 }
 
 // noinspection JSUnusedGlobalSymbols

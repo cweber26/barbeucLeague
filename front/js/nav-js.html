@@ -10,6 +10,13 @@
         M.CharacterCounter.init(textarea);
         var tooltips = document.querySelectorAll('.tooltipped');
         M.Tooltip.init(tooltips, {});
+        var datePicker = document.getElementById('newMatchDate');
+        M.Datepicker.init(datePicker, {
+            autoClose: true,
+            format: 'dd/mm/yyyy',
+            disableWeekends: true,
+            firstDay: 1
+        })
     });
 
     function cleaningJs() {
@@ -34,7 +41,7 @@
 
     function sendRecordsLastMontJs() {
         M.toast({html: "Envoi en cours"});
-        google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).sendLastMonthResultMail();
+        google.script.run.withSuccessHandler(successMail).withFailureHandler(failNav).sendLastMonthResultMail();
     }
 
     function recalculateStatsJs() {
@@ -44,7 +51,7 @@
 
     function sendMailsTestJs() {
         M.toast({ html: "Envoi des mails en cours" });
-        google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).testMails();
+        google.script.run.withSuccessHandler(successMail).withFailureHandler(failNav).testMails();
     }
 
     function reloadNav() {
@@ -68,11 +75,29 @@
         }
     }
 
+    function newDateMatchAndSendMessageJs() {
+        var newDate = document.getElementById("indispoDate").value;
+        if(newDate && newDate > now()) {
+            google.script.run.withSuccessHandler(successNewDate).withFailureHandler(failNav).forceNextMatchDate(newDate);
+            if(document.getElementById("messageNewMatchDate").value) {
+                google.script.run.withSuccessHandler(successMail).withFailureHandler(failNav).envoyerNewMatchDateMessage({
+                    messageNewMatchDate: document.getElementById("messageNewMatchDate").value.replace(/\n\r?/g, '<br />'),
+                    newDate: newDate
+                });
+                M.toast({html: "Message en cours d'envoi"});
+            }
+        }
+    }
+
+    function successNewDate() {
+        M.toast({ html: "Date mise à jour" });
+    }
+
     function successStats() {
         M.toast({ html: "Statistiques mise à jour" });
     }
 
-    function successNav() {
+    function successMail() {
         M.toast({html: "Mails envoyés"});
     }
 

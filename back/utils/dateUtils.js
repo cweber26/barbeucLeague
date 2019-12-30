@@ -18,6 +18,11 @@ function setNextMatchDate() {
     }
 }
 
+// noinspection JSUnusedGlobalSymbols
+function forceNextMatchDate(date) {
+    updateParameter("nextMatchDate", date);
+}
+
 function isADayWithMatch(dayNumber) {
     if (dayNumber > 7) {
         dayNumber -= 7;

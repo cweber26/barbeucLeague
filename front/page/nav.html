@@ -52,7 +52,8 @@
     <li><a href="<?=url?>?page=backoffice&mail=<?=mail?>&key=<?=key?>">Parameters</a></li>
     <li><a href="<?=url?>?page=newProfil&mail=<?=mail?>&key=<?=key?>">Créer un joueur</a></li>
     <li class="divider"></li>
-    <li><a class="modal-trigger" data-target="helperMessage">Envoyer un message</a></li>
+    <li><a class="modal-trigger" data-target="matchDate-modal">Changer la date du prochain match</a></li>
+    <li><a class="modal-trigger" data-target="helperMessage-modal">Envoyer un message</a></li>
     <li><a class="modal-trigger" data-target="recordmonth-modal">Envoyer mail records dernier mois</a></li>
     <li><a class="modal-trigger" data-target="stats-modal">Recalculer les statistiques</a></li>
     <li><a class="modal-trigger" data-target="mailtest-modal">Envoyer mails test</a></li>
@@ -63,7 +64,7 @@
     <li><a class="modal-trigger" data-target="switchmode-modal"><?if(testing){?>Prod mode<?} else {?><span style="color: #e57373">Test mode<?}?></span></a></li>
 </ul>
 
-<div id="helperMessage" class="modal">
+<div id="helperMessage-modal" class="modal">
     <div class="modal-content">
         <h5>Envoyer un message</h5>
         <div class="container">
@@ -142,6 +143,25 @@
             <label for="message">message :</label><textarea id="message" class="materialize-textarea"></textarea>
             <div class="row">
                 <div class="buttonGreen modal-close" onclick="envoyerMessageJs()">Envoyer</div>
+            </div>
+            <div class="row">
+                <div class="buttonRed modal-close">Annuler</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="matchDate-modal" class="modal">
+    <div class="modal-content">
+        <h5>Changement date</h5>
+        <div class="container">
+            <div class="row">
+                <input id="newMatchDate" type="text" class="datepicker col s12">
+                <label for="newMatchDate">Nouvelle date de match</label>
+            </div>
+            <label for="messageNewMatchDate">message : (facultatif)</label>
+                <textarea id="messageNewMatchDate" class="materialize-textarea"></textarea>
+            <div class="row">
+                <div class="buttonGreen modal-close" onclick="newDateMatchAndSendMessageJs()">Envoyer</div>
             </div>
             <div class="row">
                 <div class="buttonRed modal-close">Annuler</div>

@@ -28,13 +28,14 @@ function sendInscriptionMailForPlayersWithPrio3() {
 
 function relaunchInscriptionMailForPlayersWithoutAnswer() {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
-        relaunchInscriptionMailForPlayersWithoutAnswerWithoutControl(3, true);
+        relaunchInscriptionMailForPlayersWithoutAnswerWithoutControl();
     }
 }
 
 function sendInscriptionMailForPrioritaryPlayersWithoutControl() {
-    playersTeamList.forEach(function (player) {
-        if (couldBeAvailableForMatch(player) && player[playerColumn.isPrioritary] == true) {
+    playersTeamList.forEach(function (playerLine) {
+        var player = initPlayer(playerLine);
+        if (couldBeAvailableForMatch(player) && player.isPrioritary == true) {
             flagInscriptionToSentForPlayer(player);
             sendInscriptionMailForAPlayer(player, true, false);
         }
@@ -42,8 +43,9 @@ function sendInscriptionMailForPrioritaryPlayersWithoutControl() {
 }
 
 function sendInscriptionMailForAPrioWithoutControl(prio, displayAvailableSlot) {
-    playersTeamList.forEach(function (player) {
-        if (couldBeAvailableForMatch(player) && player[playerColumn.prioValue] == prio) {
+    playersTeamList.forEach(function (playerLine) {
+        var player = initPlayer(playerLine);
+        if (couldBeAvailableForMatch(player) && player.prioValue == prio) {
             flagInscriptionToSentForPlayer(player);
             sendInscriptionMailForAPlayer(player, false, displayAvailableSlot);
         }
@@ -51,20 +53,17 @@ function sendInscriptionMailForAPrioWithoutControl(prio, displayAvailableSlot) {
 }
 
 function relaunchInscriptionMailForPlayersWithoutAnswerWithoutControl() {
-    playersTeamList.forEach(function (player) {
-        if (couldBeAvailableForMatch(player) && player[playerColumn.prioValue] <= 3) {
-            flagInscriptionToSentForPlayer(player);
-            sendInscriptionMailForAPlayer(player, false, true);
-        }
+    notRespondedPlayerMailList.forEach(function (player) {
+        sendInscriptionMailForAPlayer(player, false, true);
     });
 }
 
 
 function couldBeAvailableForMatch(player) {
-    return player[playerColumn.mail]
-        && player[playerColumn.answer] == ""
-        && player[playerColumn.isAvailableDay] == true
-        && player[playerColumn.isUnavailable] == false;
+    return player.mail
+        && player.answer == ""
+        && player.isAvailableDay == true
+        && player.isUnavailable == false;
 }
 
 
