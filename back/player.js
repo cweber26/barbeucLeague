@@ -153,14 +153,13 @@ function isKeyValid(keyToCheck, key) {
 
 
 function deleteUnavaibility() {
-    var playersList = playersTeamList;
-    for (var i in playersList) {
-        var player = playersList[i];
-        if (player[playerColumn.endDateOfUnavailibility] && player[playerColumn.endDateOfUnavailibility].valueOf() < nextMatchDate.valueOf()) {
-            sheetTeam.getRange(Number(i) + gapLine, playerColumnRange.isUnavailable).setValue(false);
-            sheetTeam.getRange(Number(i) + gapLine, playerColumnRange.endDateOfUnavailibility).clearContent();
+    playersTeamList.forEach(function (playerLine) {
+        var player = initPlayer(playerLine);
+        if (player.endDateOfUnavailibility && player.endDateOfUnavailibility.valueOf() < nextMatchDate.valueOf()) {
+            sheetTeam.getRange(player.row, playerColumnRange.isUnavailable).setValue(false);
+            sheetTeam.getRange(player.row, playerColumnRange.endDateOfUnavailibility).clearContent();
         }
-    }
+    });
 }
 
 
@@ -203,7 +202,7 @@ function loadPageNewProfil() {
 // noinspection JSUnusedGlobalSymbols
 function updateProfil(user) {
 
-    var row = getRowSheetTeamWithMail(user.oldMail);
+    var row = getPlayerWithMail(user.oldMail).row;
 
     if (user.key == (sheetTeam.getRange(row, playerColumnRange.key).getValue() * 2 + 10)) {
         var mail = user.mail;
@@ -412,8 +411,8 @@ function playersInjuredPlayerMailList() {
 
 // noinspection JSUnusedGlobalSymbols
 function archiveProfil(mail) {
-    var row = getRowSheetTeamWithMail(mail);
-    sheetTeam.getRange(row, playerColumnRange.prioValue).setValue(9);
+    var player = getPlayerWithMail(mail);
+    sheetTeam.getRange(player.row, playerColumnRange.prioValue).setValue(9);
 }
 
 // noinspection JSUnusedGlobalSymbols
