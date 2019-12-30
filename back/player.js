@@ -313,31 +313,34 @@ function updateProfil(user) {
     }
 }
 
-function getRowSheetTeamWithMail(mail) {
+function isMailExistInDB(mail) {
     var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
         if (teamList[i][playerColumn.mail] == mail) {
-            return i + gapLine;
+            return true;
         }
     }
+    return false;
 }
 
-function getRowSheetTeamWithFullName(firstname, lastname) {
+function isFullNameExistInDB(firstname, lastname) {
     var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
         if (teamList[i][playerColumn.firstName] == firstname && teamList[i][playerColumn.lastName] == lastname) {
-            return i + gapLine;
+            return true;
         }
     }
+    return false;
 }
 
-function getRowSheetTeamWithNickname(nickname) {
+function isNickNameExistInDB(nickname) {
     var teamList = playersTeamList;
     for (var i = 0; i < teamList.length; i++) {
         if (teamList[i][playerColumn.nickName] == nickname) {
-            return i + gapLine;
+            return true;
         }
     }
+    return false;
 }
 
 
@@ -417,13 +420,13 @@ function archiveProfil(mail) {
 
 // noinspection JSUnusedGlobalSymbols
 function createProfil(user, creatorMail) {
-    if(getRowSheetTeamWithMail(user.mail)) {
+    if(isMailExistInDB(user.mail)) {
         return "Le mail " + user.mail + " est déjà utilisé";
     }
-    if(getRowSheetTeamWithFullName(user.prenom, user.nom)) {
+    if(isFullNameExistInDB(user.prenom, user.nom)) {
         return "Le joueur existe " + user.prenom + " " + user.nom + " est déjà utilisé";
     }
-    if(getRowSheetTeamWithNickname(user.surnom)) {
+    if(isNickNameExistInDB(user.surnom)) {
         return "Le surnom " + user.surnom + " est déjà utilisé";
     }
     var row = sheetTeam.getRange("A3:A").getValues().filter(String).length + 3;
