@@ -24,13 +24,13 @@
 
     function updateProfilCheck() {
         if(profilInfosAreOk()){
-            updateProfil();
+            updateProfilJs();
         }
     }
 
     function createProfilCheck() {
         if(profilInfosAreOk()){
-            createProfil();
+            createProfilJs();
         }
     }
 
@@ -79,39 +79,39 @@
         return true;
     }
 
-    function updateProfil() {
-        var user = {};
-        user.mail = document.getElementById("mail").value.trim();
-        user.oldMail = document.getElementById("oldMail").value;
-        user.key = document.getElementById("key").value;
-        user.prenom = document.getElementById("prenom").value.trim();
-        user.nom = document.getElementById("nom").value.trim();
-        user.surnom = document.getElementById("surnom").value.trim();
-        user.indispo = document.getElementById("indispo").checked;
-        user.indispoDate = document.getElementById("indispoDate").value;
-        user.lundi = document.getElementById("lundi").checked;
-        user.mardi = document.getElementById("mardi").checked;
-        user.mercredi = document.getElementById("mercredi").checked;
-        user.jeudi = document.getElementById("jeudi").checked;
-        user.vendredi = document.getElementById("vendredi").checked;
-        user.site = document.getElementById("site").value;
-        user.poste = document.getElementById("poste").value;
-        user.dribble = document.querySelector('input[name="dribble"]:checked').value;
-        user.frappe = document.querySelector('input[name="frappe"]:checked').value;
-        user.defense = document.querySelector('input[name="defense"]:checked').value;
+    function updateProfilJs() {
+        var player = {};
+        player.mail = document.getElementById("mail").value.trim();
+        player.oldMail = document.getElementById("oldMail").value;
+        player.key = document.getElementById("key").value;
+        player.prenom = document.getElementById("prenom").value.trim();
+        player.nom = document.getElementById("nom").value.trim();
+        player.surnom = document.getElementById("surnom").value.trim();
+        player.indispo = document.getElementById("indispo").checked;
+        player.indispoDate = document.getElementById("indispoDate").value;
+        player.lundi = document.getElementById("lundi").checked;
+        player.mardi = document.getElementById("mardi").checked;
+        player.mercredi = document.getElementById("mercredi").checked;
+        player.jeudi = document.getElementById("jeudi").checked;
+        player.vendredi = document.getElementById("vendredi").checked;
+        player.site = document.getElementById("site").value;
+        player.poste = document.getElementById("poste").value;
+        player.dribble = document.querySelector('input[name="dribble"]:checked').value;
+        player.frappe = document.querySelector('input[name="frappe"]:checked').value;
+        player.defense = document.querySelector('input[name="defense"]:checked').value;
         if (document.getElementById("priorityLevel")) {
-            user.priorityLevel = document.getElementById("priorityLevel").value;
+            player.priorityLevel = document.getElementById("priorityLevel").value;
         }
         if (document.getElementById("isAnAdmin")) {
-            user.isAnAdmin = document.getElementById("isAnAdmin").checked;
+            player.isAnAdmin = document.getElementById("isAnAdmin").checked;
         }
         if (document.getElementById("haveAPriority")) {
-            user.haveAPriority = document.getElementById("haveAPriority").checked;
+            player.haveAPriority = document.getElementById("haveAPriority").checked;
         }
 
-        console.log(user);
+        console.log(player);
         M.toast({html: "En cours de modification"});
-        google.script.run.withSuccessHandler(updateProfilSuccess).withFailureHandler(updateProfilFailure).updateProfil(user);
+        google.script.run.withSuccessHandler(updateProfilSuccess).withFailureHandler(updateProfilFailure).updateProfil(player);
 
     }
 
@@ -142,39 +142,39 @@
         M.toast({html: "Clef non valide"});
     }
 
-    function createProfil() {
-        var user = {};
-        user.mail = document.getElementById("mail").value.trim();
-        user.prenom = document.getElementById("prenom").value.trim();
-        user.nom = document.getElementById("nom").value.trim();
-        user.surnom = document.getElementById("surnom").value.trim();
-        user.indispo = document.getElementById("indispo").checked;
-        user.indispoDate = document.getElementById("indispoDate").value;
-        user.lundi = document.getElementById("lundi").checked;
-        user.mardi = document.getElementById("mardi").checked;
-        user.mercredi = document.getElementById("mercredi").checked;
-        user.jeudi = document.getElementById("jeudi").checked;
-        user.vendredi = document.getElementById("vendredi").checked;
-        user.site = document.getElementById("site").value;
-        user.poste = document.getElementById("poste").value;
-        user.dribble = document.querySelector('input[name="dribble"]:checked').value;
-        user.frappe = document.querySelector('input[name="frappe"]:checked').value;
-        user.defense = document.querySelector('input[name="defense"]:checked').value;
+    function createProfilJs() {
+        var player = {};
+        player.mail = document.getElementById("mail").value.trim();
+        player.prenom = document.getElementById("prenom").value.trim();
+        player.nom = document.getElementById("nom").value.trim();
+        player.surnom = document.getElementById("surnom").value.trim();
+        player.indispo = document.getElementById("indispo").checked;
+        player.indispoDate = document.getElementById("indispoDate").value;
+        player.lundi = document.getElementById("lundi").checked;
+        player.mardi = document.getElementById("mardi").checked;
+        player.mercredi = document.getElementById("mercredi").checked;
+        player.jeudi = document.getElementById("jeudi").checked;
+        player.vendredi = document.getElementById("vendredi").checked;
+        player.site = document.getElementById("site").value;
+        player.poste = document.getElementById("poste").value;
+        player.dribble = document.querySelector('input[name="dribble"]:checked').value;
+        player.frappe = document.querySelector('input[name="frappe"]:checked').value;
+        player.defense = document.querySelector('input[name="defense"]:checked').value;
         if (document.getElementById("priorityLevel")) {
-            user.priorityLevel = document.getElementById("priorityLevel").value;
+            player.priorityLevel = document.getElementById("priorityLevel").value;
         }
         if (document.getElementById("isAnAdmin")) {
-            user.isAnAdmin = document.getElementById("isAnAdmin").checked;
+            player.isAnAdmin = document.getElementById("isAnAdmin").checked;
         }
         if (document.getElementById("haveAPriority")) {
-            user.haveAPriority = document.getElementById("haveAPriority").checked;
+            player.haveAPriority = document.getElementById("haveAPriority").checked;
         }
 
-        console.log(user);
+        console.log(player);
         M.toast({html: "En cours de création"});
         google.script.url.getLocation(function (location) {
             var parameter = location.parameter;
-            google.script.run.withSuccessHandler(createProfilSuccess).withFailureHandler(createProfilFailure).createProfil(user, parameter.mail);
+            google.script.run.withSuccessHandler(createProfilSuccess).withFailureHandler(createProfilFailure).createProfil(player, parameter.mail);
         });
 
     }
