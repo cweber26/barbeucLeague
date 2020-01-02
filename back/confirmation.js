@@ -41,7 +41,7 @@ function confirmation(parameter) {
 
     var player = getPlayerWithMail(parameter.mail);
 
-    if (!player.isInscriptionSent && !player.isConfirmationSent && mailSendingPrio3 == "") {
+    if (!player.isInscriptionSent && !player.isConfirmationSent && mailSentForPlayersWithPrio3 == "") {
         throw "Le joueur " + player.fullName + " a voulu confirmer mais n'a pas le droit";
     }
     savePlayerConfirmation(player, parameter.carSharing);

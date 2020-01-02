@@ -314,7 +314,7 @@ function getButtonStatus() {
         } else if (player.isInscriptionSent) {
             buttonStatus.type = "inscription";
             buttonStatus.status = player.answer;
-        } else if (mailSendingPrio3 != "") {
+        } else if (mailSentForPlayersWithPrio3 != "") {
             buttonStatus.type = "inscription";
             buttonStatus.status = player.answer;
         }

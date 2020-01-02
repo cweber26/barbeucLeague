@@ -45,7 +45,7 @@ function sendInscriptionMailForPrioritaryPlayersWithoutControl() {
 function sendInscriptionMailForAPrioWithoutControl(prio, displayAvailableSlot) {
     playersTeamList.forEach(function (playerLine) {
         var player = initPlayer(playerLine);
-        if (couldBeAvailableForMatch(player) && player.prioValue == prio) {
+        if (couldBeAvailableForMatch(player) && player.prioValue == prio && player.isPrioritary == false) {
             flagInscriptionToSentForPlayer(player);
             sendInscriptionMailForAPlayer(player, false, displayAvailableSlot);
         }
@@ -98,7 +98,7 @@ function inscription(parameter) {
     }
     var player = getPlayerWithMail(parameter.mail);
 
-    if (!(player.isInscriptionSent || player.isConfirmationSent || mailSendingPrio3 != "")) {
+    if (!(player.isInscriptionSent || player.isConfirmationSent || mailSentForPlayersWithPrio3 != "")) {
         throw "Le joueur " + player.fullName + " a voulu s inscrire mais n'a pas le droit";
     }
 
