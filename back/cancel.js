@@ -9,6 +9,10 @@ function cancelMatchAndSendMail(isAutoCancel) {
 }
 
 
+function isTheReservationAlreadyDone() {
+    return reservationAlreadyDone == true;
+}
+
 function sendCancelMatchMailForAPlayer(player, isAutoCancel) {
     var body = includeWithArgs("front/mail/mailCancelMatch", {
         date: matchDayGapInFrench(true),
@@ -16,7 +20,7 @@ function sendCancelMatchMailForAPlayer(player, isAutoCancel) {
         nbLimitPlayers: minPlayerForAutoCancelation,
         isAutoCancel: isAutoCancel,
         urlMail: getUrlMail(player),
-        reservationAlreadyDone: reservationAlreadyDone
+        reservationAlreadyDone: isTheReservationAlreadyDone()
     });
     sendMail(player.mail, "⛔ Annulation du match de Footsal " + matchDayGapInFrench(true) + " ⛔😢", body);
 }

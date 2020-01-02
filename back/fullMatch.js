@@ -2,8 +2,8 @@ function sendMatchCompletMail() {
     if (isTheMatchInProgress()) {
         var mails = adminMailList.split(',');
         for (var i in mails) {
-            var player = getPlayerWithMail(mails[i]);
-            sendMatchCompletMailForAPlayer(player);
+            var adminPlayer = getPlayerWithMail(mails[i]);
+            sendMatchCompletMailForAPlayer(adminPlayer);
         }
     }
 }
@@ -13,6 +13,6 @@ function sendMatchCompletMailForAPlayer(player) {
         date: matchDayGapInFrench(true),
         compo: getCompoPlayersListForMail(),
         urlMail: getUrlMail(player),
-        reservationAlreadyDone: reservationAlreadyDone
+        reservationAlreadyDone: isTheReservationAlreadyDone()
     }));
 }
