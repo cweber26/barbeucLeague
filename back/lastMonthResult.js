@@ -18,17 +18,17 @@ function sendLastMonthResultMailForAPlayer(player) {
 function getWinnersLosersTable(value) {
     var data;
     if (value == "winners") {
-        data = sheetRecordFilter.getRange(23, 2, 4, 5).getValues();
+        data = sheetRecordFilter.getRange(23, 2, 5, 5).getValues();
     } else if (value == "losers") {
-        data = sheetRecordFilter.getRange(28, 2, 4, 5).getValues();
+        data = sheetRecordFilter.getRange(28, 2, 5, 5).getValues();
     }
     var dataHtml = "";
     for (var i in data[0]) {
         dataHtml += "<tr>"
             + "<td>" + data[0][i] + "</td>"
-            + "<td>" + data[1][i] + "</td>"
             + "<td>" + data[2][i] + "</td>"
             + "<td>" + data[3][i] + "</td>"
+            + "<td>" + data[4][i] + "</td>"
             + "</tr>";
     }
     return dataHtml;
