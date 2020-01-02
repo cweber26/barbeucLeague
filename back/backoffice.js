@@ -32,7 +32,7 @@ function loadPageBackoffice() {
     log.team = getDateTimeFormat(teamSaved);
 
     var schedule = "";
-    sheetSchedule.getRange(2, 1, 1, 8).getValues().forEach(function (s) {
+    sheetSchedule.getRange(2, 1, 2, 8).getValues().forEach(function (s) {
         schedule += "<tr>"
             + "<td>" + s[0] + "</td>"
             + "<td>" + checkbox(s[1]) + "</td>"
@@ -44,7 +44,7 @@ function loadPageBackoffice() {
             + "<td>" + checkbox(s[7]) + "</td>"
             + "</tr>";
     });
-    sheetSchedule.getRange(3, 1, 12, 8).getValues().forEach(function (s) {
+    sheetSchedule.getRange(4, 1, 11, 8).getValues().forEach(function (s) {
         schedule += "<tr>"
             + "<td>" + s[0] + "</td>"
             + "<td>" + s[1] + "</td>"
