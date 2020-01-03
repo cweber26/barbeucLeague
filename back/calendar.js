@@ -1,5 +1,5 @@
 function createEventIfMatchIsFull() {
-    if (isTheMatchInProgress() && creationGoogleEvent=="" && numberPlayerInMatch == numberPlayerMatch) {
+    if (isTheMatchInProgress() && creationGoogleEvent=="" && numberPlayerInMatch == numberPlayerMatch && isProd()) {
         sendMatchCompletMail();
         createCalendarEvent();
     }
