@@ -156,6 +156,9 @@ function loadPageCompo() {
     }
 
     var tabTitle = "Barbeuc : Composition";
+    if(param.refreshAutoMiliSecond) {
+        tabTitle += " (" + numberPlayerInMatch + ")";
+    }
     return render("front/page/compo", tabTitle, {
         mail: param.mail,
         key: param.key,
