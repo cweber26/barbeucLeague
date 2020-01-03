@@ -9,7 +9,11 @@
         var textarea = document.querySelectorAll('.textarea');
         M.CharacterCounter.init(textarea);
         var tooltips = document.querySelectorAll('.tooltipped');
-        M.Tooltip.init(tooltips, {});
+        tooltips.forEach(function (tooltip) {
+            if(tooltip.textContent) {
+                M.Tooltip.init(tooltip);
+            }
+        });
         var datePicker = document.getElementById('newMatchDate');
         M.Datepicker.init(datePicker, {
             autoClose: true,
