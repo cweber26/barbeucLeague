@@ -60,10 +60,7 @@ function loadPageCompo() {
         playersInWaitingListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listeAttente += "<tr>" +
-                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
-                    "</tr>";
+                listeAttente += dropDownForPlayer(player.fullName, false, true);
             }
         });
         listeAttente += "</tbody></table>";
@@ -75,10 +72,7 @@ function loadPageCompo() {
         playersNotAvailablePlayerListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasDispo += "<tr>" +
-                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "</tr>";
+                listePasDispo += dropDownForPlayer(player.fullName, true, false);
             }
         });
         listePasDispo += "</tbody></table>";
@@ -89,10 +83,7 @@ function loadPageCompo() {
         playersNotAvailableByDayPlayerMailListMail().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasDispoJour += "<tr>" +
-                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "</tr>";
+                listePasDispoJour += dropDownForPlayer(player.fullName, true, false);
             }
         });
         listePasDispoJour += "</tbody></table>";
@@ -103,11 +94,7 @@ function loadPageCompo() {
         playersNotRespondedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasRepondu += "<tr>" +
-                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
-                    "</tr>";
+                listePasRepondu += dropDownForPlayer(player.fullName, true, true);
             }
         });
         listePasRepondu += "</tbody></table>";
@@ -118,10 +105,7 @@ function loadPageCompo() {
         playersNotInvitedPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listePasInvite += "<tr>" +
-                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "</tr>";
+                listePasInvite += dropDownForPlayer(player.fullName, true, false);
             }
         });
         listePasInvite += "</tbody></table>";
@@ -132,10 +116,7 @@ function loadPageCompo() {
         playersInjuredPlayerMailList().forEach(function (m) {
             var player = getPlayerWithMail(m);
             if(player) {
-                listeBlesse += "<tr>" +
-                    "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "</tr>";
+                listeBlesse += dropDownForPlayer(player.fullName, true, false);
             }
         });
         listeBlesse += "</tbody></table>";
@@ -207,21 +188,32 @@ function getLevels(p) {
     return Utilities.formatString("%02d", Number(p[4] + p[5] + p[6])) + " : " + p[4] + "/" + p[5] + "/" + p[6];
 }
 
-
-function buttonInscriptionCompo() {
-    return "<a class=smallButtonGreen onclick=inscriptionCompo(this)>Inscription</a>";
-}
-
-function buttonDesinscriptionCompo() {
-    return "<a class=smallButtonRed onclick=desinscriptionCompo(this)>Désinscription</a>";
-}
-
 function buttonModificationProfilCompo(fullName) {
     if(param.isAdmin) {
-        return "<a class=smallButtonGreen onclick=redirectProfilPageCompo(this)>" + fullName + "</a>";
+        return "<a class=smallButtonGreen onclick=redirectProfilPageCompoFromButton(this)>" + fullName + "</a>";
     } else {
         return fullName;
     }
+}
+
+function dropDownForPlayer(fullName, inscription, desinscription) {
+    var html="<tr><td>";
+    if(param.isAdmin) {
+        html+="<a class='dropdown-trigger' style='text-decoration:none;color:#000000;' data-target='dd" + fullName + "'>" + fullName + "</a>"
+        +"<ul id='dd" + fullName + "' class='dropdown-content'>"
+        +"<li><a onclick=redirectProfilPageCompo(this)>Profil</a></li>";
+        if(inscription==true) {
+            html+="<li><a onclick=inscriptionCompo(this)>Inscription</a></li>"
+        }
+        if(desinscription==true) {
+            html+="<li><a onclick=desinscriptionCompo(this)>Désinscription</a></li>"
+        }
+        html+="</ul>";
+    } else {
+        html+=fullName;
+    }
+    html += "</td></tr>";
+    return html;
 }
 
 

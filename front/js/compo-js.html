@@ -71,7 +71,7 @@
 
     function inscriptionCompo(element) {
         M.toast({ html: "En cours" });
-        var fullName = element.parentNode.parentNode.firstChild.textContent;
+        var fullName = element.parentNode.parentNode.parentNode.firstChild.textContent;
         console.log("fullname : " + fullName);
         google.script.run.withSuccessHandler(inscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
@@ -106,7 +106,7 @@
 
     function desinscriptionCompo(element) {
         M.toast({ html: "En cours" });
-        var fullName = element.parentNode.parentNode.firstChild.textContent;
+        var fullName = element.parentNode.parentNode.parentNode.firstChild.textContent;
         console.log("fullname : " + fullName);
         google.script.run.withSuccessHandler(desinscriptionPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
@@ -121,9 +121,16 @@
         google.script.run.withSuccessHandler(displaySuccessActionCompo).withFailureHandler(displayErrorActionCompo).inscription(parameter);
     }
 
-    function redirectProfilPageCompo(element) {
+    function redirectProfilPageCompoFromButton(element) {
         M.toast({ html: "En cours" });
         var fullName = element.parentNode.parentNode.firstChild.textContent;
+        console.log("fullname : " + fullName);
+        google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
+    }
+
+    function redirectProfilPageCompo(element) {
+        M.toast({ html: "En cours" });
+        var fullName = element.parentNode.parentNode.parentNode.firstChild.textContent;
         console.log("fullname : " + fullName);
         google.script.run.withSuccessHandler(redirectProfilPageWithPlayer).withFailureHandler(displayErrorActionCompo).getPlayerInfoForFrontWithFullName(fullName);
     }
