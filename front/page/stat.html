@@ -11,6 +11,11 @@
 <body>
     <div class="container">
         <div class="row"></div>
+        <div class="row">
+            <div style="margin: auto;width: 100px;">
+                <a class='dropdown-trigger buttonGreen valign-wrapper' data-target='yearResult'><?=year?></a>
+            </div>
+        </div>
             <div class="row">
             <table id="stat" class="centered highlight responsive-table">
                 <thead>
@@ -56,6 +61,10 @@
         </div>
 </div>
 </body>
+<ul id='yearResult' class='dropdown-content'>
+    <li><a href="<?=url?>?page=stat&mail=<?=mail?>&key=<?=key?>&year=2020">2020</a></li>
+    <li><a href="<?=url?>?page=stat&mail=<?=mail?>&key=<?=key?>&year=2019">2019</a></li>
+</ul>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <?!= include("front/js/stat-js"); ?>
 <?!= include("front/js/nav-js"); ?>

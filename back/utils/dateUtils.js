@@ -1,4 +1,5 @@
 var currentWeekDay = parseInt(Utilities.formatDate(new Date(), "Europe/Paris", "u"));
+var currentYear = Utilities.formatDate(new Date(), "Europe/Paris", "yyyy");
 var nextMatchDateInFrench = LanguageApp.translate(Utilities.formatDate(nextMatchDate,  "Europe/Paris", "EEEE dd MMMM"), "en", "fr");
 var scheduleValues = sheetSchedule.getRange(1, 1).getDataRegion().getValues();
 

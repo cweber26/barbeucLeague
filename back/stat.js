@@ -129,7 +129,13 @@ var statsColumn = {
 
 function loadPageStat() {
     var stats = "";
-    var data = sheetStats.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
+    var data;
+    if(param.year == 2019) {
+        data = sheetStats2019.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
+    } else {
+        param.year = currentYear;
+        data = sheetStats.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
+    }
     data.forEach(function (p) {
         if(p[statsColumn.mail]){
             stats += "<tr>";
@@ -159,7 +165,10 @@ function loadPageStat() {
         fullName: getFullName(param.mail),
         table: stats,
         admin: param.isAdmin,
-        testing: isTest()
+        testing: isTest(),
+        url: getUrl(),
+        year: param.year,
+        currentYear: currentYear
     });
 }
 
