@@ -346,7 +346,7 @@ function isNickNameExistInDB(nickname) {
 
 // met à jour le mail modifié dans la page des résultats afin que les stats fonctionnent toujours
 function updateMailInResultSheet(oldMail, newMail) {
-    var rangeResult = sheetResult.getRange(4, 2, sheetResult.getLastRow(), 13);
+    var rangeResult = sheetResult.getRange(4, 2, sheetResult.getLastRow(), 12);
     var resultValues = rangeResult.getValues();
     replaceInSheet(resultValues, oldMail, newMail);
     rangeResult.setValues(resultValues);
