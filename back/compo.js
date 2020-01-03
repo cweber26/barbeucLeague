@@ -38,7 +38,7 @@ function loadPageCompo() {
                     + "<td>" + getLogoCar(p) + "</td>";
                 if(param.isAdmin) {
                     effectif += "<td>" + buttonConfirmationCompo() + "</td>"
-                    effectif += "<td>" + buttonSwitchTeam(p) + "</td>"
+                        + "<td>" + buttonSwitchTeam(p) + "</td>"
                 }
                 effectif += "</tr>";
             }
@@ -62,7 +62,6 @@ function loadPageCompo() {
             if(player) {
                 listeAttente += "<tr>" +
                     "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
-                    "<td>" + buttonInscriptionCompo() + "</td>" +
                     "<td>" + buttonDesinscriptionCompo() + "</td>" +
                     "</tr>";
             }
@@ -79,7 +78,6 @@ function loadPageCompo() {
                 listePasDispo += "<tr>" +
                     "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
                     "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
                     "</tr>";
             }
         });
@@ -94,7 +92,6 @@ function loadPageCompo() {
                 listePasDispoJour += "<tr>" +
                     "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
                     "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
                     "</tr>";
             }
         });
@@ -124,7 +121,6 @@ function loadPageCompo() {
                 listePasInvite += "<tr>" +
                     "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
                     "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
                     "</tr>";
             }
         });
@@ -139,7 +135,6 @@ function loadPageCompo() {
                 listeBlesse += "<tr>" +
                     "<td>" + buttonModificationProfilCompo(player.fullName) + "</td>" +
                     "<td>" + buttonInscriptionCompo() + "</td>" +
-                    "<td>" + buttonDesinscriptionCompo() + "</td>" +
                     "</tr>";
             }
         });
