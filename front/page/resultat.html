@@ -11,6 +11,7 @@
 <body>
 <div class="container">
     <div class="row"></div>
+    <? if(date){ ?>
     <div class="row">
         <h3 class="title">Match du <?=date?></h3>
     </div>
@@ -109,6 +110,11 @@
             <label for="matchDate">Choisir match</label>
         </div>
     </div>
+    <? } else { ?>
+    <div>
+        <h3 class="title">Pas encore de match joué cette année</h3>
+    </div>
+    <? } ?>
 </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

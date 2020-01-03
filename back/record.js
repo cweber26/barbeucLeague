@@ -21,8 +21,10 @@ function loadPageRecord() {
         victoryInRow = sheetRecordFilter.getRange(8, 2, 3, 3).getValues();
         loseInRow = sheetRecordFilter.getRange(11, 2, 3, 3).getValues();
         participation = sheetRecordFilter.getRange(20, 2, 3, 3).getValues();
-        victoryLastMonth = sheetRecordFilter.getRange(24, 2, 4, 3).getValues();
-        loseLastMonth = sheetRecordFilter.getRange(29, 2, 4, 3).getValues();
+        if(currentMonth>1){
+            victoryLastMonth = sheetRecordFilter.getRange(24, 2, 4, 3).getValues();
+            loseLastMonth = sheetRecordFilter.getRange(29, 2, 4, 3).getValues();
+        }
     }
 
     return render("front/page/record", "Barbeuc : Records", {

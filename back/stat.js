@@ -139,7 +139,7 @@ function loadPageStat() {
     data.forEach(function (p) {
         if(p[statsColumn.mail]){
             stats += "<tr>";
-            if (p[statsColumn.rankEvolution]) {
+            if (p[statsColumn.rankEvolution] && p[statsColumn.rankEvolution] != 0) {
                 stats += "<td>" + p[statsColumn.rank] + "<sup> (" + p[statsColumn.rankEvolution] + ")</sup></td>";
             } else {
                 stats += "<td>" + p[statsColumn.rank] + "</td>";
