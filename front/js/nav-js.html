@@ -10,7 +10,7 @@
         M.CharacterCounter.init(textarea);
         var tooltips = document.querySelectorAll('.tooltipped');
         tooltips.forEach(function (tooltip) {
-            if(tooltip.textContent) {
+            if(tooltip.textContent.trim().length>0) {
                 M.Tooltip.init(tooltip);
             }
         });
