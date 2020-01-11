@@ -40,7 +40,7 @@
 
     function launchBatchJs() {
         M.toast({html: "Batch en cours"});
-        google.script.run.withSuccessHandler(reloadNav).withFailureHandler(failNav).execBatch();
+        google.script.run.withSuccessHandler(successBatch).withFailureHandler(failNav).execBatch();
     }
 
     function sendRecordsLastMontJs() {
@@ -103,6 +103,10 @@
 
     function successMail() {
         M.toast({html: "Mails envoyés"});
+    }
+
+    function successBatch() {
+        M.toast({html: "Batch run ok"});
     }
 
     function failNav() {
