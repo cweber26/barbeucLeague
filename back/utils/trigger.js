@@ -57,27 +57,35 @@ function execStep(step) {
         case 1:
             deleteUnavaibility();
             sendInscriptionMailForPrioritaryPlayers();
+            updateParameter("mailSentForPrioritaryPlayers", now());
             break;
         case 2:
             sendInscriptionMailForPlayersWithPrio1();
+            updateParameter("mailSentForPlayersWithPrio1", now());
             break;
         case 3:
             sendInscriptionMailForPlayersWithPrio2();
+            updateParameter("mailSentForPlayersWithPrio2", now());
             break;
         case 4:
             sendInscriptionMailForPlayersWithPrio3();
+            updateParameter("mailSentForPlayersWithPrio3", now());
             break;
         case 5:
             controlAndCancelOrRelaunch();
-            break;
+            updateParameter("controlDone", now());
+            break
         case 6:
             sendReminderMail();
+            updateParameter("mailSendingReminder", now());
             break;
         case 7:
             sendConfirmMail();
+            updateParameter("mailSendingConfirmation", now());
             break;
         case 8:
             saveTeam();
+            updateParameter("teamSaved", now());
             break;
         case 9:
             sendScoreMail();

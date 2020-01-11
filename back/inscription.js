@@ -1,28 +1,24 @@
 function sendInscriptionMailForPrioritaryPlayers() {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
         sendInscriptionMailForPrioritaryPlayersWithoutControl();
-        updateParameter("mailSentForPrioritaryPlayers", now());
     }
 }
 
 function sendInscriptionMailForPlayersWithPrio1() {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
         sendInscriptionMailForAPrioWithoutControl(1, false);
-        updateParameter("mailSentForPlayersWithPrio1", now());
     }
 }
 
 function sendInscriptionMailForPlayersWithPrio2() {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
         sendInscriptionMailForAPrioWithoutControl(2, true);
-        updateParameter("mailSentForPlayersWithPrio2", now());
     }
 }
 
 function sendInscriptionMailForPlayersWithPrio3() {
     if (isTheMatchInProgress() && numberAvailableSlotInMatch > 0) {
         sendInscriptionMailForAPrioWithoutControl(3, true);
-        updateParameter("mailSentForPlayersWithPrio3", now());
     }
 }
 

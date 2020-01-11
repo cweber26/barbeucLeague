@@ -1,11 +1,9 @@
 function sendReminderMail() {
-    if (mailSendingReminder=="") {
-        if(isTheMatchInProgress()){
-            sendReminderMailWithoutControl();
-        }
-        updateParameter("mailSendingReminder", now());
+    if (isTheMatchInProgress()) {
+        sendReminderMailWithoutControl();
     }
 }
+
 
 function sendReminderMailWithoutControl() {
     var matchMails = playersInTheMatchMail();
