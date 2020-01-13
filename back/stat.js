@@ -130,11 +130,21 @@ var statsColumn = {
 function loadPageStat() {
     var stats = "";
     var data;
+
+
+    if(!param.year || param.year==currentYear) {
+        param.year=currentYear;
+        data = sheetStats.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
+    } else {
+        var nameSheet = "Stats" + param.year;
+        var sheetStatsForParamYear = spreadsheet.getSheetByName(nameSheet);
+        data = sheetStatsForParamYear.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
+    }
+
     if(param.year == 2019) {
-        data = sheetStats2019.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
+
     } else {
         param.year = currentYear;
-        data = sheetStats.getRange(2, 1, sheetStats.getLastRow(), sheetStats.getLastColumn()).getValues();
     }
     data.forEach(function (p) {
         if(p[statsColumn.mail]){
