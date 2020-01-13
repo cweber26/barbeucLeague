@@ -7,13 +7,13 @@ function loadPageResultat() {
     if(param.matchDate) {
         date = param.matchDate;
     } else {
-        date = getDateFormat(sheetResult.getRange(row, 1).getValue());
+        date = getDateTimeFormatWithoutSecond(sheetResult.getRange(row, 1).getValue());
     }
 
     var matchDateSelect = "";
-    for (var i = 3; i <= row+1; i++){
+    for (var i = row+1; i >= 3; i--){
         if(matchDates[i][0]){
-            var dateFormated = getDateFormat(matchDates[i][0]);
+            var dateFormated = getDateTimeFormatWithoutSecond(matchDates[i][0]);
             if(dateFormated == date) {
                 var playersMailList = sheetResult.getRange(i+1, 2, 1, 10).getValues();
                 playersMailList[0].forEach(function (m) {

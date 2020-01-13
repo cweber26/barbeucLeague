@@ -83,6 +83,15 @@ function getDateWithDayNameFormat(date) {
     }
 }
 
+
+function getDateTimeFormatWithoutSecond(date) {
+    if (date != "") {
+        return Utilities.formatDate(new Date(date), "Europe/Paris", "dd/MM/yy HH:mm");
+    } else {
+        return "";
+    }
+}
+
 function getDateTimeFormat(date) {
     if (date != "") {
         return Utilities.formatDate(new Date(date), "Europe/Paris", "dd/MM/yy HH:mm:ss");

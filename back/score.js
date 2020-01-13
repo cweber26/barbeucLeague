@@ -2,10 +2,11 @@ function saveTeam() {
     if (isTheMatchInProgress()) {
         var row = sheetResult.getRange("A1:A").getValues().filter(String).length + 2;
         var lastSavedDate = sheetResult.getRange(row - 1, 1).getValue();
-        if (lastSavedDate && lastSavedDate.getTime() == nextMatchDate.getTime()) {
+        var nextMatchDateBegin = new Date(Utilities.formatDate(nextMatchDate, "Europe/Paris", "MM/dd/yyyy") + " 12:30:00");
+        if (lastSavedDate && lastSavedDate.getTime() == nextMatchDateBegin.getTime()) {
             row = row - 1;
         } else {
-            sheetResult.getRange(row, 1).setValue(nextMatchDate);
+            sheetResult.getRange(row, 1).setValue(nextMatchDateBegin);
         }
         var players = playersInTheMatchForFinalCompo();
         sheetResult.getRange(row, 2).setValue(players[0][0]);
@@ -29,7 +30,7 @@ function saveScore(scoreValue) {
     var date = scoreValue.date;
     for (var i = lastRowDate + 1; i >= 3; i--) {
         if (matchDates[i][0]) {
-            var dateFormated = getDateFormat(matchDates[i][0]);
+            var dateFormated = getDateTimeFormatWithoutSecond(matchDates[i][0]);
             if (dateFormated == date) {
                 sheetResult.getRange(i + 1, 12).setValue(scoreValue.rouge);
                 sheetResult.getRange(i + 1, 13).setValue(scoreValue.bleu);
