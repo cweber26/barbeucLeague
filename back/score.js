@@ -35,10 +35,10 @@ function saveScore(scoreValue) {
                 sheetResult.getRange(i + 1, 13).setValue(scoreValue.bleu);
                 var playersList = sheetResult.getRange(i + 1, 2, 1, 10).getValues();
                 Logger.log("players for stats : " + playersList);
-                playersList[0].forEach(function (fullName) {
-                    Logger.log(fullName);
-                    if(fullName) {
-                        statsForAPlayer(fullName);
+                playersList[0].forEach(function (mail) {
+                    Logger.log(mail);
+                    if(mail) {
+                        statsForAPlayer(mail);
                     }
                 });
                 break;

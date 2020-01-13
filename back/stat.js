@@ -7,16 +7,18 @@ function initStats() {
     stats(playerNameInSheetResultFilter());
 }
 
-function stats(players) {
-    for (var i in players) {
-        if (players[i][0]) {
-            statsForAPlayer(players[i][0]);
-        }
+function stats() {
+    for (var i = 1; i <= sheetResultFilter.getRange("A1:A").getValues().filter(String).length + 1; i++) {
+        statsForARow(i);
     }
 }
 
-function statsForAPlayer(playerName) {
-    var row = getRowSheetResultFilter(playerName);
+function statsForAPlayer(mail) {
+    var row = getRowSheetResultFilter(mail);
+    statsForARow(row);
+}
+
+function statsForARow(row) {
     var serie = sheetResultFilter.getRange(row, resultFilterColumnRange.lastResult, 1, sheetResultFilter.getLastColumn()).getValues()[0].filter(String);
     var maxWin = 0;
     var maxLose = 0;
@@ -30,7 +32,6 @@ function statsForAPlayer(playerName) {
         var lose = 0;
         for (var i in serie) {
             current = serie[i];
-
             if (!inProgressDone && (previous == '' || current == previous) && current != 'N') {
                 if (current == 'V') {
                     winInProgress += 1
