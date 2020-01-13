@@ -59,7 +59,8 @@ function couldBeAvailableForMatch(player) {
     return player.mail
         && player.answer == ""
         && player.isAvailableDay == true
-        && player.isUnavailable == false;
+        && player.isUnavailable == false
+        && player.isInscriptionSent == false;
 }
 
 

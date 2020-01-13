@@ -118,21 +118,18 @@
 
 
     function updateProfilSuccess(newParameter) {
-        google.script.run.withSuccessHandler(updateProfilSuccessWithUrl).getUrl();
+        if(newParameter) {
+            google.script.run.withSuccessHandler(updateProfilSuccessWithUrl).getUrl();
+        } else {
+            M.toast({html: "Profil modifié"});
+        }
         function updateProfilSuccessWithUrl(url) {
             google.script.url.getLocation(function (location) {
                 console.log(location.parameter);
                 if (location.parameter.profilMail) {
-                    if(newParameter){
-                        location.parameter.profilMail = newParameter.mail;
-                        window.top.location.href = url+"?page=profil&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&profilMail=" + String(location.parameter.profilMail);
-                    }
-                } else if (newParameter) {
-                    location.parameter.mail = newParameter.mail;
-                    location.parameter.key = newParameter.key;
-                    window.top.location.href = url+"?page=profil&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key);
+                    window.top.location.href = url+"?page=profil&mail=" + String(location.parameter.mail) + "&key=" + String(location.parameter.key) + "&profilMail=" + String(newParameter.mail);
                 } else {
-                    M.toast({html: "Profil modifié"});
+                    window.top.location.href = url+"?page=profil&mail=" + String(newParameter.mail) + "&key=" + String(newParameter.key);
                 }
             });
         }
