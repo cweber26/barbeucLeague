@@ -4,8 +4,8 @@ function loadPageTeam() {
         if(p[playerColumn.prioValue] <= 4) {
             tableTeam += "<tr>"
                 + "<td id='mail'>" + p[playerColumn.mail] + "</td>"
-                + "<td>" + p[playerColumn.lastName] + "</td>"
                 + "<td>" + p[playerColumn.firstName] + "</td>"
+                + "<td>" + p[playerColumn.lastName] + "</td>"
                 + "<td>" + p[playerColumn.nickName] + "</td>"
                 + "<td>" + checkbox(p[playerColumn.isUnavailable]) + "</td>"
                 + "<td>" + getDateFormat(p[playerColumn.endDateOfUnavailibility]) + "</td>"
