@@ -282,12 +282,30 @@ function changePlayerTeamWithMail(playerMail1, playerMail2) {
             sheetComposition.getRange(row, 2).setValue(newTeam);
         }
     }
+    changeEventDescription(getTeamDescription());
 }
 
 function playersInTheMatchForFinalCompo() {
     if (numberPlayerInMatch > 0) {
         return sheetComposition.getRange(2, 3, numberPlayerMatch, 14).getValues();
     }
+}
+
+function getTeamDescription() {
+    var playerList = playersInTheMatchForFinalCompo();
+    var description = "";
+    for(var i in playerList){
+        switch (i) {
+            case "0":
+                description += "Equipe Rouge : ";
+                break;
+            case "5":
+                description += "<br>Equipe Bleu : ";
+                break;
+        }
+        description += playerList[i][2] + " ";
+    }
+    return description;
 }
 
 

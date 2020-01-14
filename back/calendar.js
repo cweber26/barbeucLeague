@@ -12,7 +12,16 @@ function updateCalendarEvent(newMail, oldMail) {
             event.removeGuest(oldMail);
             event.addGuest(newMail);
         }
-        updateParameter("creationGoogleEvent", now());
+    }
+}
+
+function changeEventDescription(description) {
+    Logger.log("changeEventDescription with description " + description);
+    if(isTheMatchInProgress() && creationGoogleEvent!=""){
+        var event = getCalendarEvent();
+        if(event) {
+            event.setDescription(description);
+        }
     }
 }
 
@@ -25,7 +34,7 @@ function createCalendarEvent() {
         if (isTest()) {
             mails = mailTester;
         }
-        var event = calendar.createEvent(applicationName, begin, end, {location: nextMatchStadiumAddress, guests: mails, sendInvites: false});
+        var event = calendar.createEvent(applicationName, begin, end, {location: nextMatchStadiumAddress, guests: mails, sendInvites: false, description: getTeamDescription()});
 
         if(mails.includes("cedric.weber@decathlon.com")){
             event.setMyStatus(CalendarApp.GuestStatus.YES);
