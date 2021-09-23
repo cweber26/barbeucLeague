@@ -58,6 +58,11 @@
         google.script.run.withSuccessHandler(successMail).withFailureHandler(failNav).testMails();
     }
 
+    function sendInscriptionMailForPrio2WithoutControlJs() {
+        M.toast({ html: "Envoi des mails en cours" });
+        google.script.run.withSuccessHandler(successMail).withFailureHandler(failNav).sendInscriptionMailForPrio2WithoutControl();
+    }
+
     function reloadNav() {
         google.script.run.withSuccessHandler(reloadNavWithUrl).getUrl();
         function reloadNavWithUrl(url) {
@@ -69,7 +74,7 @@
 
     function envoyerMessageJs() {
         if(document.getElementById("message").value) {
-            google.script.run.withSuccessHandler(successNav).withFailureHandler(failNav).envoyerMessage({
+            google.script.run.withSuccessHandler(successMail).withFailureHandler(failNav).envoyerMessage({
                 filtreEtatJoueur: document.querySelector('input[name="filtreEtatJoueur"]:checked').value,
                 filtrePrio: document.querySelector('input[name="filtrePrio"]:checked').value,
                 message: document.getElementById("message").value.replace(/\n\r?/g, '<br />'),

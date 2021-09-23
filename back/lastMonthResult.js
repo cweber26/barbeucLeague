@@ -4,6 +4,7 @@ function sendLastMonthResultMail() {
         var player = getPlayerWithMail(mails[i]);
         sendLastMonthResultMailForAPlayer(player);
     }
+    updateParameter("sendMonthlyResult", now());
 }
 
 function sendLastMonthResultMailForAPlayer(player) {

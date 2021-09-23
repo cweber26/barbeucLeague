@@ -39,6 +39,7 @@ var mailSendingReminder = getParameterFromList("mailSendingReminder");
 var creationGoogleEvent = getParameterFromList("creationGoogleEvent");
 var teamSaved = getParameterFromList("teamSaved");
 var mailSendingConfirmation = getParameterFromList("mailSendingConfirmation");
+var sendMonthlyResult = getParameterFromList("sendMonthlyResult");
 var isMatchCancel = getParameterFromList("isMatchCancel");
 var numberPlayerInMatch = getParameterFromList("numberPlayerInMatch");
 var numberAvailableSlotInMatch = getParameterFromList("numberAvailableSlotInMatch");

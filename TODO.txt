@@ -2,19 +2,26 @@ STAND BY ajouter une photo du joueur
 STAND BY mettre un joueur invité "fantome"
 STAND BY créer un faux abonnement prioritaire
 
+TECH limiter les appels à la google sheet
 TECH trouver un moyen d'envoyer les mails en version test (actuellement ça part toujours avec l'url exec)
 TECH faire un fichier preprod
 TECH revoir le fonctionnement de la sélection du jour pour le prochain match
 TECH remplacer les colonnes QUERY par leur vrai nom
 
-TODO FEAT changer le jour du match + envoi mail auto
+FEAT déplacer les actions sur le joueur de la compo dans le tableau sur le nom du joueur sur le terrain (confirmation , profil , désinscription)
+FEAT changer le jour du match + envoi mail auto
 FEAT voter pour l'homme du match + mail avec score
 FEAT envoyer les mails depuis une adresse noreply
 FEAT améliorer l'ergo pour ajouter un joueur
-TODO FEAT ajouter un champ numéro de téléphone
+FEAT ajouter un champ numéro de téléphone
 FEAT modification du planning via le backoffice
 FEAT modification des infos stade via le backoffice
 FEAT améliorer le design de la compo -> http://jsfiddle.net/Tj9bJ/2/
+FEAT ne pas envoyer les invitations 2 et 3 si trop peu de joueurs dispo
+FEAT ajouter bouton pour envoyer les mails manuellement
+FEAT désinscrire un joueur de la compo
+FEAT inscrire un joueur depuis le front même si pas encore invité (admin uniquement) attention
 
 BUG un surnom avec une côte ne fonctionne pas bien
 BUG résultat du mois dernier NOK
+BUG desistement ne marche pas pour le rdv aussi ...

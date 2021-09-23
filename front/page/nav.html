@@ -55,6 +55,7 @@
     <li><a class="modal-trigger" data-target="matchDate-modal">Changer la date du prochain match</a></li>
     <li><a class="modal-trigger" data-target="helperMessage-modal">Envoyer un message</a></li>
     <li><a class="modal-trigger" data-target="recordmonth-modal">Envoyer mail records dernier mois</a></li>
+    <li><a class="modal-trigger" data-target="inscriptionmail-modal">Envoyer mail prio 2</a></li>
     <li><a class="modal-trigger" data-target="stats-modal">Recalculer les statistiques</a></li>
     <li><a class="modal-trigger" data-target="mailtest-modal">Envoyer mails test</a></li>
     <li><a class="modal-trigger" data-target="launchBatch-modal">Lancer le batch</a></li>
@@ -223,6 +224,18 @@
         <h5>Es tu sûr de vouloir envoyer les mails de test ?</h5>
         <div class="row">
             <div class="buttonGreen modal-close" onclick="sendMailsTestJs()">Envoyer</div>
+        </div>
+        <div class="row">
+            <div class="buttonRed modal-close">Annuler</div>
+        </div>
+    </div>
+</div>
+
+<div id="inscriptionmail-modal" class="modal">
+    <div class="modal-content">
+        <h5>Es tu sûr de vouloir envoyer les mails d'inscription ?</h5>
+        <div class="row">
+            <div class="buttonGreen modal-close" onclick="sendInscriptionMailForPrio2WithoutControlJs()">Envoyer</div>
         </div>
         <div class="row">
             <div class="buttonRed modal-close">Annuler</div>

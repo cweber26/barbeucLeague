@@ -38,6 +38,11 @@ function sendInscriptionMailForPrioritaryPlayersWithoutControl() {
     })
 }
 
+// noinspection JSUnusedGlobalSymbols
+function sendInscriptionMailForPrio2WithoutControl() {
+    sendInscriptionMailForAPrioWithoutControl(2, true);
+}
+
 function sendInscriptionMailForAPrioWithoutControl(prio, displayAvailableSlot) {
     playersTeamList.forEach(function (playerLine) {
         var player = initPlayer(playerLine);
@@ -49,7 +54,8 @@ function sendInscriptionMailForAPrioWithoutControl(prio, displayAvailableSlot) {
 }
 
 function relaunchInscriptionMailForPlayersWithoutAnswerWithoutControl() {
-    notRespondedPlayerMailList.forEach(function (player) {
+    playersNotRespondedPlayerMailList().forEach(function (playerMail) {
+        var player = getPlayerWithMail(playerMail);
         sendInscriptionMailForAPlayer(player, false, true);
     });
 }
