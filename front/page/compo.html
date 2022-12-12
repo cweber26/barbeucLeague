@@ -245,16 +245,6 @@
 </div>
 
 <? if(mail) { ?>
-<div class="fixed-action-btn direction-top active" style="bottom: 175px; right: 25px;">
-    <a class="btn-floating btn-large waves-effect waves-light green lighten-2 tooltipped" data-tooltip="Activer/Désactiver le rafraichissement automatique"
-    <? if(refreshAutoMiliSecond && Number(refreshAutoMiliSecond) > 0) { ?>
-        onclick="reloadNav()"><i class="material-icons">clear</i>
-    <? } else { ?>
-        onclick="refreshCompoPageAuto()"><i class="material-icons">autorenew</i>
-    <? } ?>
-    </a>
-</div>
-
 <div class="fixed-action-btn direction-top active" style="bottom: 100px; right: 25px;">
     <a data-target="messageForumModal" class="btn-floating btn-large waves-effect waves-light modal-trigger green lighten-2 tooltipped" data-tooltip="Envoyer un message aux joueurs inscrits">
         <i class="material-icons">email</i>
@@ -311,5 +301,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <?!= include("front/js/compo-js"); ?>
 <?!= include("front/js/nav-js"); ?>
-<!--<?!= include("front/js/christmas-js"); ?>-->
+<?!= include("front/js/christmas-js"); ?>
 </html>

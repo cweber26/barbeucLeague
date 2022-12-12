@@ -6,10 +6,13 @@
       google.script.url.getLocation(function(location) {
           google.script.run.withSuccessHandler(redirectToPageCompo).withFailureHandler(redirectToPageError).confirmation(location.parameter);
           function redirectToPageCompo() {
-              window.top.location.href=url+"?page=compo&mail="+String(location.parameter.mail)+"&key="+String(location.parameter.key);
+              document.getElementById("title").textContent = "Confirmation ok!"
+              document.getElementById("loader").remove();
+              document.getElementById("compoButton").className="buttonGreen"
           }
           function redirectToPageError() {
-              window.top.location.href=url+"?page=error";
+              document.getElementById("title").textContent = "Erreur"
+              document.getElementById("loader").remove();
           }
       });
   }

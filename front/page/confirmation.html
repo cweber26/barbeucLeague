@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <?!= include("front/page/head"); ?>
-      <?!= include("front/css/pageCss"); ?>
+    <?!= include("front/css/pageCss"); ?>
     <?!= include("front/css/mainCss"); ?>
-  </head>
-  <body>
-  <div class="container">
-   <div class="row"></div>
-   <div class="row">
-    <div class="center">
-      <img class=none src="https://drive.google.com/thumbnail?id=1Aucoy6mDftns8VbpY6h1AZlk62KjP5Yj"  alt="logo"/>
-    </div>
-    <h3>Confirmation en cours</h3>
-    <div class="center">
-      <div class="preloader-wrapper big active center">
-        <div class="spinner-layer spinner-green-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
+</head>
+<body>
+<div class="container">
+    <div class="row"></div>
+    <div class="row">
+        <div class="center">
+            <img class=none src="https://drive.google.com/thumbnail?id=1Aucoy6mDftns8VbpY6h1AZlk62KjP5Yj" alt="logo"/>
         </div>
-      </div>
+        <h3 id="title"> Confirmation en cours</h3>
+        <div id="loader" class="center">
+            <div class="preloader-wrapper big active center">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a id="compoButton" class="buttonHidden" href="<?=url?>?page=compo&mail=<?=mail?>&key=<?=key?>">Voir la compo</a>
+        </div>
     </div>
-   </div>
-  </div>
-  </body>
+</div>
+</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <?!= include("front/js/confirmation-js"); ?>
 </html>
